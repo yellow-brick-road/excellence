@@ -1,0 +1,29 @@
+# Keep only: tuimm/, ideas/, docs/
+# Everything else at root is local-only
+
+# Root files
+agents.md
+DIAGRAM.md
+REGISTRY.md
+ROADMAP.md
+SUCCESS_METRICS.md
+session*.md
+
+# Root dirs (local-only)
+.kiro/
+.trash/
+notes/
+tasks/
+learning/
+
+# Build / runtime
+__pycache__/
+*.pyc
+.auto-build/
+.qodo/
+.plan/
+outputs/
+analysis/
+b2c-*/
+*.log
+___*

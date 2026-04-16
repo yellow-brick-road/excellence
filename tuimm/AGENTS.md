@@ -1,0 +1,183 @@
+# AGENTS.md — TUIMM Package Installation Guide
+
+This file is for AI assistants helping developers install the TUIMM agent package. If you are a human, read README.md instead.
+
+## What this package is
+
+TUIMM is a set of 19 AI agent configurations for Kiro CLI, designed for TUI Musement's frontend engineering teams. It connects to Jira, GitLab, SonarQube, Datadog, Figma, Contentful, ConfigCat, and Confluence via MCP (Model Context Protocol).
+
+## Package structure
+
+```
+tuimm/                          ← this directory
+├── AGENTS.md                   ← you are reading this
+├── README.md                   ← human-readable overview
+├── agents/                     ← 19 agent JSON configs
+│   ├── tuimm_default.json      ← entry point / concierge
+│   ├── tuimm_dev.json          ← ticket-to-MR workflow
+│   ├── tuimm_mr.json           ← MR review and approval
+│   ├── tuimm_quality_guardian.json
+│   ├── tuimm_observability.json
+│   ├── tuimm_devex.json
+│   ├── tuimm_design_system.json
+│   ├── tuimm_knowledge.json
+│   ├── tuimm_planner.json
+│   └── tuimm_subagent_*.json   ← 10 Tier 2 tool subagents
+│
+└── tuimm/                      ← package folder
+    ├── SETUP.md                ← credentials and env var guide
+    ├── steering/               ← 11 shared behavioral rules
+    ├── commands/               ← 35 command definitions
+    ├── skills/                 ← 14 knowledge documents
+    ├── templates/              ← 35 output format templates
+    ├── prompts/                ← empty (reserved)
+    └── tools/                  ← shell scripts and Python utilities
+```
+
+## Installation steps
+
+### Step 1 — Copy files
+
+The agent JSONs go to `~/.kiro/agents/` and the package folder goes to `~/.kiro/tuimm/`.
+
+```bash
+mkdir -p ~/.kiro/agents ~/.kiro/tuimm
+cp agents/*.json ~/.kiro/agents/
+cp -r tuimm/* ~/.kiro/tuimm/
+```
+
+IMPORTANT: The destination is `~/.kiro/tuimm/`, NOT `~/.kiro/tuimm/tuimm/`. The contents of the `tuimm/` source folder go directly into `~/.kiro/tuimm/`.
+
+### Step 2 — Verify file placement
+
+After copying, the structure must be:
+
+```
+~/.kiro/
+├── agents/
+│   ├── tuimm_default.json
+│   ├── tuimm_dev.json
+│   ├── tuimm_mr.json
+│   ├── ... (19 total tuimm_*.json files)
+│
+└── tuimm/
+    ├── SETUP.md
+    ├── steering/
+    │   ├── 1_AGENT_RULES.md
+    │   └── ... (11 total .md files)
+    ├── commands/
+    │   └── ... (35 total .md files)
+    ├── skills/
+    │   └── ... (14 directories, each with SKILL.md)
+    ├── templates/
+    │   └── ... (35 total .md files)
+    ├── prompts/
+    └── tools/
+        ├── gitlab-list-mrs.sh
+        ├── tracked-repos.txt
+        ├── workspace-cleanup-check.py
+        ├── autobuild/
+        ├── bg/
+        ├── logd/
+        └── guidelines-generator/
+```
+
+Verify with:
+
+```bash
+ls ~/.kiro/agents/tuimm_*.json | wc -l    # expect: 19
+ls ~/.kiro/tuimm/steering/*.md | wc -l    # expect: 11
+ls ~/.kiro/tuimm/commands/*.md | wc -l    # expect: 35
+```
+
+### Step 3 — Why the paths matter
+
+Agent JSONs use relative paths in their `resources` field. From `~/.kiro/agents/`, they reference `../tuimm/steering/*.md`, `../tuimm/skills/**/SKILL.md`, etc. This only works if:
+
+- Agent JSONs are at `~/.kiro/agents/tuimm_*.json`
+- Package contents are at `~/.kiro/tuimm/`
+
+If the user puts files in a different location, all resource references will break.
+
+### Step 4 — Configure credentials
+
+The user needs to set environment variables for the MCP servers. Read `~/.kiro/tuimm/SETUP.md` for the full list.
+
+Summary of required env vars:
+
+| Variable | Service | Where to get it |
+|----------|---------|-----------------|
+| GITLAB_PERSONAL_ACCESS_TOKEN | GitLab | https://source.tui/-/user_settings/personal_access_tokens |
+| DD_API_KEY | Datadog | https://tui-musement.datadoghq.eu/organization-settings/api-keys |
+| DD_APP_KEY | Datadog | same URL |
+| SONARQUBE_TOKEN | SonarQube | https://sonarqube.devops.tui/account/security |
+| FIGMA_API_KEY | Figma | https://www.figma.com/settings |
+| CONTENTFUL_MANAGEMENT_ACCESS_TOKEN | Contentful | https://app.contentful.com/account/profile/cma_tokens |
+| CONFIGCAT_API_USER | ConfigCat | https://app.configcat.com/my-account/public-api-credentials |
+| CONFIGCAT_API_PASS | ConfigCat | same URL |
+
+Services that DON'T need env vars:
+- Jira / Confluence — OAuth via browser, automatic on first use
+- Nuxt docs — public endpoint, no auth
+
+The env vars must be exported in the shell BEFORE starting kiro-cli. Add them to `~/.bashrc` (Linux/WSL) or `~/.zshrc` (macOS).
+
+### Step 5 — Verify installation
+
+```bash
+kiro-cli --agent tuimm_default
+```
+
+Once inside, type `$get-commands`. If it lists 35 commands across 9 agents, the installation is correct.
+
+## How the pieces relate
+
+```
+Agent JSON (tuimm_dev.json)
+  │
+  ├── loads steering/*.md at startup (behavioral rules)
+  ├── loads skills/**/SKILL.md on demand (knowledge reference)
+  ├── loads commands/dev_*.md as skills (executable instructions)
+  ├── loads templates/*.md as skills (output formats)
+  ├── indexes tuimm/ as knowledgeBase (semantic search)
+  │
+  ├── spawns subagents via the subagent tool:
+  │     tuimm_subagent_jira → Atlassian MCP → Jira API
+  │     tuimm_subagent_gitlab → GitLab MCP → source.tui API
+  │     tuimm_subagent_sonar → SonarQube MCP → sonarqube.devops.tui
+  │     tuimm_subagent_code_reviewer → 5 MCPs (read-only)
+  │     ...
+  │
+  └── uses tools/ scripts via shell:
+        gitlab-list-mrs.sh, workspace-cleanup-check.py, logd, etc.
+```
+
+Commands reference templates: "present results using the mr-review-summary template."
+Commands reference skills: "consult the jira-adf skill before writing descriptions."
+Commands reference subagents: "delegate to tuimm_subagent_gitlab."
+Steering references other steering: "read and follow GIT.md."
+
+## Existing agents warning
+
+If the user already has files in `~/.kiro/agents/` with `tuimm_` prefix, the copy will overwrite them. Check first:
+
+```bash
+ls ~/.kiro/agents/tuimm_*.json 2>/dev/null
+```
+
+If files exist, ask the user whether to overwrite or back up first.
+
+## Uninstallation
+
+```bash
+rm ~/.kiro/agents/tuimm_*.json
+rm -rf ~/.kiro/tuimm/
+```
+
+This removes all TUIMM agents and the package. It does not remove env vars from the shell config — those are harmless to leave.
+
+## Do NOT modify
+
+- Do not rename agent JSON files — the filename must match the `"name"` field
+- Do not move the `tuimm/` folder to a different path — agent resource paths are hardcoded to `../tuimm/`
+- Do not edit steering files unless the user explicitly asks — they are shared across all agents
