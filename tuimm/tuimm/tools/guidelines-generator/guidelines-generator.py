@@ -254,11 +254,27 @@ def is_test_file(filepath: str) -> bool:
         return True
     return False
 
-def classify_test(filepath: str, content: str) -> str:
+def classify_test(filepath: str, content: str, test_subcats: dict | None = None) -> str:
     """Sub-classify a test file by what it tests."""
-    # First try path-based (most reliable)
     rel = filepath.replace("app/", "", 1) if filepath.startswith("app/") else filepath
     parts = rel.split("/")
+
+    # Agent-proposed subcategories: check dir names and filename suffix
+    if test_subcats:
+        for part in parts[:-1]:
+            part_lower = part.lower()
+            if part_lower in test_subcats:
+                return test_subcats[part_lower]
+        # Filename suffix: FooControllerTest.java → "controller" → lookup
+        filename = parts[-1] if parts else ""
+        name = re.sub(r'\.(java|py|go|ts|js|tsx|jsx)$', '', filename)
+        name = re.sub(r'(Test|Tests|IT|Spec|_test|_spec)$', '', name, flags=re.IGNORECASE)
+        name_lower = name.lower()
+        for key in test_subcats:
+            if name_lower.endswith(key.lower()):
+                return test_subcats[key]
+
+    # Fallback: path-based (frontend)
     for part in parts:
         if part in ("composables", "composable"):
             return "composables"
@@ -306,14 +322,121 @@ def count_loc(filepath: str, repo_root: Path) -> int:
     except Exception:
         return 0
 
+def load_agent_categories(work_dir: Path) -> dict | None:
+    """Load agent-proposed categories from .guidelines/categories.json."""
+    cat_file = work_dir / "categories.json"
+    if cat_file.exists():
+        try:
+            return json.loads(cat_file.read_text())
+        except Exception:
+            return None
+    return None
+
+
+def phase_categorize(repo_root: Path, work_dir: Path, agent: str, model: str, extensions_re: str | None = None):
+    """Ask the agent to propose categories based on repo structure."""
+    all_files = get_committed_files(repo_root, extensions_re=extensions_re)
+    if not all_files:
+        print("❌ No files found")
+        return
+
+    # Build directory tree with file counts
+    dir_counts: dict[str, int] = {}
+    for f in all_files:
+        parts = f.split("/")
+        for i in range(1, len(parts)):
+            d = "/".join(parts[:i])
+            dir_counts[d] = dir_counts.get(d, 0) + 1
+
+    # Show top dirs only (skip deep nesting with few files)
+    tree_lines = []
+    for d in sorted(dir_counts.keys()):
+        depth = d.count("/")
+        if depth <= 4 or dir_counts[d] >= 3:
+            tree_lines.append(f"  {d}/ ({dir_counts[d]} files)")
+
+    dir_tree = "\n".join(tree_lines[:200])  # cap for prompt size
+
+    framework = detect_framework(repo_root)
+    suggested = FRAMEWORK_CATEGORIES.get(framework, DEFAULT_CATEGORIES)
+    suggested_excludes = list(FRAMEWORK_EXCLUDES.get(framework, DEFAULT_EXCLUDES))
+
+    # Sample filenames for context
+    sample = all_files[:80] if len(all_files) > 80 else all_files
+    sample_block = "\n".join(f"  {f}" for f in sample)
+
+    prompt = (
+        f"Analyze this {framework} project and propose categories for guideline extraction.\n\n"
+        f"Directory structure:\n{dir_tree}\n\n"
+        f"Sample files:\n{sample_block}\n\n"
+        f"Suggested categories (directory name → category label):\n{json.dumps(suggested, indent=2)}\n\n"
+        f"Suggested excludes:\n{json.dumps(suggested_excludes)}\n\n"
+        f"Instructions:\n"
+        f"- Analyze the actual structure. Use the suggestions as starting point but adapt to what you see.\n"
+        f"- Add categories for directories not covered. Remove ones that don't exist in this project.\n"
+        f"- For test_subcategories: map directory names or class name suffixes (lowercase, without Test/Tests/IT/Spec) "
+        f"to category labels. Example: \"controller\" → \"controllers\" means *ControllerTest.java or tests in controller/ "
+        f"dirs go to tests/controllers.\n"
+        f"- Return ONLY a JSON object with this structure, no commentary:\n"
+        f'{{"categories": {{"dirname": "label", ...}}, '
+        f'"test_subcategories": {{"suffix_or_dirname": "label", ...}}, '
+        f'"excludes": ["dir1", "dir2"]}}'
+    )
+
+    print(f"\n  🤖 Asking agent to propose categories for {framework} project...")
+    raw = kiro(prompt, agent, model, repo_root)
+    if not raw:
+        print("  ❌ Agent categorization failed — using defaults")
+        return
+
+    content = parse_response(raw)
+    # Extract JSON from response
+    json_match = re.search(r'\{[\s\S]*\}', content)
+    if not json_match:
+        print("  ❌ No JSON in agent response — using defaults")
+        return
+
+    try:
+        result = json.loads(json_match.group())
+    except json.JSONDecodeError as e:
+        print(f"  ❌ Invalid JSON from agent: {e} — using defaults")
+        return
+
+    cats = result.get("categories", {})
+    test_cats = result.get("test_subcategories", {})
+    excludes = result.get("excludes", [])
+
+    (work_dir / "categories.json").write_text(json.dumps(result, indent=2))
+
+    print(f"  ✅ Agent proposed {len(cats)} categories, {len(test_cats)} test subcategories, {len(excludes)} excludes")
+    for label in sorted(set(cats.values())):
+        dirs = [k for k, v in cats.items() if v == label]
+        print(f"    {label}: {', '.join(dirs)}")
+    if test_cats:
+        print(f"  Test subcategories:")
+        for label in sorted(set(test_cats.values())):
+            keys = [k for k, v in test_cats.items() if v == label]
+            print(f"    tests/{label}: {', '.join(keys)}")
+
+
 def scan(repo_root: Path, only: list[str] | None = None, dir_filter: str | None = None, extensions_re: str | None = None, extra_categories: dict | None = None) -> list[FileInfo]:
     """Scan repo and classify all committed files."""
     cfg = load_config(repo_root)
     framework = detect_framework(repo_root)
-    base_categories = FRAMEWORK_CATEGORIES.get(framework, DEFAULT_CATEGORIES)
-    base_excludes = FRAMEWORK_EXCLUDES.get(framework, DEFAULT_EXCLUDES)
+    work_dir = repo_root / ".guidelines"
+
+    # Agent categories take priority, then framework defaults
+    agent_cats = load_agent_categories(work_dir)
+    if agent_cats:
+        base_categories = agent_cats.get("categories", FRAMEWORK_CATEGORIES.get(framework, DEFAULT_CATEGORIES))
+        base_excludes = set(agent_cats.get("excludes", FRAMEWORK_EXCLUDES.get(framework, DEFAULT_EXCLUDES)))
+    else:
+        base_categories = FRAMEWORK_CATEGORIES.get(framework, DEFAULT_CATEGORIES)
+        base_excludes = FRAMEWORK_EXCLUDES.get(framework, DEFAULT_EXCLUDES)
+
     categories = {**base_categories, **cfg.get("categories", {}), **(extra_categories or {})}
     excludes = base_excludes | set(cfg.get("exclude", []))
+    test_subcats = agent_cats.get("test_subcategories", {}) if agent_cats else {}
 
     all_files = get_committed_files(repo_root, extensions_re=extensions_re)
     if dir_filter:
@@ -338,7 +461,7 @@ def scan(repo_root: Path, only: list[str] | None = None, dir_filter: str | None 
                 content = (repo_root / filepath).read_text(errors="replace")
             except Exception:
                 content = ""
-            sub_cat = classify_test(filepath, content)
+            sub_cat = classify_test(filepath, content, test_subcats)
             loc = sum(1 for line in content.split("\n") if line.strip() and not line.strip().startswith("//"))
             results.append(FileInfo(path=filepath, category="tests", sub_category=sub_cat, loc=loc))
         else:
@@ -722,6 +845,10 @@ def phase_refine(repo_root: Path, work_dir: Path, agent: str, model: str):
         per_type[f.stem] = f.read_text()
 
     per_type_names = sorted(per_type.keys())
+
+    if len(per_type) <= 1:
+        print(f"  ⏭️  Only {len(per_type)} test category — skipping cross-file refine")
+        return
 
     # Backup before any changes
     backup_dir = refine_dir / "backup"
@@ -1113,14 +1240,20 @@ def _quality_gate(repo_root: Path, work_dir: Path):
     issues: list[str] = []
 
     # Check shared bounds
-    if shared_path.exists():
-        shared_n = sum(1 for l in shared_path.read_text().splitlines() if l.strip().startswith("- "))
-        if shared_n < 15:
-            issues.append(f"shared too small: {shared_n} bullets (expected ≥15)")
-        elif shared_n > 120:
-            issues.append(f"shared too large: {shared_n} bullets (expected ≤120)")
+    test_files = sorted(tests_dir.glob("*.md"))
+    if len(test_files) > 1:
+        if shared_path.exists():
+            shared_n = sum(1 for l in shared_path.read_text().splitlines() if l.strip().startswith("- "))
+            if shared_n < 15:
+                issues.append(f"shared too small: {shared_n} bullets (expected ≥15)")
+            elif shared_n > 120:
+                issues.append(f"shared too large: {shared_n} bullets (expected ≤120)")
+        else:
+            issues.append("shared/testing.md missing")
     else:
-        issues.append("shared/testing.md missing")
+        shared_n = 0
+        if shared_path.exists():
+            shared_n = sum(1 for l in shared_path.read_text().splitlines() if l.strip().startswith("- "))
 
     # Check no file is empty + total content
     orig_total = 0
@@ -1460,6 +1593,8 @@ def main():
     parser.add_argument("--categories", help="JSON string or path to JSON file with extra categories. Example: '{\"controller\": \"controllers\"}' or './my-categories.json'")
     parser.add_argument("--output-dir", help="Output directory for guidelines (default: docs/guidelines)")
     parser.add_argument("-y", "--yes", action="store_true", help="Skip confirmation prompts")
+    parser.add_argument("--no-agent-categories", action="store_true", help="Skip agent categorization, use defaults")
+    parser.add_argument("--recategorize", action="store_true", help="Force re-run agent categorization")
     args = parser.parse_args()
 
     repo_root = Path.cwd()
@@ -1545,6 +1680,10 @@ def main():
             shutil.rmtree(work_dir / "raw", ignore_errors=True)
             shutil.rmtree(work_dir / "reviewed", ignore_errors=True)
             shutil.rmtree(work_dir / "tasks", ignore_errors=True)
+            cat_file = work_dir / "categories.json"
+            if cat_file.exists():
+                cat_file.unlink()
+                print("  🗑️  Removed agent categories (will re-categorize on next run)")
         elif args.reset_phase == "extract":
             progress["extract"] = {"done": [], "failed": []}
             import shutil
@@ -1562,6 +1701,11 @@ def main():
         save_progress(work_dir, progress)
         print(f"🗑️  Reset phase '{args.reset_phase}'")
         sys.exit(0)
+
+    # Agent categorization: run if no categories.json yet (unless --no-agent-categories)
+    if not args.no_agent_categories and (args.recategorize or not load_agent_categories(work_dir)):
+        if args.scan or args.phase or args.recategorize:
+            phase_categorize(repo_root, work_dir, args.agent, args.model, extensions_re=args.extensions)
 
     # Scan
     files = scan(repo_root, only=only, dir_filter=args.dir, extensions_re=args.extensions, extra_categories=extra_categories)
