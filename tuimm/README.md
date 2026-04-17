@@ -39,6 +39,45 @@ Every agent knows our conventions — branch naming, commit format, BEM, Vue pat
 
 Two tiers. You talk to Tier 1. Tier 1 talks to Tier 2 behind the scenes.
 
+```
+                            ┌─────────────────┐
+                            │    Developer     │
+                            │  kiro-cli        │
+                            └────────┬────────┘
+                                     │
+                 ┌───────────────────┼───────────────────┐
+                 │                   │                    │
+          ┌──────▼──────┐    ┌──────▼──────┐     ┌──────▼──────┐
+          │     Dev      │    │     MR      │     │  Planner    │
+          │  solve ticket│    │  review MR  │     │  design doc │
+          └──────┬──────┘    └──────┬──────┘     └──────┬──────┘
+                 │                  │                    │
+    ┌────────────┼──────────────────┼────────────────────┘
+    │            │                  │
+    │   ┌────────┼──────────┬──────┼──────────┬──────────────┐
+    │   │        │          │      │          │              │
+    ▼   ▼        ▼          ▼      ▼          ▼              ▼
+  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐
+  │  Jira  │ │ GitLab │ │ Sonar  │ │Datadog │ │ Figma  │ │  ...   │
+  │  MCP   │ │  MCP   │ │  MCP   │ │  MCP   │ │  MCP   │ │        │
+  └────┬───┘ └────┬───┘ └────┬───┘ └────┬───┘ └────┬───┘ └────────┘
+       │          │          │          │          │
+       ▼          ▼          ▼          ▼          ▼
+    Jira API   source.tui  SonarQube  Datadog EU  Figma API
+
+
+  ┌──────────────────────────────────────────────────────────────┐
+  │  Also in Tier 1:                                             │
+  │                                                              │
+  │  Default ─────── concierge, routes you to the right agent    │
+  │  Quality Guardian ── SonarQube, tech debt, deps, releases    │
+  │  Observability ───── Datadog scans, error investigation      │
+  │  DevEx ──────────── feature flags, i18n, content models      │
+  │  Design System ──── Figma ↔ code alignment                   │
+  │  Knowledge ──────── Confluence, docs, runbooks               │
+  └──────────────────────────────────────────────────────────────┘
+```
+
 **Tier 1 — The specialists** (you invoke these directly)
 
 | Agent | What it does |
