@@ -152,8 +152,10 @@ Add the env vars to your `~/.bashrc` or `~/.zshrc`. They need to be exported bef
 ### 3. Verify
 
 ```bash
-kiro-cli --agent tuimm_default
+kiro-cli --agent tuimm_default --classic
 ```
+
+> **Note:** Use the `--classic` flag. Kiro CLI 2.0 asks for permission before each subagent call, which breaks the workflow — agents delegate to subagents constantly and it should be automatic. We're working on a proper fix. In the meantime, `--classic` skips the confirmation prompts.
 
 Type `$get-commands`. If you see 36 commands across 9 agents, you're good.
 
