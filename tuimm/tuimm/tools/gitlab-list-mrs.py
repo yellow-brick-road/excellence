@@ -7,12 +7,10 @@ Returns JSON array of MRs with: iid, title, author, project_path, repo_name,
 roles, is_bot, draft, has_conflicts, merge_status, pipeline, approvals,
 approved_by, approvals_left, days_open, created_at, updated_at
 
-Queries:
-  1. MRs where user is reviewer (cross-project)
-  2. MRs where user is assignee (cross-project)
-  3. MRs where user is author (cross-project)
-  4. Unassigned bot MRs from user's recent projects (auto-discovered)
-  5. Approvals for all non-draft MRs
+Strategy (fast, no config):
+  1. Own MRs: 3 global queries (reviewer, assignee, author) — server-side
+  2. Bot MRs: from step 1, extract active project_ids → check only those for bot MRs
+  3. Approvals: 1 query per non-draft MR
 
 Environment:
   GITLAB_PERSONAL_ACCESS_TOKEN  (required)
@@ -24,7 +22,7 @@ import os
 import subprocess
 import sys
 import urllib.parse
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone
 
 TOKEN = os.environ.get("GITLAB_PERSONAL_ACCESS_TOKEN")
 if not TOKEN:
@@ -33,7 +31,6 @@ if not TOKEN:
 
 API = os.environ.get("GITLAB_API_URL", "https://source.tui/api/v4").rstrip("/")
 
-# Username: argument > git config
 if len(sys.argv) > 1:
     USERNAME = sys.argv[1]
 else:
@@ -115,38 +112,36 @@ for role, param in [
 
 own_ids = set(seen.keys())
 
-# --- 4: Bot MRs from user's recent projects ---
+# --- 4: Bot MRs from user's active projects ---
+# Only check projects where user already has MRs (from queries 1-3)
 
-# Only projects with activity in last 90 days
-cutoff = (datetime.now(timezone.utc) - timedelta(days=90)).strftime("%Y-%m-%dT%H:%M:%SZ")
-projects = fetch(
-    f"{API}/projects?membership=true&min_access_level=30&simple=true"
-    f"&order_by=last_activity_at&sort=desc&last_activity_after={cutoff}&per_page=100"
-)
+active_projects: dict[int, str] = {}  # project_id → project_path
+for mr in all_mrs:
+    pid = mr.get("project_id")
+    pp = mr.get("project_path", "")
+    if pid and pp and pid not in active_projects:
+        active_projects[pid] = pp
 
-if isinstance(projects, list):
-    for proj in projects:
-        path = proj.get("path_with_namespace", "")
-        encoded = urllib.parse.quote(path, safe="")
-        mrs = fetch(f"{API}/projects/{encoded}/merge_requests?state=opened&per_page=30")
-        if not isinstance(mrs, list):
+for pid, path in active_projects.items():
+    encoded = urllib.parse.quote(path, safe="")
+    mrs = fetch(f"{API}/projects/{encoded}/merge_requests?state=opened&per_page=50")
+    if not isinstance(mrs, list):
+        continue
+    for mr in mrs:
+        if mr["id"] in seen:
             continue
-        for mr in mrs:
-            if mr["id"] in own_ids:
-                continue
-            author = mr.get("author", {}).get("username", "?")
-            if not is_bot(author):
-                continue
-            entry = make_entry(mr, ["bot_unassigned"], path)
-            seen[mr["id"]] = entry
-            all_mrs.append(entry)
+        author = mr.get("author", {}).get("username", "?")
+        if not is_bot(author):
+            continue
+        entry = make_entry(mr, ["bot_unassigned"], path)
+        seen[mr["id"]] = entry
+        all_mrs.append(entry)
 
 # --- 5: Approvals + days_open ---
 
 now = datetime.now(timezone.utc)
 
 for mr in all_mrs:
-    # days_open
     try:
         created = datetime.fromisoformat(mr["created_at_full"])
         mr["days_open"] = (now - created).days
@@ -155,7 +150,6 @@ for mr in all_mrs:
 
     mr["repo_name"] = mr["project_path"].rsplit("/", 1)[-1] if mr["project_path"] else "?"
 
-    # approvals (skip drafts)
     if mr["draft"]:
         mr["approvals"] = 0
         mr["approved_by"] = []
@@ -185,7 +179,6 @@ for mr in all_mrs:
         mr["approved_by"] = []
         mr["approvals_left"] = "?"
 
-# Clean internal field
 for mr in all_mrs:
     mr.pop("created_at_full", None)
 
