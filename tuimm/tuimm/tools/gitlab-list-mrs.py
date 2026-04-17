@@ -113,14 +113,30 @@ for role, param in [
 own_ids = set(seen.keys())
 
 # --- 4: Bot MRs from user's active projects ---
-# Only check projects where user already has MRs (from queries 1-3)
+# Active = projects from own open MRs + projects with recent merged MRs by user
 
-active_projects: dict[int, str] = {}  # project_id → project_path
+active_projects: dict[int, str] = {}
 for mr in all_mrs:
     pid = mr.get("project_id")
     pp = mr.get("project_path", "")
-    if pid and pp and pid not in active_projects:
+    if pid and pp:
         active_projects[pid] = pp
+
+# Discover more projects from recently merged MRs (last 30 days)
+from datetime import timedelta
+cutoff = (datetime.now(timezone.utc) - timedelta(days=30)).strftime("%Y-%m-%dT%H:%M:%SZ")
+for role, param in [("author", "author_username"), ("reviewer", "reviewer_username")]:
+    merged = fetch(
+        f"{API}/merge_requests?scope=all&state=merged&{param}={USERNAME}"
+        f"&updated_after={cutoff}&per_page=100&view=simple"
+    )
+    if isinstance(merged, list):
+        for mr in merged:
+            pid = mr.get("project_id")
+            if pid and pid not in active_projects:
+                pp = mr.get("references", {}).get("full", "").rsplit("!", 1)[0].strip()
+                if pp:
+                    active_projects[pid] = pp
 
 for pid, path in active_projects.items():
     encoded = urllib.parse.quote(path, safe="")
