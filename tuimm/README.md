@@ -225,7 +225,6 @@ tuimm/
 
 A few things you might want to adapt to your team:
 
-- **`tools/tracked-repos.txt`** — which repos to track for bot MR monitoring (`$mr_list`)
 - **`skills/known-error-patterns/`** — add your service's recurring production errors (`$obs_dd-scan`)
 - **`SETUP.md`** — has optional per-project Nuxt MCP setup for deeper codebase context
 

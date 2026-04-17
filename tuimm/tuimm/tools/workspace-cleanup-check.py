@@ -7,7 +7,6 @@ Designed to run in background via bg tool at session start.
 Env vars:
   GITLAB_PERSONAL_ACCESS_TOKEN (required)
   GITLAB_API_URL (optional, default: https://source.tui/api/v4)
-  TRACKED_REPOS_FILE (optional, default: ~/.kiro/tuimm/tools/tracked-repos.txt)
 """
 
 import json
@@ -26,25 +25,22 @@ DEV_DIR = TEMP_BASE / "dev"
 
 TOKEN = os.environ.get("GITLAB_PERSONAL_ACCESS_TOKEN", "")
 API_URL = os.environ.get("GITLAB_API_URL", "https://source.tui/api/v4").rstrip("/")
-REPOS_FILE = os.environ.get(
-    "TRACKED_REPOS_FILE",
-    str(Path.home() / ".kiro" / "tuimm" / "tools" / "tracked-repos.txt"),
-)
 
 
-def load_tracked_repos() -> dict[str, str]:
-    """Return {repo_name: project_path} from tracked-repos.txt."""
+def load_user_projects() -> dict[str, str]:
+    """Return {repo_name: project_path} from user's GitLab projects (Developer+ access)."""
     mapping = {}
-    try:
-        with open(REPOS_FILE) as f:
-            for line in f:
-                line = line.strip()
-                if not line or line.startswith("#"):
-                    continue
-                repo_name = line.rstrip("/").split("/")[-1]
-                mapping[repo_name] = line
-    except FileNotFoundError:
-        pass
+    page = 1
+    while page <= 5:
+        data = gitlab_get(f"/projects?membership=true&min_access_level=30&simple=true&per_page=100&page={page}")
+        if not data or not isinstance(data, list) or not data:
+            break
+        for proj in data:
+            path = proj.get("path_with_namespace", "")
+            name = proj.get("path", "")
+            if name and path:
+                mapping[name] = path
+        page += 1
     return mapping
 
 
@@ -76,7 +72,7 @@ def check_mr_workspaces(repos: dict[str, str]) -> list[dict]:
         iid, repo_name = m.group(1), m.group(2)
         project_path = repos.get(repo_name)
         if not project_path:
-            results.append({"dir": str(d), "type": "mr", "iid": int(iid), "repo": repo_name, "status": "unknown", "reason": "repo not in tracked-repos.txt"})
+            results.append({"dir": str(d), "type": "mr", "iid": int(iid), "repo": repo_name, "status": "unknown", "reason": "repo not in user's projects"})
             continue
 
         encoded = urllib.parse.quote(project_path, safe="")
@@ -147,7 +143,7 @@ def check_dev_workspaces(repos: dict[str, str]) -> list[dict]:
 
         project_path = repos.get(repo_name)
         if not project_path:
-            results.append({"dir": str(d), "type": "dev", "branch": branch, "repo": repo_name, "status": "unknown", "reason": "repo not in tracked-repos.txt"})
+            results.append({"dir": str(d), "type": "dev", "branch": branch, "repo": repo_name, "status": "unknown", "reason": "repo not in user's projects"})
             continue
 
         # Check if there's a merged MR for this branch
@@ -184,7 +180,7 @@ def main():
         print(json.dumps({"error": "GITLAB_PERSONAL_ACCESS_TOKEN not set", "mr": [], "dev": []}))
         sys.exit(1)
 
-    repos = load_tracked_repos()
+    repos = load_user_projects()
     mr_results = check_mr_workspaces(repos)
     dev_results = check_dev_workspaces(repos)
 

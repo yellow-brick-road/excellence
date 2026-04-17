@@ -74,7 +74,6 @@ After copying, the structure must be:
     ├── prompts/
     └── tools/
         ├── gitlab-list-mrs.sh
-        ├── tracked-repos.txt
         ├── workspace-cleanup-check.py
         ├── autobuild/
         ├── bg/
