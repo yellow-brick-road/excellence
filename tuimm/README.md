@@ -1,223 +1,195 @@
-# TUIMM — AI Agent System for TUI Musement Frontend
+# TUIMM — Your AI Engineering Team
 
-TUIMM is a two-tier AI agent architecture for the Frontend Engineering Guild. It connects Kiro CLI to the tools we use daily — Jira, GitLab, SonarQube, Datadog, Figma, Contentful, ConfigCat, Confluence — through specialized agents that know our conventions.
+What if you could type "solve DIS-1234" and an AI agent reads the Jira ticket, understands the codebase, writes the code, runs the tests, creates the MR, and updates the ticket — all in one conversation?
 
-## Installation
+That's what TUIMM does.
+
+TUIMM is a set of AI agents built for TUI Musement's frontend teams. They plug into Kiro CLI and connect to the tools you already use: Jira, GitLab, SonarQube, Datadog, Figma, Contentful, ConfigCat, Confluence. Nine specialist agents, each one focused on a specific part of the workflow. You talk to the expert you need, and it handles the rest.
+
+No dashboards to check. No context switching. No copy-pasting between tools.
+
+---
+
+## What can it do?
+
+Here are some real examples:
 
 ```
-tuimm/
-├── agents/    → copy to ~/.kiro/agents/
-└── tuimm/     → copy to ~/.kiro/tuimm/
+You: "solve DIS-1234"
+→ Agent reads the ticket, plans the implementation, writes code, creates the MR, moves the ticket to In Review.
+
+You: "review MR 242"
+→ Agent fetches the diff, checks SonarQube, reviews against the team's checklist, posts comments on GitLab.
+
+You: "scan production errors"
+→ Agent queries Datadog, groups errors by pattern, flags new issues, compares with known patterns.
+
+You: "find stale feature flags"
+→ Agent audits ConfigCat, cross-references with the codebase, produces a cleanup plan.
+
+You: "design the new search architecture"
+→ Agent analyzes the codebase, produces a technical design doc, breaks it into Jira tickets.
 ```
+
+Every agent knows our conventions — branch naming, commit format, BEM, Vue patterns, testing standards. It's not a generic AI assistant. It's one that knows how we work.
+
+---
+
+## The agents
+
+Two tiers. You talk to Tier 1. Tier 1 talks to Tier 2 behind the scenes.
+
+**Tier 1 — The specialists** (you invoke these directly)
+
+| Agent | What it does |
+|-------|-------------|
+| **Default** | Don't know where to start? Ask here. It knows what every agent can do and points you to the right one |
+| **Dev** | Ticket-to-MR in one conversation. Reads Jira, plans, codes, tests, commits, creates MR |
+| **MR** | Reviews merge requests. Structured feedback with severity levels. Can approve, comment, rebase |
+| **Quality Guardian** | SonarQube analysis, tech debt tracking, dependency audits, release management |
+| **Observability** | Datadog log analysis, production error investigation, incident patterns |
+| **DevEx** | Feature flags, translations (Weblate), content models, sprint workflow |
+| **Design System** | Figma-to-code alignment, component governance, design token audits |
+| **Knowledge** | Confluence health checks, runbook generation, onboarding guides |
+| **Planner** | Technical design documents, task decomposition, cross-domain analysis |
+
+**Tier 2 — The tool connectors** (agents call these, you don't)
+
+Jira · Confluence · GitLab · SonarQube · Datadog · Figma · Contentful · ConfigCat · Nuxt docs · Code Reviewer
+
+Each one wraps a single API via MCP (Model Context Protocol). They execute — they don't decide. The intelligence lives in Tier 1.
+
+---
+
+## Quick start
+
+### 1. Copy the files
 
 ```bash
+# Agent configs go to ~/.kiro/agents/
 cp agents/*.json ~/.kiro/agents/
-cp -r tuimm/ ~/.kiro/tuimm/
+
+# Package contents go to ~/.kiro/tuimm/
+cp -r tuimm/* ~/.kiro/tuimm/
 ```
 
-Then configure credentials. See [SETUP.md](tuimm/SETUP.md).
+That's it for the files. The agents reference `~/.kiro/tuimm/` for everything — steering rules, commands, skills, templates, tools.
 
-## Prerequisites
+### 2. Set up your credentials
 
-- Kiro CLI installed and working
-- Node.js 18+ with npx
-- Python 3.10+ (for tools: logd, autobuild, bg)
-- Git with SSH access to source.tui (`git@ssh.source.tui:`)
-- VPN for SonarQube
-- Linux, WSL, or macOS
+Each developer uses their own API tokens. No shared accounts, no centralized server.
 
-## How it works
+Open **[SETUP.md](tuimm/SETUP.md)** — it has the full list with URLs where to get each token. The short version:
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│  User                                                       │
-│  kiro-cli --agent tuimm_dev                                 │
-└──────────────┬──────────────────────────────────────────────┘
-               │
-┌──────────────▼──────────────────────────────────────────────┐
-│  Tier 1 — Specialist Agents (9)                             │
-│                                                             │
-│  tuimm_default ─── concierge, routes to the right agent     │
-│  tuimm_dev ─────── ticket → branch → code → MR             │
-│  tuimm_mr ──────── review, comments, approve, rebase        │
-│  tuimm_quality_guardian ── SonarQube, debt, deps, releases  │
-│  tuimm_observability ──── Datadog scans, error investigation│
-│  tuimm_devex ───── flags, i18n, content models, sprint      │
-│  tuimm_design_system ──── Figma ↔ code alignment            │
-│  tuimm_knowledge ── Confluence, docs, runbooks, onboarding  │
-│  tuimm_planner ──── analysis, design docs, task breakdown   │
-│                                                             │
-│  Each agent loads: steering + skills + its own commands      │
-│  Each agent delegates to Tier 2 subagents via MCP            │
-└──────────────┬──────────────────────────────────────────────┘
-               │
-┌──────────────▼──────────────────────────────────────────────┐
-│  Tier 2 — Tool Subagents (10)                               │
-│                                                             │
-│  tuimm_subagent_jira ──────── Atlassian Cloud (OAuth)       │
-│  tuimm_subagent_confluence ── Atlassian Cloud (OAuth)       │
-│  tuimm_subagent_gitlab ────── source.tui API                │
-│  tuimm_subagent_sonar ─────── SonarQube (VPN)              │
-│  tuimm_subagent_datadog ───── Datadog EU                    │
-│  tuimm_subagent_figma ─────── Figma API                     │
-│  tuimm_subagent_contentful ── Contentful CMA                │
-│  tuimm_subagent_configcat ─── ConfigCat Management API      │
-│  tuimm_subagent_code_reviewer  read-only cross-system review│
-│  tuimm_subagent_nuxt ──────── nuxt.com/mcp (public)        │
-│                                                             │
-│  Subagents are API wrappers — they execute, they don't      │
-│  decide. Tier 1 agents provide judgment and orchestration.   │
-└─────────────────────────────────────────────────────────────┘
+| Service | What you need |
+|---------|--------------|
+| GitLab | Personal access token |
+| Datadog | API key + App key |
+| SonarQube | API token (VPN required) |
+| Figma | Personal access token |
+| Contentful | CMA token |
+| ConfigCat | API user + password |
+| Jira / Confluence | Nothing — OAuth via browser, automatic |
+| Nuxt docs | Nothing — public endpoint |
+
+Add the env vars to your `~/.bashrc` or `~/.zshrc`. They need to be exported before starting Kiro CLI.
+
+### 3. Verify
+
+```bash
+kiro-cli --agent tuimm_default
 ```
 
-Tier 1 agents are invoked directly by users (`kiro-cli --agent tuimm_dev`). They read requirements, plan, and delegate API calls to Tier 2 subagents. Subagents connect to external services via MCP (Model Context Protocol) — each one wraps a single API.
+Type `$get-commands`. If you see 36 commands across 9 agents, you're good.
 
-Weblate is the exception: no MCP server available, so it's handled via 4 commands + 1 skill that clone the repo, parse XLIFF files, and create MRs through the GitLab subagent.
+---
 
-## Package contents
+## How to use it
 
-### agents/ (19 JSON files → ~/.kiro/agents/)
-
-Agent configuration files. Each defines: name, prompt (behavioral instructions), tools, MCP servers, and resources to load.
-
-The `"name"` field determines how you invoke it: `kiro-cli --agent tuimm_dev`.
-
-Resources use relative paths (`../tuimm/steering/*.md`) that resolve correctly when agents live at `~/.kiro/agents/` and the package at `~/.kiro/tuimm/`.
-
-### tuimm/steering/ (11 markdown files)
-
-Shared behavioral rules loaded by ALL agents at startup via `file://` glob. Non-negotiable — agents must follow these.
-
-| File | What it governs |
-|------|-----------------|
-| 1_AGENT_RULES.md | Hub — references all other steering files. Read first. |
-| OPERATING_MODE.md | How agents process every request: context → understand → plan → execute → verify |
-| GIT.md | Branch naming, workspace conventions, commit rules, clone paths |
-| COMMUNICATION.md | Tone, language, reporting style |
-| SUBAGENTS.md | Which subagents exist, who delegates to whom, runtime limitations |
-| TOOL_RULES.md | When to use glob vs shell, subagent delegation rules |
-| ERROR_HANDLING.md | Never auto-retry, always inform, partial results OK |
-| CONVENTIONS.md | File naming, code style, BEM, TypeScript, Vue, testing |
-| TECH_STACK.md | Current versions: Nuxt 4.3, Vue 3.5, Node 22/24, tooling |
-| AI_USAGE_TRACKING.md | Jira AI usage fields — what to set after agent work |
-| ARTIFACTS.md | Registry of all commands, skills, templates, tools with ownership |
-
-### tuimm/commands/ (35 markdown files)
-
-Executable instructions. Each command defines inputs, a step-by-step process, and which template to use for output. Agents load their own commands as skills via `skill://` globs.
-
-Commands are prefixed by domain: `dev_`, `mr_`, `obs_`, `qg_`, `devex_`, `ds_`, `kn_`, `planner_`, `jira_`, `weblate_`, plus `get-commands` (meta).
-
-Users trigger them with `$command-name` or natural language ("solve DIS-1234", "review 242", "scan").
-
-### tuimm/skills/ (14 directories, each with SKILL.md)
-
-Knowledge documents that agents consult before acting. Not executable — they're reference material.
-
-| Skill | Used by | What it contains |
-|-------|---------|------------------|
-| commit-conventions | GitLab subagent, Code Reviewer | Commit format, types, scope rules |
-| gitlab-conventions | GitLab subagent, Code Reviewer | MR templates, thread rules, API limits |
-| jira-adf | Jira subagent, Confluence subagent | Atlassian Document Format for descriptions/comments |
-| jira-context-gathering | Jira commands, Dev commands | Full ticket context checklist — what to fetch |
-| weblate-conventions | Weblate commands | Repo URL, module discovery, XLIFF format |
-| code-review-checklist | Code Reviewer | Pre-commit checklist ordered by severity |
-| file-modifier | Dev, MR, any write agent | Lint/format order after file changes |
-| workspace-mcp | Dev, MR, Default | nuxt-mcp-dev workspace config pattern |
-| mcp-tools-reference | Code Reviewer, any agent | Read vs write tool classification per MCP server |
-| known-error-patterns | Observability | Recurring production errors with Datadog queries |
-| security-preflight | Quality Guardian, MR | How to extract preflight-sast findings from pipelines |
-| autobuild-reference | Planner | Task engine CLI, task file format, config |
-| bg-reference | Tools that run in background | Background execution library API |
-| logd-reference | Observability, autobuild | Log daemon and client library API |
-
-### tuimm/templates/ (35 markdown files)
-
-Output format definitions. Commands reference them as "present results using the X template." They ensure consistent, structured output across agents.
-
-One template per command output, plus `template-blueprint.md` as a reference for creating new ones.
-
-### tuimm/tools/ (10 files across subdirectories)
-
-Shell scripts and Python utilities invoked by commands at runtime.
-
-| Tool | Used by | What it does |
-|------|---------|--------------|
-| gitlab-list-mrs.sh | $mr_list | Queries GitLab for MRs across repos (reviewer, assignee, author, bots) |
-| tracked-repos.txt | gitlab-list-mrs.sh | List of GitLab project paths to track for bot MRs |
-| workspace-cleanup-check.py | Session start (background) | Scans ~/.kiro/temp/ for stale workspaces, checks GitLab for merged MRs |
-| autobuild/engine.py | $planner_decompose | Task engine — executes markdown task files through kiro-cli agents |
-| autobuild/kiro.py | engine.py | ACP client wrapper for kiro-cli |
-| bg/bg.py | Any script needing background mode | Adds --bg/--status/--stop/--tail to Python scripts |
-| logd/logd.py | Observability, autobuild | UDP log daemon with SQLite storage |
-| logd/loglib.py | Any Python tool | Fire-and-forget log client |
-| logd/extensions/obs_scan.py | $obs_dd-scan | Load/save scan results for cross-scan comparison |
-| guidelines-generator/guidelines-generator.py | Standalone utility | Extracts coding conventions from committed files via AI |
-
-### tuimm/prompts/ (empty)
-
-Reserved for multi-domain workflow prompts. Not yet populated.
-
-## How the pieces connect
-
-A concrete example — user runs `$dev_solve DIS-1234`:
-
-1. **Agent** (`tuimm_dev.json`) receives the command
-2. **Steering** (`GIT.md`, `CONVENTIONS.md`) tells it how to name branches and write code
-3. **Command** (`dev_solve.md`) defines the step-by-step process
-4. **Skill** (`jira-context-gathering`) tells it what to fetch from the ticket
-5. **Subagent** (`tuimm_subagent_jira`) calls the Jira API to get ticket details
-6. **Subagent** (`tuimm_subagent_gitlab`) creates the branch and later the MR
-7. **Skill** (`commit-conventions`) formats the commit message
-8. **Subagent** (`tuimm_subagent_code_reviewer`) reviews code before commit
-9. **Template** (`dev-solve.md`) formats the final output
-10. **Steering** (`AI_USAGE_TRACKING.md`) reminds it to set AI usage fields on the ticket
-
-## Shared commands
-
-Jira and Weblate commands are available from multiple agents — you don't need to swap to a specific one.
-
-| Commands | Available from |
-|----------|---------------|
-| $jira_create-ticket, $jira_edit-ticket, $jira_comment-ticket | All Tier 1 agents except Default |
-| $weblate_add-key, $weblate_validate, $weblate_coverage, $weblate_translate-missing | Dev, MR, DevEx, Design System |
-
-The Default agent doesn't execute commands — it tells you which agent to use and how to get there.
-
-## Quick reference
+Start with the agent that matches what you need:
 
 | I want to... | Agent | Command |
 |--------------|-------|---------|
-| Solve a Jira ticket | tuimm_dev | $dev_solve DIS-1234 |
-| Review an MR | tuimm_mr | $mr_review 242 |
-| Check my open MRs | tuimm_mr | $mr_list |
-| Scan production errors | tuimm_observability | $obs_dd-scan |
-| Check code quality | tuimm_quality_guardian | $qg_quality-check |
-| Find stale feature flags | tuimm_devex | $devex_flag-cleanup |
-| Compare Figma vs code | tuimm_design_system | $ds_component-check |
-| Audit Confluence docs | tuimm_knowledge | $kn_doc-health |
-| Plan a large feature | tuimm_planner | $planner_design |
-| Create a Jira ticket | any agent (except default) | $jira_create-ticket |
-| Add a translation key | tuimm_dev | $weblate_add-key |
-| See all commands | any agent | $get-commands |
+| Solve a Jira ticket | `tuimm_dev` | `$dev_solve DIS-1234` |
+| Continue previous work | `tuimm_dev` | `$dev_continue` |
+| Review an MR | `tuimm_mr` | `$mr_review 242` |
+| Check my open MRs | `tuimm_mr` | `$mr_list` |
+| Scan production errors | `tuimm_observability` | `$obs_dd-scan` |
+| Investigate a specific error | `tuimm_observability` | `$obs_dd-investigate` |
+| Check code quality | `tuimm_quality_guardian` | `$qg_quality-check` |
+| Audit dependencies | `tuimm_quality_guardian` | `$qg_dependency-scan` |
+| Find stale feature flags | `tuimm_devex` | `$devex_flag-cleanup` |
+| Check translation coverage | `tuimm_devex` | `$weblate_coverage` |
+| Compare Figma vs code | `tuimm_design_system` | `$ds_component-check` |
+| Audit Confluence docs | `tuimm_knowledge` | `$kn_doc-health` |
+| Generate a runbook | `tuimm_knowledge` | `$kn_runbook` |
+| Design a feature | `tuimm_planner` | `$planner_design` |
+| Create a Jira ticket | any agent | `$jira_create-ticket` |
+| See all commands | any agent | `$get-commands` |
+
+You can also just talk naturally. "I need to review an MR" works as well as `$mr_review 242`.
+
+---
+
+## What's inside the package
+
+```
+tuimm/
+├── agents/          19 agent configs (→ ~/.kiro/agents/)
+└── tuimm/           package contents (→ ~/.kiro/tuimm/)
+    ├── SETUP.md     credentials guide — start here after copying files
+    ├── steering/    11 shared behavioral rules (loaded by all agents)
+    ├── commands/    36 executable workflows (loaded per agent)
+    ├── skills/      14 knowledge documents (consulted on demand)
+    ├── templates/   37 output format definitions
+    └── tools/       scripts and utilities (autobuild, guidelines-generator, etc.)
+```
+
+**Steering** defines how agents behave: git conventions, communication style, error handling, coding standards. All agents share the same rules — consistency is built in.
+
+**Commands** are step-by-step workflows. When you type `$dev_solve`, the agent reads the command file, follows the steps, delegates to subagents, and formats the output using a template. 36 commands across 11 domains.
+
+**Skills** are reference knowledge. Commit conventions, code review checklists, Weblate workflows, Jira document format. Agents load them when they need specific expertise.
+
+**Tools** are standalone scripts: a task engine (autobuild), a coding guidelines extractor (guidelines-generator), background execution support, structured logging, and GitLab utilities.
+
+---
+
+## Prerequisites
+
+- [Kiro CLI](https://kiro.dev) installed and working
+- Node.js 18+ with npx
+- Python 3.10+ (for tools)
+- Git with SSH access to `ssh.source.tui`
+- VPN for SonarQube
+- Linux, WSL, or macOS
+
+---
 
 ## Customization
 
-- **tracked-repos.txt** — edit to match your team's repos (used by $mr_list for bot MR tracking)
-- **known-error-patterns** — add your service's recurring errors (used by $obs_dd-scan)
-- **nuxt-mcp-dev** — optional per-project setup for deep Nuxt context (see SETUP.md)
+A few things you might want to adapt to your team:
 
-## Credentials
+- **`tools/tracked-repos.txt`** — which repos to track for bot MR monitoring (`$mr_list`)
+- **`skills/known-error-patterns/`** — add your service's recurring production errors (`$obs_dd-scan`)
+- **`SETUP.md`** — has optional per-project Nuxt MCP setup for deeper codebase context
 
-Each developer provides their own API tokens. No shared credentials, no centralized gateway. See [SETUP.md](tuimm/SETUP.md) for the full list with URLs.
+---
 
-| Service | Auth method |
-|---------|-------------|
-| GitLab | Personal access token (env var) |
-| Datadog | API + App key (env vars) |
-| SonarQube | API token (env var, VPN required) |
-| Jira / Confluence | OAuth via browser (automatic) |
-| Figma | Personal access token (env var) |
-| Contentful | CMA token (env var) |
-| ConfigCat | API user + password (env vars) |
-| Nuxt docs | Public endpoint (no setup) |
+## Uninstall
+
+```bash
+rm ~/.kiro/agents/tuimm_*.json
+rm -rf ~/.kiro/tuimm/
+```
+
+Env vars in your shell config are harmless to leave.
+
+---
+
+## More info
+
+- **[SETUP.md](tuimm/SETUP.md)** — full credentials guide with URLs
+- **[AGENTS.md](AGENTS.md)** — technical reference for AI assistants installing the package
+- **[ideas/](../ideas/)** — architecture proposals and engineering practice specs
+- **[docs/](../docs/)** — reference documentation about Excellence

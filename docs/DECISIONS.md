@@ -37,7 +37,7 @@ Settled architectural and organizational decisions. If it's here, it's closed �
 **Date:** 2026-03-04 (updated 2026-03-30)
 **Decision:** Single-agent targeted actions are commands (`~/.kiro/commands/`), not skills or prompts. Only multi-domain orchestrations stay as prompts. Output format templates are a third artifact type (`~/.kiro/templates/`).
 **Reason:** Domain enforcement is structural (only the owning agent loads the command). Agent Guard was dropped during implementation — unnecessary given structural enforcement. Templates separate format from logic.
-**Result:** 35 commands (11 domain prefixes + 1 meta) + 11 skills + 35 templates. 0 prompts (folder empty — multi-domain orchestration deferred).
+**Result:** 36 commands (11 domain prefixes + 1 meta) + 14 skills + 37 templates. 0 prompts (folder empty — multi-domain orchestration deferred).
 **Affects:** All `AGENT_*.md`, `STEERING_PROMPTS.md`, `STEERING_CONVENTIONS.md`, `ARCHITECTURE.md`, `COMMAND_*.md`
 
 ### 6. $runbook delegates to Observability for incident data

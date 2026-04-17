@@ -27,9 +27,9 @@ tuimm/                          ← this directory
 └── tuimm/                      ← package folder
     ├── SETUP.md                ← credentials and env var guide
     ├── steering/               ← 11 shared behavioral rules
-    ├── commands/               ← 35 command definitions
+    ├── commands/               ← 36 command definitions
     ├── skills/                 ← 14 knowledge documents
-    ├── templates/              ← 35 output format templates
+    ├── templates/              ← 37 output format templates
     ├── prompts/                ← empty (reserved)
     └── tools/                  ← shell scripts and Python utilities
 ```
@@ -66,11 +66,11 @@ After copying, the structure must be:
     │   ├── 1_AGENT_RULES.md
     │   └── ... (11 total .md files)
     ├── commands/
-    │   └── ... (35 total .md files)
+    │   └── ... (36 total .md files)
     ├── skills/
     │   └── ... (14 directories, each with SKILL.md)
     ├── templates/
-    │   └── ... (35 total .md files)
+    │   └── ... (37 total .md files)
     ├── prompts/
     └── tools/
         ├── gitlab-list-mrs.sh
@@ -87,7 +87,7 @@ Verify with:
 ```bash
 ls ~/.kiro/agents/tuimm_*.json | wc -l    # expect: 19
 ls ~/.kiro/tuimm/steering/*.md | wc -l    # expect: 11
-ls ~/.kiro/tuimm/commands/*.md | wc -l    # expect: 35
+ls ~/.kiro/tuimm/commands/*.md | wc -l    # expect: 36
 ```
 
 ### Step 3 — Why the paths matter
@@ -128,7 +128,7 @@ The env vars must be exported in the shell BEFORE starting kiro-cli. Add them to
 kiro-cli --agent tuimm_default
 ```
 
-Once inside, type `$get-commands`. If it lists 35 commands across 9 agents, the installation is correct.
+Once inside, type `$get-commands`. If it lists 36 commands across 9 agents, the installation is correct.
 
 ## How the pieces relate
 
