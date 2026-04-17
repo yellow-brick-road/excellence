@@ -134,7 +134,7 @@ That's it for the files. The agents reference `~/.kiro/tuimm/` for everything �
 
 Each developer uses their own API tokens. No shared accounts, no centralized server.
 
-Open **[SETUP.md](tuimm/SETUP.md)** — it has the full list with URLs where to get each token. The short version:
+Open **[SETUP.md](tuimm/tuimm/SETUP.md)** — it has the full list with URLs where to get each token. The short version:
 
 | Service | What you need |
 |---------|--------------|
@@ -248,7 +248,7 @@ Env vars in your shell config are harmless to leave.
 
 ## More info
 
-- **[SETUP.md](tuimm/SETUP.md)** — full credentials guide with URLs
+- **[SETUP.md](tuimm/tuimm/SETUP.md)** — full credentials guide with URLs
 - **[AGENTS.md](AGENTS.md)** — technical reference for AI assistants installing the package
-- **[ideas/](../ideas/)** — architecture proposals and engineering practice specs
-- **[docs/](../docs/)** — reference documentation about Excellence
+- **[ideas/](ideas/)** — architecture proposals and engineering practice specs
+- **[docs/](docs/)** — reference documentation about Excellence
