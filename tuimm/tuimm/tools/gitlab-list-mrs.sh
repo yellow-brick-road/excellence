@@ -10,7 +10,7 @@
 #   1. MRs where user is reviewer (cross-project)
 #   2. MRs where user is assignee (cross-project)
 #   3. MRs where user is author (cross-project)
-#   4. Bot MRs from tracked repos (tracked-repos.txt)
+#   4. Unassigned bot MRs from user's projects (auto-discovered via API)
 #   5. Approvals for all non-draft MRs
 #
 # Environment:
@@ -20,7 +20,6 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TRACKED_REPOS="${SCRIPT_DIR}/tracked-repos.txt"
 
 # --- Config ---
 
@@ -109,19 +108,14 @@ json.dump(results, sys.stdout)
 PYEOF
 )
 
-# --- Fetch bot MRs from tracked repos ---
+# --- Fetch bot MRs from user's projects (auto-discovered) ---
 
-BOT_MRS="[]"
-if [ -f "$TRACKED_REPOS" ]; then
-  REPOS=$(grep -v '^\s*#' "$TRACKED_REPOS" | grep -v '^\s*$' || true)
-  if [ -n "$REPOS" ]; then
-    BOT_MRS=$(_API="$API" _TOKEN="$TOKEN" _OWN_MRS="$OWN_MRS" _REPOS="$REPOS" _USERNAME="$USERNAME" python3 << 'PYEOF'
+BOT_MRS=$(_API="$API" _TOKEN="$TOKEN" _OWN_MRS="$OWN_MRS" _USERNAME="$USERNAME" python3 << 'PYEOF'
 import json, sys, subprocess, urllib.parse, os
 
 api = os.environ["_API"]
 token = os.environ["_TOKEN"]
 own_mrs_json = os.environ["_OWN_MRS"]
-repos_raw = os.environ["_REPOS"]
 username = os.environ["_USERNAME"]
 
 own_mrs = json.loads(own_mrs_json) if own_mrs_json else []
@@ -143,13 +137,21 @@ def fetch(url):
     except json.JSONDecodeError:
         return []
 
+# Discover repos where user has Developer+ access
+projects = []
+page = 1
+while page <= 5:  # cap at 500 projects
+    batch = fetch(f"{api}/projects?membership=true&min_access_level=30&simple=true&per_page=100&page={page}")
+    if not isinstance(batch, list) or not batch:
+        break
+    projects.extend(batch)
+    page += 1
+
 results = []
-for repo in repos_raw.strip().split("\n"):
-    repo = repo.strip()
-    if not repo:
-        continue
-    encoded = urllib.parse.quote(repo, safe="")
-    mrs = fetch(f"{api}/projects/{encoded}/merge_requests?state=opened&per_page=50")
+for proj in projects:
+    path = proj.get("path_with_namespace", "")
+    encoded = urllib.parse.quote(path, safe="")
+    mrs = fetch(f"{api}/projects/{encoded}/merge_requests?state=opened&per_page=30")
     if not isinstance(mrs, list):
         continue
     for mr in mrs:
@@ -157,10 +159,6 @@ for repo in repos_raw.strip().split("\n"):
             continue
         author = mr.get("author", {}).get("username", "?")
         if not is_bot(author):
-            continue
-        assignee_names = [a["username"] for a in mr.get("assignees", [])]
-        reviewer_names = [r["username"] for r in mr.get("reviewers", [])]
-        if username not in assignee_names and username not in reviewer_names:
             continue
         results.append({
             "id": mr["id"],
@@ -180,16 +178,14 @@ for repo in repos_raw.strip().split("\n"):
             "pipeline": (mr.get("head_pipeline") or {}).get("status", "none"),
             "web_url": mr.get("web_url", ""),
             "project_id": mr.get("project_id"),
-            "project_path": repo,
-            "roles": ["bot_tracked"],
+            "project_path": path,
+            "roles": ["bot_unassigned"],
             "is_bot": True,
         })
 
 json.dump(results, sys.stdout)
 PYEOF
 )
-  fi
-fi
 
 # --- Merge + fetch approvals + compute days_open ---
 
