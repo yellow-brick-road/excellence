@@ -197,6 +197,5 @@ Reports save to `outputs/YYYY-MM-DD_HHmm_NAME.md`
 
 | Tool | Used by | Description |
 |------|---------|-------------|
-| `gitlab-list-mrs.sh` | `$mr_list` | Cross-repo MR listing — queries personal + bot MRs, fetches approvals |
-| `gitlab-list-mrs.sh` | `$mr_list` | Cross-repo MR listing, auto-discovers user's projects via API |
+| `gitlab-list-mrs.py` | `$mr_list` | Cross-repo MR listing — personal + bot MRs, auto-discovers projects via API |
 | `workspace-cleanup-check.py` | Session start (bg) | Scans temp workspaces, checks GitLab for merged/closed MRs and branches |

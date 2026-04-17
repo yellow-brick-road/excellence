@@ -54,16 +54,15 @@ Tasks are markdown files with a description and acceptance criteria. Autobuild p
 
 ---
 
-## gitlab-list-mrs.sh
+## gitlab-list-mrs.py
 
 Queries GitLab for MRs across multiple repos. Used by `$mr_list`.
 
 ```bash
-# MRs where you're reviewer, assignee, or author + bot MRs from your projects
-bash ~/.kiro/tuimm/tools/gitlab-list-mrs.sh [username]
+python3 ~/.kiro/tuimm/tools/gitlab-list-mrs.py [username]
 ```
 
-Returns JSON. Requires `GITLAB_PERSONAL_ACCESS_TOKEN`. Auto-discovers your projects via GitLab API (membership with Developer+ access) — no config file needed.
+Returns JSON. Requires `GITLAB_PERSONAL_ACCESS_TOKEN`. Auto-discovers your projects via GitLab API (projects with activity in last 90 days) — no config file needed.
 
 ---
 

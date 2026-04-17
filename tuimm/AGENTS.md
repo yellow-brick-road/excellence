@@ -73,7 +73,7 @@ After copying, the structure must be:
     │   └── ... (37 total .md files)
     ├── prompts/
     └── tools/
-        ├── gitlab-list-mrs.sh
+        ├── gitlab-list-mrs.py
         ├── workspace-cleanup-check.py
         ├── autobuild/
         ├── bg/
@@ -148,7 +148,7 @@ Agent JSON (tuimm_dev.json)
   │     ...
   │
   └── uses tools/ scripts via shell:
-        gitlab-list-mrs.sh, workspace-cleanup-check.py, logd, etc.
+        gitlab-list-mrs.py, workspace-cleanup-check.py, logd, etc.
 ```
 
 Commands reference templates: "present results using the mr-review-summary template."

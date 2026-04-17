@@ -56,7 +56,7 @@ Standalone scripts that agents run via shell. Not AI — just Python and Bash do
 The main ones:
 - **guidelines-generator** — extracts coding conventions from real code (supports Nuxt, Java, Python, Go)
 - **autobuild** — task engine that executes multi-step plans
-- **gitlab-list-mrs.sh** — queries GitLab for MRs across repos
+- **gitlab-list-mrs.py** — queries GitLab for MRs across repos
 - **bg** and **logd** — background execution and structured logging for long-running tasks
 
 ---
