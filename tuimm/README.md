@@ -221,12 +221,17 @@ tuimm/
 
 ---
 
-## Customization
+## Growing with your team
 
-A few things you might want to adapt to your team:
+TUIMM ships with the Frontend Guild's knowledge built in, but it's designed to absorb expertise from every team that adopts it.
 
-- **`skills/known-error-patterns/`** — add your service's recurring production errors (`$obs_dd-scan`)
-- **`SETUP.md`** — has optional per-project Nuxt MCP setup for deeper codebase context
+Some examples of what teams can contribute:
+
+- **Error patterns** — the Observability agent recognizes recurring production errors. Today it knows the frontend ones. When your team adds its own patterns to `skills/known-error-patterns/`, every developer using `$obs_dd-scan` benefits from that knowledge.
+- **Coding guidelines** — the guidelines-generator tool extracts conventions from real code. Run it on your repo and the output becomes a skill that agents reference when writing or reviewing code for your project.
+- **Nuxt MCP** — teams using Nuxt can enable `nuxt-mcp-dev` (see SETUP.md) to give agents deeper project context: resolved routes, components, module graph. Optional, but makes agents significantly smarter about your specific app.
+
+The more teams contribute, the smarter the agents get for everyone.
 
 ---
 
