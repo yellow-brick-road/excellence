@@ -39,44 +39,60 @@ Every agent knows our conventions — branch naming, commit format, BEM, Vue pat
 
 Two tiers. You talk to Tier 1. Tier 1 talks to Tier 2 behind the scenes.
 
-```
-                            ┌─────────────────┐
-                            │    Developer     │
-                            │  kiro-cli        │
-                            └────────┬────────┘
-                                     │
-                 ┌───────────────────┼───────────────────┐
-                 │                   │                    │
-          ┌──────▼──────┐    ┌──────▼──────┐     ┌──────▼──────┐
-          │     Dev      │    │     MR      │     │  Planner    │
-          │  solve ticket│    │  review MR  │     │  design doc │
-          └──────┬──────┘    └──────┬──────┘     └──────┬──────┘
-                 │                  │                    │
-    ┌────────────┼──────────────────┼────────────────────┘
-    │            │                  │
-    │   ┌────────┼──────────┬──────┼──────────┬──────────────┐
-    │   │        │          │      │          │              │
-    ▼   ▼        ▼          ▼      ▼          ▼              ▼
-  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐
-  │  Jira  │ │ GitLab │ │ Sonar  │ │Datadog │ │ Figma  │ │  ...   │
-  │  MCP   │ │  MCP   │ │  MCP   │ │  MCP   │ │  MCP   │ │        │
-  └────┬───┘ └────┬───┘ └────┬───┘ └────┬───┘ └────┬───┘ └────────┘
-       │          │          │          │          │
-       ▼          ▼          ▼          ▼          ▼
-    Jira API   source.tui  SonarQube  Datadog EU  Figma API
+```mermaid
+graph TB
+    Dev(["👤 Developer<br/>kiro-cli"])
 
+    Dev --> Default["Default<br/><i>concierge</i>"]
+    Dev --> AgDev["Dev<br/><i>ticket → MR</i>"]
+    Dev --> MR["MR<br/><i>review & approve</i>"]
+    Dev --> QG["Quality Guardian<br/><i>quality, debt, deps</i>"]
+    Dev --> Obs["Observability<br/><i>errors, monitoring</i>"]
+    Dev --> DevEx["DevEx<br/><i>flags, i18n, content</i>"]
+    Dev --> DS["Design System<br/><i>Figma ↔ code</i>"]
+    Dev --> Kn["Knowledge<br/><i>docs, runbooks</i>"]
+    Dev --> Plan["Planner<br/><i>design, tasks</i>"]
 
-  ┌──────────────────────────────────────────────────────────────┐
-  │  Also in Tier 1:                                             │
-  │                                                              │
-  │  Default ─────── concierge, routes you to the right agent    │
-  │  Quality Guardian ── SonarQube, tech debt, deps, releases    │
-  │  Observability ───── Datadog scans, error investigation      │
-  │  DevEx ──────────── feature flags, i18n, content models      │
-  │  Design System ──── Figma ↔ code alignment                   │
-  │  Knowledge ──────── Confluence, docs, runbooks               │
-  └──────────────────────────────────────────────────────────────┘
+    AgDev --> Jira["🔌 Jira"]
+    AgDev --> GitLab["🔌 GitLab"]
+    AgDev --> CodeRev["🔌 Code Reviewer"]
+    MR --> GitLab
+    MR --> Sonar["🔌 SonarQube"]
+    MR --> CodeRev
+    QG --> Sonar
+    QG --> GitLab
+    Obs --> DD["🔌 Datadog"]
+    DevEx --> CC["🔌 ConfigCat"]
+    DevEx --> Contentful["🔌 Contentful"]
+    DS --> Figma["🔌 Figma"]
+    Kn --> Confluence["🔌 Confluence"]
+    Plan --> Jira
+    Plan --> Nuxt["🔌 Nuxt docs"]
+    Default --> Jira
+
+    style Dev fill:#e1f5fe,stroke:#0288d1
+    style Default fill:#fff3e0,stroke:#f57c00
+    style AgDev fill:#fff3e0,stroke:#f57c00
+    style MR fill:#fff3e0,stroke:#f57c00
+    style QG fill:#fff3e0,stroke:#f57c00
+    style Obs fill:#fff3e0,stroke:#f57c00
+    style DevEx fill:#fff3e0,stroke:#f57c00
+    style DS fill:#fff3e0,stroke:#f57c00
+    style Kn fill:#fff3e0,stroke:#f57c00
+    style Plan fill:#fff3e0,stroke:#f57c00
+    style Jira fill:#e8f5e9,stroke:#388e3c
+    style GitLab fill:#e8f5e9,stroke:#388e3c
+    style Sonar fill:#e8f5e9,stroke:#388e3c
+    style DD fill:#e8f5e9,stroke:#388e3c
+    style Figma fill:#e8f5e9,stroke:#388e3c
+    style CC fill:#e8f5e9,stroke:#388e3c
+    style Contentful fill:#e8f5e9,stroke:#388e3c
+    style Confluence fill:#e8f5e9,stroke:#388e3c
+    style CodeRev fill:#e8f5e9,stroke:#388e3c
+    style Nuxt fill:#e8f5e9,stroke:#388e3c
 ```
+
+**Orange** = Tier 1 (you talk to these) · **Green** = Tier 2 subagents (API connectors)
 
 **Tier 1 — The specialists** (you invoke these directly)
 
