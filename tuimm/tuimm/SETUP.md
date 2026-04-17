@@ -1,6 +1,19 @@
 # TUIMM Agents — Setup
 
+## Prerequisites
+
+Before installing, make sure you have:
+
+- **Kiro CLI** installed and working (`kiro-cli --version`)
+- **Node.js 18+** with npx (MCP servers use npx to download packages)
+- **Python 3.10+** (for tools: autobuild, guidelines-generator, logd, bg)
+- **Git** with SSH access to `ssh.source.tui` (`git clone git@ssh.source.tui:...`)
+- **VPN** connection for SonarQube
+- **Linux, WSL, or macOS**
+
 ## 1. Install the package
+
+Run these commands **from the `tuimm/` directory** of the repo (the one containing `agents/` and `tuimm/`):
 
 ```bash
 # Create dirs if they don't exist
@@ -18,7 +31,7 @@ Verify the structure:
 ```bash
 ls ~/.kiro/agents/tuimm_*.json    # should list 19 files
 ls ~/.kiro/tuimm/steering/        # should list 11 .md files
-ls ~/.kiro/tuimm/commands/        # should list 35 .md files
+ls ~/.kiro/tuimm/commands/        # should list 36 .md files
 ```
 
 ## 2. Configure credentials
@@ -158,7 +171,7 @@ Then launch any TUIMM agent to verify everything works:
 kiro-cli --agent tuimm_default
 ```
 
-Type `$get-commands` — if it lists all 35 commands across 9 agents, you're good.
+Type `$get-commands` — if it lists all 36 commands across 9 agents, you're good.
 
 **Note**: On first launch, `npx` downloads MCP packages which can timeout in kiro-cli. If a server shows "still loading", just try again — the package will be cached from the first attempt.
 
