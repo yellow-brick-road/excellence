@@ -38,7 +38,7 @@
     "skill://~/.kiro/tuimm/commands/jira_*.md",
     {
       "type": "knowledgeBase",
-      "source": "file://../tuimm",
+      "source": "file://~/.kiro/tuimm",
       "name": "TUIMMDocs",
       "description": "TUIMM steering, skills, commands, and templates",
       "autoUpdate": true

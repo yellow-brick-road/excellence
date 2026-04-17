@@ -33,7 +33,7 @@
     "skill://~/.kiro/tuimm/templates/*.md",
     {
       "type": "knowledgeBase",
-      "source": "file://../tuimm",
+      "source": "file://~/.kiro/tuimm",
       "name": "TUIMMDocs",
       "description": "TUIMM steering, skills, commands, and templates",
       "autoUpdate": true
