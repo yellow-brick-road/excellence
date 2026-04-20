@@ -1,0 +1,19 @@
+{
+  "tools": {
+    "aitm/README.md": {
+      "repository": "dx/developer-experience-team/poc/aitm",
+      "file": "README.md",
+      "targets": [
+        {
+          "type": "rule"
+        },
+        {
+          "type": "skill",
+          "name": "aitm",
+          "description": "Guidance on using aitm to manage AI tool dependencies"
+        }
+      ],
+      "alias": "usage-guide"
+    }
+  }
+}

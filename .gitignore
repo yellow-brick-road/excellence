@@ -28,6 +28,8 @@ b2c-*/
 *.log
 ___*
 
+.idea
+
 # aitm managed directories
 /.amazonq/rules/aitm/
 /.kiro/skills/aitm-*/
