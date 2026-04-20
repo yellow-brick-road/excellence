@@ -1,6 +1,6 @@
 ---
 name: mr-review-summary
-description: "MR review summary format. Use when: presenting review results after $mr_review. Contains: header, findings table, quality gate, recommendation, next steps."
+description: "MR review summary format. Use when: presenting review results after $mr_review. Contains: header, findings with code, quality gate, recommendation, next steps."
 ---
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -18,37 +18,50 @@ description: "MR review summary format. Use when: presenting review results afte
 
 ## Findings
 
-| # | Severity | File | Line | Issue | Suggestion |
-|---|----------|------|------|-------|------------|
-| 1 | CRITICAL | {file} | {line} | {issue} | {suggestion} |
-| 2 | HIGH | {file} | {line} | {issue} | {suggestion} |
+### #{N} [{CRITICAL|HIGH|MEDIUM|LOW}] {Short title of the issue}
+
+📄 `{file}` · L{line}
+
+**Problem:** {What's wrong and why it matters — concrete, not vague.}
+
+```{lang}
+// Current code (what the MR has)
+{relevant snippet showing the problem}
+```
+
+**Fix:** {What to do and why.}
+
+```{lang}
+// Proposed change
+{concrete code showing the fix}
+```
+
+---
+
+{Repeat for each finding, separated by ---. Order by severity: CRITICAL → HIGH → MEDIUM → LOW.}
 
 ## Security
 
-| # | Type | Scope | Severity | Detail |
-|---|------|-------|----------|--------|
-| 1 | SAST | 🆕 NEW | CRITICAL | {file}:{line} — {rule}: {description} |
-| 2 | SBOM | 🏭 prod | HIGH | {package}@{version} — {CVE-ID}: {description} |
+- [{CRITICAL|HIGH|MEDIUM|LOW}] **{SAST|SBOM|SECRET}** {🆕 NEW | 📦 PRE} — `{file}:{line}` — {rule}: {description}. {Action needed or "Not introduced by this MR."}
 
 ## Quality Gate
 
-| Check | Status |
-|-------|--------|
-| Pipeline | {✅ passed / ❌ failed / ⏳ running} |
-| SonarQube | {✅ passed / ❌ failed / ⚠️ unavailable} |
-| Lint | {✅ / ❌} |
-| Types | {✅ / ❌} |
+- Pipeline: {✅ passed | ❌ failed | ⏳ running | ⚠️ details}
+- SonarQube: {✅ passed | ❌ failed | ⚠️ details}
+- Preflight SAST: {✅ 0 new | ❌ N new findings}
+- Approvals: {✅ N/M (names) | ❌ N/M}
 
 ## Stats
 
-- Files reviewed: {X}
-- Files with issues: {Y}
-- Total findings: {Z} ({N} critical, {N} high, {N} medium, {N} low)
+- Files reviewed: {X} · With issues: {Y}
+- Findings: {Z} ({N} critical, {N} high, {N} medium, {N} low)
 
 ## Next Steps
 
-{Actionable recommendations for the MR author. What to fix, what to consider, what's optional.}
+{Actionable list — what to fix, what's optional, what's blocking.}
 
-Omit sections with no content (e.g. no findings → skip the table). Omit ticket line if no linked ticket. Omit feature branch URL if target is not a feature branch.
+---
+
+Omit sections with no content (e.g. no findings → skip entirely). Omit ticket line if no linked ticket. Omit feature branch URL if target is not a feature branch. Security section: use bullet list, one line per finding.
 
 RULES: This is the COMPLETE output. Do NOT add commentary, follow-up questions, or recommendations beyond the Next Steps section. Do NOT add sections not defined above.
