@@ -1,0 +1,831 @@
+{
+  "tools": {
+    "tuimm/agents/tuimm_knowledge.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_knowledge.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/agents/tuimm_subagent_confluence.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_subagent_confluence.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/agents/tuimm_subagent_jira.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_subagent_jira.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/tuimm/steering/1_AGENT_RULES.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/steering/1_AGENT_RULES.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "steering/1_AGENT_RULES.md"
+    },
+    "tuimm/tuimm/steering/ARTIFACTS.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/steering/ARTIFACTS.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "steering/ARTIFACTS.md"
+    },
+    "tuimm/tuimm/steering/AI_USAGE_TRACKING.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/steering/AI_USAGE_TRACKING.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "steering/AI_USAGE_TRACKING.md"
+    },
+    "tuimm/tuimm/steering/COMMUNICATION.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/steering/COMMUNICATION.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "steering/COMMUNICATION.md"
+    },
+    "tuimm/tuimm/steering/CONVENTIONS.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/steering/CONVENTIONS.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "steering/CONVENTIONS.md"
+    },
+    "tuimm/tuimm/steering/ERROR_HANDLING.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/steering/ERROR_HANDLING.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "steering/ERROR_HANDLING.md"
+    },
+    "tuimm/tuimm/steering/GIT.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/steering/GIT.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "steering/GIT.md"
+    },
+    "tuimm/tuimm/steering/OPERATING_MODE.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/steering/OPERATING_MODE.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "steering/OPERATING_MODE.md"
+    },
+    "tuimm/tuimm/steering/SUBAGENTS.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/steering/SUBAGENTS.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "steering/SUBAGENTS.md"
+    },
+    "tuimm/tuimm/steering/TECH_STACK.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/steering/TECH_STACK.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "steering/TECH_STACK.md"
+    },
+    "tuimm/tuimm/steering/TOOL_RULES.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/steering/TOOL_RULES.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "steering/TOOL_RULES.md"
+    },
+    "tuimm/tuimm/skills/autobuild-reference/SKILL.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/skills/autobuild-reference/SKILL.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "skills/autobuild-reference/SKILL.md"
+    },
+    "tuimm/tuimm/skills/bg-reference/SKILL.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/skills/bg-reference/SKILL.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "skills/bg-reference/SKILL.md"
+    },
+    "tuimm/tuimm/skills/code-review-checklist/SKILL.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/skills/code-review-checklist/SKILL.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "skills/code-review-checklist/SKILL.md"
+    },
+    "tuimm/tuimm/skills/commit-conventions/SKILL.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/skills/commit-conventions/SKILL.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "skills/commit-conventions/SKILL.md"
+    },
+    "tuimm/tuimm/skills/file-modifier/SKILL.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/skills/file-modifier/SKILL.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "skills/file-modifier/SKILL.md"
+    },
+    "tuimm/tuimm/skills/gitlab-conventions/SKILL.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/skills/gitlab-conventions/SKILL.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "skills/gitlab-conventions/SKILL.md"
+    },
+    "tuimm/tuimm/skills/jira-adf/SKILL.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/skills/jira-adf/SKILL.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "skills/jira-adf/SKILL.md"
+    },
+    "tuimm/tuimm/skills/jira-context-gathering/SKILL.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/skills/jira-context-gathering/SKILL.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "skills/jira-context-gathering/SKILL.md"
+    },
+    "tuimm/tuimm/skills/known-error-patterns/SKILL.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/skills/known-error-patterns/SKILL.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "skills/known-error-patterns/SKILL.md"
+    },
+    "tuimm/tuimm/skills/logd-reference/SKILL.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/skills/logd-reference/SKILL.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "skills/logd-reference/SKILL.md"
+    },
+    "tuimm/tuimm/skills/mcp-tools-reference/SKILL.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/skills/mcp-tools-reference/SKILL.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "skills/mcp-tools-reference/SKILL.md"
+    },
+    "tuimm/tuimm/skills/security-preflight/SKILL.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/skills/security-preflight/SKILL.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "skills/security-preflight/SKILL.md"
+    },
+    "tuimm/tuimm/skills/weblate-conventions/SKILL.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/skills/weblate-conventions/SKILL.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "skills/weblate-conventions/SKILL.md"
+    },
+    "tuimm/tuimm/skills/workspace-mcp/SKILL.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/skills/workspace-mcp/SKILL.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "skills/workspace-mcp/SKILL.md"
+    },
+    "tuimm/tuimm/templates/dev-continue.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/dev-continue.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/dev-continue.md"
+    },
+    "tuimm/tuimm/templates/dev-solve.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/dev-solve.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/dev-solve.md"
+    },
+    "tuimm/tuimm/templates/devex-content-audit.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/devex-content-audit.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/devex-content-audit.md"
+    },
+    "tuimm/tuimm/templates/devex-flag-cleanup.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/devex-flag-cleanup.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/devex-flag-cleanup.md"
+    },
+    "tuimm/tuimm/templates/devex-i18n-coverage.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/devex-i18n-coverage.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/devex-i18n-coverage.md"
+    },
+    "tuimm/tuimm/templates/ds-component-check.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/ds-component-check.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/ds-component-check.md"
+    },
+    "tuimm/tuimm/templates/ds-design-audit.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/ds-design-audit.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/ds-design-audit.md"
+    },
+    "tuimm/tuimm/templates/get-commands-output.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/get-commands-output.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/get-commands-output.md"
+    },
+    "tuimm/tuimm/templates/jira-comment.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/jira-comment.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/jira-comment.md"
+    },
+    "tuimm/tuimm/templates/jira-ticket.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/jira-ticket.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/jira-ticket.md"
+    },
+    "tuimm/tuimm/templates/kn-doc-health.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/kn-doc-health.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/kn-doc-health.md"
+    },
+    "tuimm/tuimm/templates/kn-onboarding.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/kn-onboarding.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/kn-onboarding.md"
+    },
+    "tuimm/tuimm/templates/kn-runbook.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/kn-runbook.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/kn-runbook.md"
+    },
+    "tuimm/tuimm/templates/mr-approve.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/mr-approve.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/mr-approve.md"
+    },
+    "tuimm/tuimm/templates/mr-comment-item.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/mr-comment-item.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/mr-comment-item.md"
+    },
+    "tuimm/tuimm/templates/mr-comments-summary.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/mr-comments-summary.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/mr-comments-summary.md"
+    },
+    "tuimm/tuimm/templates/mr-list-summary.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/mr-list-summary.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/mr-list-summary.md"
+    },
+    "tuimm/tuimm/templates/mr-rebase.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/mr-rebase.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/mr-rebase.md"
+    },
+    "tuimm/tuimm/templates/mr-review-summary.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/mr-review-summary.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/mr-review-summary.md"
+    },
+    "tuimm/tuimm/templates/obs-investigate.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/obs-investigate.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/obs-investigate.md"
+    },
+    "tuimm/tuimm/templates/obs-scan-summary.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/obs-scan-summary.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/obs-scan-summary.md"
+    },
+    "tuimm/tuimm/templates/planner-analyze.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/planner-analyze.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/planner-analyze.md"
+    },
+    "tuimm/tuimm/templates/planner-decompose.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/planner-decompose.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/planner-decompose.md"
+    },
+    "tuimm/tuimm/templates/planner-design.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/planner-design.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/planner-design.md"
+    },
+    "tuimm/tuimm/templates/qg-dependency-review.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/qg-dependency-review.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/qg-dependency-review.md"
+    },
+    "tuimm/tuimm/templates/qg-dependency-scan.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/qg-dependency-scan.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/qg-dependency-scan.md"
+    },
+    "tuimm/tuimm/templates/qg-generate-guidelines.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/qg-generate-guidelines.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/qg-generate-guidelines.md"
+    },
+    "tuimm/tuimm/templates/qg-quality-check.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/qg-quality-check.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/qg-quality-check.md"
+    },
+    "tuimm/tuimm/templates/qg-release.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/qg-release.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/qg-release.md"
+    },
+    "tuimm/tuimm/templates/qg-security-scan.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/qg-security-scan.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/qg-security-scan.md"
+    },
+    "tuimm/tuimm/templates/qg-tech-debt-report.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/qg-tech-debt-report.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/qg-tech-debt-report.md"
+    },
+    "tuimm/tuimm/templates/template-blueprint.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/template-blueprint.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/template-blueprint.md"
+    },
+    "tuimm/tuimm/templates/weblate-add-key.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/weblate-add-key.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/weblate-add-key.md"
+    },
+    "tuimm/tuimm/templates/weblate-coverage.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/weblate-coverage.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/weblate-coverage.md"
+    },
+    "tuimm/tuimm/templates/weblate-translate-missing.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/weblate-translate-missing.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/weblate-translate-missing.md"
+    },
+    "tuimm/tuimm/templates/weblate-validate.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/weblate-validate.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/weblate-validate.md"
+    },
+    "tuimm/tuimm/templates/guidelines-generator/extract.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/templates/guidelines-generator/extract.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "templates/guidelines-generator/extract.md"
+    },
+    "tuimm/tuimm/commands/get-commands.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/commands/get-commands.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "commands/get-commands.md"
+    },
+    "tuimm/tuimm/commands/jira_comment-ticket.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/commands/jira_comment-ticket.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "commands/jira_comment-ticket.md"
+    },
+    "tuimm/tuimm/commands/jira_create-ticket.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/commands/jira_create-ticket.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "commands/jira_create-ticket.md"
+    },
+    "tuimm/tuimm/commands/jira_edit-ticket.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/commands/jira_edit-ticket.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "commands/jira_edit-ticket.md"
+    },
+    "tuimm/tuimm/commands/jira_set-ai-usage.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/commands/jira_set-ai-usage.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "commands/jira_set-ai-usage.md"
+    },
+    "tuimm/tuimm/commands/kn_doc-health.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/commands/kn_doc-health.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "commands/kn_doc-health.md"
+    },
+    "tuimm/tuimm/commands/kn_onboarding.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/commands/kn_onboarding.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "commands/kn_onboarding.md"
+    },
+    "tuimm/tuimm/commands/kn_runbook.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/commands/kn_runbook.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "commands/kn_runbook.md"
+    },
+    "tuimm/tuimm/tools/bg/bg.py": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/tools/bg/bg.py",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "tools/bg/bg.py"
+    },
+    "tuimm/tuimm/tools/logd/logd.py": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/tools/logd/logd.py",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "tools/logd/logd.py"
+    },
+    "tuimm/tuimm/tools/logd/loglib.py": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/tools/logd/loglib.py",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "tools/logd/loglib.py"
+    },
+    "tuimm/tuimm/tools/logd/extensions/obs_scan.py": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/tools/logd/extensions/obs_scan.py",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "tools/logd/extensions/obs_scan.py"
+    },
+    "tuimm/tuimm/tools/autobuild/engine.py": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/tools/autobuild/engine.py",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "tools/autobuild/engine.py"
+    },
+    "tuimm/tuimm/tools/autobuild/kiro.py": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/tools/autobuild/kiro.py",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "tools/autobuild/kiro.py"
+    },
+    "tuimm/tuimm/tools/guidelines-generator/guidelines-generator.py": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/tools/guidelines-generator/guidelines-generator.py",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "tools/guidelines-generator/guidelines-generator.py"
+    },
+    "tuimm/tuimm/tools/gitlab-list-mrs.py": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/tools/gitlab-list-mrs.py",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "tools/gitlab-list-mrs.py"
+    },
+    "tuimm/tuimm/tools/workspace-cleanup-check.py": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/tools/workspace-cleanup-check.py",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "tools/workspace-cleanup-check.py"
+    },
+    "tuimm/tuimm/tools/README.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/tools/README.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "tools/README.md"
+    }
+  }
+}
