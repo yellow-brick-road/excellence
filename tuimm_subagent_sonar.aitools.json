@@ -1,0 +1,13 @@
+{
+  "tools": {
+    "tuimm/agents/tuimm_subagent_sonar.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_subagent_sonar.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    }
+  }
+}

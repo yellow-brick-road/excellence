@@ -1,13 +1,37 @@
 {
   "extends": [
-    { "repository": "javier.fernandez/tuimm-agents-poc", "file": "tuimm_dev.aitools.json" },
-    { "repository": "javier.fernandez/tuimm-agents-poc", "file": "tuimm_mr.aitools.json" },
-    { "repository": "javier.fernandez/tuimm-agents-poc", "file": "tuimm_quality_guardian.aitools.json" },
-    { "repository": "javier.fernandez/tuimm-agents-poc", "file": "tuimm_observability.aitools.json" },
-    { "repository": "javier.fernandez/tuimm-agents-poc", "file": "tuimm_devex.aitools.json" },
-    { "repository": "javier.fernandez/tuimm-agents-poc", "file": "tuimm_design_system.aitools.json" },
-    { "repository": "javier.fernandez/tuimm-agents-poc", "file": "tuimm_knowledge.aitools.json" },
-    { "repository": "javier.fernandez/tuimm-agents-poc", "file": "tuimm_planner.aitools.json" }
+    {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm_dev.aitools.json"
+    },
+    {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm_mr.aitools.json"
+    },
+    {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm_quality_guardian.aitools.json"
+    },
+    {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm_observability.aitools.json"
+    },
+    {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm_devex.aitools.json"
+    },
+    {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm_design_system.aitools.json"
+    },
+    {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm_knowledge.aitools.json"
+    },
+    {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm_planner.aitools.json"
+    }
   ],
   "tools": {
     "tuimm/agents/tuimm_default.json": {

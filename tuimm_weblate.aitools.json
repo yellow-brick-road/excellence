@@ -1,0 +1,53 @@
+{
+  "tools": {
+    "tuimm/agents/tuimm_subagent_nuxt.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_subagent_nuxt.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/tuimm/commands/weblate_add-key.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/commands/weblate_add-key.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "commands/weblate_add-key.md"
+    },
+    "tuimm/tuimm/commands/weblate_validate.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/commands/weblate_validate.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "commands/weblate_validate.md"
+    },
+    "tuimm/tuimm/commands/weblate_coverage.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/commands/weblate_coverage.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "commands/weblate_coverage.md"
+    },
+    "tuimm/tuimm/commands/weblate_translate-missing.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/tuimm/commands/weblate_translate-missing.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "commands/weblate_translate-missing.md"
+    }
+  }
+}
