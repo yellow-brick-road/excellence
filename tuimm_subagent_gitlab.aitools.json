@@ -8,7 +8,7 @@
           "type": "agent"
         }
       ],
-      "requires_environment_variables": [
+      "required_environment_variables": [
         {
           "name": "GITLAB_PERSONAL_ACCESS_TOKEN",
           "description": "Gitlab Personal Access token with repository and api scopes"
