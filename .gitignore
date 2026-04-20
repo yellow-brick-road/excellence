@@ -27,3 +27,9 @@ analysis/
 b2c-*/
 *.log
 ___*
+
+# aitm managed directories
+/.amazonq/rules/aitm/
+/.kiro/skills/aitm-*/
+/.kiro/steering/aitm/
+/.kiro/agents/aitm-*
