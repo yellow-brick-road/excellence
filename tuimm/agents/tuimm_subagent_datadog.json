@@ -20,7 +20,7 @@
     "@datadog"
   ],
   "resources": [
-    "skill://~/.kiro/tuimm/skills/**/SKILL.md"
+    "skill://${INSTALL_DIRECTORY}/.kiro/tuimm/skills/**/SKILL.md"
   ],
   "includeMcpJson": false
 }

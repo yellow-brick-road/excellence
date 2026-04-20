@@ -108,8 +108,8 @@
     }
   },
   "resources": [
-    "file://~/.kiro/tuimm/skills/code-review-checklist/SKILL.md",
-    "skill://~/.kiro/tuimm/skills/**/SKILL.md"
+    "file://${INSTALL_DIRECTORY}/.kiro/tuimm/skills/code-review-checklist/SKILL.md",
+    "skill://${INSTALL_DIRECTORY}/.kiro/tuimm/skills/**/SKILL.md"
   ],
   "includeMcpJson": false
 }

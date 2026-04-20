@@ -28,12 +28,12 @@
     "file://./readme.md",
     "file://./AGENTS.md",
     "file://./agents.md",
-    "file://~/.kiro/tuimm/steering/*.md",
-    "skill://~/.kiro/tuimm/skills/**/SKILL.md",
-    "skill://~/.kiro/tuimm/templates/*.md",
+    "file://${INSTALL_DIRECTORY}/.kiro/tuimm/steering/*.md",
+    "skill://${INSTALL_DIRECTORY}/.kiro/tuimm/skills/**/SKILL.md",
+    "skill://${INSTALL_DIRECTORY}/.kiro/tuimm/templates/*.md",
     {
       "type": "knowledgeBase",
-      "source": "file://~/.kiro/tuimm",
+      "source": "file://${INSTALL_DIRECTORY}/.kiro/tuimm",
       "name": "TUIMMDocs",
       "description": "TUIMM steering, skills, commands, and templates",
       "autoUpdate": true
@@ -45,7 +45,7 @@
       "description": "Current project documentation (CWD-relative)",
       "autoUpdate": true
     },
-    "skill://~/.kiro/tuimm/commands/get-commands.md"
+    "skill://${INSTALL_DIRECTORY}/.kiro/tuimm/commands/get-commands.md"
   ],
   "includeMcpJson": true
 }
