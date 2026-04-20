@@ -76,7 +76,7 @@ Use hyphens, NEVER underscores in branch names.
 ### 10. Post-MR
 
 - Ask user: "Want me to move {TICKET} to In Review?"
-- Set AI usage fields on Jira ticket (see AI_USAGE_TRACKING steering)
+- Set AI usage fields on Jira ticket (via $jira_set-ai-usage — Development: "Fully AI delivered" or "Mostly AI delivered")
 
 ### 11. Output
 

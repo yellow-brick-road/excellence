@@ -27,7 +27,7 @@ tuimm/                          ← this directory
 └── tuimm/                      ← package folder
     ├── SETUP.md                ← credentials and env var guide
     ├── steering/               ← 11 shared behavioral rules
-    ├── commands/               ← 36 command definitions
+    ├── commands/               ← 37 command definitions
     ├── skills/                 ← 14 knowledge documents
     ├── templates/              ← 37 output format templates
     ├── prompts/                ← empty (reserved)
@@ -127,7 +127,7 @@ The env vars must be exported in the shell BEFORE starting kiro-cli. Add them to
 kiro-cli --agent tuimm_default
 ```
 
-Once inside, type `$get-commands`. If it lists 36 commands across 9 agents, the installation is correct.
+Once inside, type `$get-commands`. If it lists 37 commands across 9 agents, the installation is correct.
 
 ## How the pieces relate
 

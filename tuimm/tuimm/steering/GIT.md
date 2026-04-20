@@ -105,4 +105,4 @@ Remind the user: "Push is yours — run `git fetch --all --prune && git merge or
 
 ## AI Usage Tracking
 
-After committing work on a Jira ticket, set AI usage fields. See `AI_USAGE_TRACKING.md`.
+After committing work on a Jira ticket, set AI usage fields. Use `$jira_set-ai-usage` or let `$dev_solve` handle it automatically. See `AI_USAGE_TRACKING.md`.

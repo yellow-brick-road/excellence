@@ -38,6 +38,10 @@ When a TUIMM agent addresses MR review comments:
 
 ## How to Set
 
+**Manual:** `$jira_set-ai-usage DIS-1234 development fully`
+
+**Automatic:** `$dev_solve` and `$mr_review` set the field as part of their post-MR workflow.
+
 Via Jira subagent: update the issue field with the band string value.
 
 ## Safety
