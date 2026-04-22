@@ -1,4 +1,10 @@
 {
+  "starter_packs": [
+    {
+      "name": "fe",
+      "manifest": "tuimm.aitools.json"
+    }
+  ],
   "tools": {
     "aitm/README.md": {
       "repository": "dx/developer-experience-team/poc/aitm",
