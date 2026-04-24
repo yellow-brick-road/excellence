@@ -9,46 +9,71 @@ TUIMM is a set of 19 AI agent configurations for Kiro CLI, designed for TUI Muse
 ## Package structure
 
 ```
-tuimm/                          ← this directory
-├── AGENTS.md                   ← you are reading this
-├── README.md                   ← human-readable overview
-├── agents/                     ← 19 agent JSON configs
-│   ├── tuimm_default.json      ← entry point / concierge
-│   ├── tuimm_dev.json          ← ticket-to-MR workflow
-│   ├── tuimm_mr.json           ← MR review and approval
-│   ├── tuimm_quality_guardian.json
-│   ├── tuimm_observability.json
-│   ├── tuimm_devex.json
-│   ├── tuimm_design_system.json
-│   ├── tuimm_knowledge.json
-│   ├── tuimm_planner.json
-│   └── tuimm_subagent_*.json   ← 10 Tier 2 tool subagents
+tuimm/                              ← this directory
+├── AGENTS.md                       ← you are reading this
+├── README.md                       ← human-readable overview
+├── SETUP.md                        ← credentials and env var guide
+├── agents/                         ← 19 agent JSON configs
+│   ├── tuimm_default.json          ← entry point / concierge
+│   ├── tuimm_dev.json              ← ticket-to-MR workflow
+│   ├── tuimm_mr.json               ← MR review and approval
+│   └── tuimm_subagent_*.json       ← 10 Tier 2 tool subagents
 │
-└── tuimm/                      ← package folder
-    ├── SETUP.md                ← credentials and env var guide
-    ├── steering/               ← 11 shared behavioral rules
-    ├── commands/               ← 37 command definitions
-    ├── skills/                 ← 14 knowledge documents
-    ├── templates/              ← 37 output format templates
-    ├── prompts/                ← empty (reserved)
-    └── tools/                  ← shell scripts and Python utilities
+├── steering/                       ← 11 TUIMM_*.md behavioral rules
+│   ├── TUIMM_1_AGENT_RULES.md      ← hub file, references all others
+│   ├── TUIMM_GIT.md
+│   └── ...
+│
+├── skills/                         ← 25 tuimm-* skill directories
+│   ├── tuimm-dev-workflow/          ← workflow skill (commands + templates)
+│   │   ├── SKILL.md
+│   │   ├── commands/
+│   │   └── assets/templates/
+│   ├── tuimm-commit-conventions/    ← knowledge skill (reference only)
+│   │   └── SKILL.md
+│   └── ...
+│
+├── tools/                          ← Python scripts and shell utilities
+│   ├── gitlab-list-mrs.py
+│   ├── workspace-cleanup-check.py
+│   ├── autobuild/
+│   ├── bg/
+│   ├── logd/
+│   └── guidelines-generator/
+│
+├── tuimm/                          ← knowledgeBase index (just README.md)
+│   └── README.md
+│
+└── prompts/                        ← empty (reserved)
 ```
+
+Skills follow the [agentskills.io](https://agentskills.io) standard. There are two types:
+- **Workflow skills** (11): contain commands + templates for a domain (e.g. `tuimm-dev-workflow`)
+- **Knowledge skills** (14): reference material only (e.g. `tuimm-commit-conventions`)
 
 ## Installation steps
 
 ### Step 1 — Copy files
 
-The agent JSONs go to `~/.kiro/agents/` and the package folder goes to `~/.kiro/tuimm/`.
+Contents go to `~/.kiro/` global directories. The `TUIMM_` and `tuimm-` prefixes prevent collisions with other packages.
 
 ```bash
-mkdir -p ~/.kiro/agents ~/.kiro/tuimm
+mkdir -p ~/.kiro/agents ~/.kiro/steering ~/.kiro/skills ~/.kiro/tools ~/.kiro/tuimm
+
 cp agents/*.json ~/.kiro/agents/
-cp -r tuimm/* ~/.kiro/tuimm/
+cp steering/TUIMM_*.md ~/.kiro/steering/
+cp -r skills/tuimm-* ~/.kiro/skills/
+cp -r tools/* ~/.kiro/tools/
+cp tuimm/README.md ~/.kiro/tuimm/
 ```
 
-IMPORTANT: The destination is `~/.kiro/tuimm/`, NOT `~/.kiro/tuimm/tuimm/`. The contents of the `tuimm/` source folder go directly into `~/.kiro/tuimm/`.
-
 ### Step 2 — Verify file placement
+
+```bash
+ls ~/.kiro/agents/tuimm_*.json | wc -l         # expect: 19
+ls ~/.kiro/steering/TUIMM_*.md | wc -l         # expect: 11
+ls -d ~/.kiro/skills/tuimm-*/ | wc -l          # expect: 25
+```
 
 After copying, the structure must be:
 
@@ -57,50 +82,43 @@ After copying, the structure must be:
 ├── agents/
 │   ├── tuimm_default.json
 │   ├── tuimm_dev.json
-│   ├── tuimm_mr.json
-│   ├── ... (19 total tuimm_*.json files)
+│   └── ... (19 total tuimm_*.json files)
+│
+├── steering/
+│   ├── TUIMM_1_AGENT_RULES.md
+│   └── ... (11 total TUIMM_*.md files)
+│
+├── skills/
+│   ├── tuimm-dev-workflow/
+│   ├── tuimm-mr-workflow/
+│   ├── tuimm-commit-conventions/
+│   └── ... (25 total tuimm-* directories)
+│
+├── tools/
+│   ├── gitlab-list-mrs.py
+│   ├── autobuild/
+│   ├── bg/
+│   ├── logd/
+│   └── guidelines-generator/
 │
 └── tuimm/
-    ├── SETUP.md
-    ├── steering/
-    │   ├── 1_AGENT_RULES.md
-    │   └── ... (11 total .md files)
-    ├── commands/
-    │   └── ... (36 total .md files)
-    ├── skills/
-    │   └── ... (14 directories, each with SKILL.md)
-    ├── templates/
-    │   └── ... (37 total .md files)
-    ├── prompts/
-    └── tools/
-        ├── gitlab-list-mrs.py
-        ├── workspace-cleanup-check.py
-        ├── autobuild/
-        ├── bg/
-        ├── logd/
-        └── guidelines-generator/
-```
-
-Verify with:
-
-```bash
-ls ~/.kiro/agents/tuimm_*.json | wc -l    # expect: 19
-ls ~/.kiro/tuimm/steering/*.md | wc -l    # expect: 11
-ls ~/.kiro/tuimm/commands/*.md | wc -l    # expect: 36
+    └── README.md    ← knowledgeBase index target
 ```
 
 ### Step 3 — Why the paths matter
 
-Agent JSONs use relative paths in their `resources` field. From `~/.kiro/agents/`, they reference `../tuimm/steering/*.md`, `../tuimm/skills/**/SKILL.md`, etc. This only works if:
+Agent JSONs use `${INSTALL_DIRECTORY}` paths in their `resources` field:
 
-- Agent JSONs are at `~/.kiro/agents/tuimm_*.json`
-- Package contents are at `~/.kiro/tuimm/`
+```
+file://${INSTALL_DIRECTORY}/.kiro/steering/TUIMM_*.md
+skill://${INSTALL_DIRECTORY}/.kiro/skills/tuimm-*/SKILL.md
+```
 
-If the user puts files in a different location, all resource references will break.
+The `TUIMM_` prefix on steering and `tuimm-` prefix on skills scopes the glob to only TUIMM files, preventing collision with personal or other package files in the same directories.
 
 ### Step 4 — Configure credentials
 
-The user needs to set environment variables for the MCP servers. Read `~/.kiro/tuimm/SETUP.md` for the full list.
+The user needs to set environment variables for the MCP servers. Read `SETUP.md` for the full list.
 
 Summary of required env vars:
 
@@ -134,11 +152,13 @@ Once inside, type `$get-commands`. If it lists 37 commands across 9 agents, the 
 ```
 Agent JSON (tuimm_dev.json)
   │
-  ├── loads steering/*.md at startup (behavioral rules)
-  ├── loads skills/**/SKILL.md on demand (knowledge reference)
-  ├── loads commands/dev_*.md as skills (executable instructions)
-  ├── loads templates/*.md as skills (output formats)
-  ├── indexes tuimm/ as knowledgeBase (semantic search)
+  ├── loads steering/TUIMM_*.md at startup (behavioral rules)
+  ├── loads skills/tuimm-*/SKILL.md on demand (progressive disclosure)
+  │     Each skill may contain:
+  │       commands/   → executable workflows
+  │       assets/templates/ → output formats
+  │       references/ → additional docs
+  ├── indexes ~/.kiro/tuimm/ as knowledgeBase (semantic search)
   │
   ├── spawns subagents via the subagent tool:
   │     tuimm_subagent_jira → Atlassian MCP → Jira API
@@ -152,9 +172,9 @@ Agent JSON (tuimm_dev.json)
 ```
 
 Commands reference templates: "present results using the mr-review-summary template."
-Commands reference skills: "consult the jira-adf skill before writing descriptions."
+Commands reference skills: "consult the tuimm-jira-adf skill before writing descriptions."
 Commands reference subagents: "delegate to tuimm_subagent_gitlab."
-Steering references other steering: "read and follow GIT.md."
+Steering references other steering: "read and follow TUIMM_GIT.md."
 
 ## Existing agents warning
 
@@ -170,13 +190,16 @@ If files exist, ask the user whether to overwrite or back up first.
 
 ```bash
 rm ~/.kiro/agents/tuimm_*.json
+rm ~/.kiro/steering/TUIMM_*.md
+rm -rf ~/.kiro/skills/tuimm-*/
 rm -rf ~/.kiro/tuimm/
 ```
 
-This removes all TUIMM agents and the package. It does not remove env vars from the shell config — those are harmless to leave.
+This removes all TUIMM agents and content. It does not remove env vars from the shell config or shared tools — those are harmless to leave.
 
 ## Do NOT modify
 
 - Do not rename agent JSON files — the filename must match the `"name"` field
-- Do not move the `tuimm/` folder to a different path — agent resource paths are hardcoded to `../tuimm/`
+- Do not rename steering files — agents load them via `TUIMM_*.md` glob
+- Do not rename skill directories — must match the `name:` field in SKILL.md
 - Do not edit steering files unless the user explicitly asks — they are shared across all agents

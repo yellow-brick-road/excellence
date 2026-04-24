@@ -134,7 +134,7 @@ That's it for the files. The agents reference `~/.kiro/tuimm/` for everything �
 
 Each developer uses their own API tokens. No shared accounts, no centralized server.
 
-Open **[SETUP.md](tuimm/tuimm/SETUP.md)** — it has the full list with URLs where to get each token. The short version:
+Open **[SETUP.md](tuimm/SETUP.md)** — it has the full list with URLs where to get each token. The short version:
 
 | Service | What you need |
 |---------|--------------|
@@ -193,13 +193,13 @@ You can also just talk naturally. "I need to review an MR" works as well as `$mr
 ```
 tuimm/
 ├── agents/          19 agent configs (→ ~/.kiro/agents/)
-└── tuimm/           package contents (→ ~/.kiro/tuimm/)
+└── tuimm/           package contents (→ ~/.kiro/ global dirs)
     ├── SETUP.md     credentials guide — start here after copying files
-    ├── steering/    11 shared behavioral rules (loaded by all agents)
-    ├── commands/    36 executable workflows (loaded per agent)
-    ├── skills/      14 knowledge documents (consulted on demand)
-    ├── templates/   37 output format definitions
-    └── tools/       scripts and utilities (autobuild, guidelines-generator, etc.)
+    ├── steering/    11 TUIMM_*.md behavioral rules (→ ~/.kiro/steering/)
+    ├── skills/      25 tuimm-* skill directories (→ ~/.kiro/skills/)
+    ├── skills/      14 knowledge skills (reference material)
+    │                 11 workflow skills (commands + templates inside)
+    └── tools/       scripts and utilities (→ ~/.kiro/tools/)
 ```
 
 **Steering** defines how agents behave: git conventions, communication style, error handling, coding standards. All agents share the same rules — consistency is built in.
@@ -250,7 +250,7 @@ Env vars in your shell config are harmless to leave.
 
 ## More info
 
-- **[SETUP.md](tuimm/tuimm/SETUP.md)** — full credentials guide with URLs
+- **[SETUP.md](tuimm/SETUP.md)** — full credentials guide with URLs
 - **[AGENTS.md](AGENTS.md)** — technical reference for AI assistants installing the package
 - **[ideas/](ideas/)** — architecture proposals and engineering practice specs
 - **[docs/](docs/)** — reference documentation about Excellence

@@ -498,7 +498,7 @@ No tribal knowledge. No copy-pasting configs. No manual dashboard checking. The 
 | Layer | What | Status |
 |-------|------|--------|
 | **TUI CLI** | Distribution mechanism — install agents, configs, templates with one command | POC planned |
-| **Excellence Agents** | 9 specialist agents + 10 tool subagents + 37 commands + 14 skills | ✅ Built |
+| **Excellence Agents** | 9 specialist agents + 10 tool subagents + 37 commands + 25 skills | ✅ Built |
 | **Tools** | Autobuild, guidelines generator, background execution | ✅ Built |
 | **Bot Service** | Autonomous workflows, webhooks, scheduled tasks, notifications | Phase 3 design |
 
