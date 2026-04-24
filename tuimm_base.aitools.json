@@ -259,425 +259,425 @@
       ],
       "alias": "skills/workspace-mcp/SKILL.md"
     },
-    "tuimm/tuimm/templates/dev-continue.md": {
+    "tuimm/tuimm/skills/dev-workflow/assets/templates/dev-continue.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/dev-continue.md",
+      "file": "tuimm/tuimm/skills/dev-workflow/assets/templates/dev-continue.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/dev-continue.md"
+      "alias": "skills/dev-workflow/assets/templates/dev-continue.md"
     },
-    "tuimm/tuimm/templates/dev-solve.md": {
+    "tuimm/tuimm/skills/dev-workflow/assets/templates/dev-solve.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/dev-solve.md",
+      "file": "tuimm/tuimm/skills/dev-workflow/assets/templates/dev-solve.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/dev-solve.md"
+      "alias": "skills/dev-workflow/assets/templates/dev-solve.md"
     },
-    "tuimm/tuimm/templates/devex-content-audit.md": {
+    "tuimm/tuimm/skills/devex-workflow/assets/templates/devex-content-audit.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/devex-content-audit.md",
+      "file": "tuimm/tuimm/skills/devex-workflow/assets/templates/devex-content-audit.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/devex-content-audit.md"
+      "alias": "skills/devex-workflow/assets/templates/devex-content-audit.md"
     },
-    "tuimm/tuimm/templates/devex-flag-cleanup.md": {
+    "tuimm/tuimm/skills/devex-workflow/assets/templates/devex-flag-cleanup.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/devex-flag-cleanup.md",
+      "file": "tuimm/tuimm/skills/devex-workflow/assets/templates/devex-flag-cleanup.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/devex-flag-cleanup.md"
+      "alias": "skills/devex-workflow/assets/templates/devex-flag-cleanup.md"
     },
-    "tuimm/tuimm/templates/devex-i18n-coverage.md": {
+    "tuimm/tuimm/skills/devex-workflow/assets/templates/devex-i18n-coverage.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/devex-i18n-coverage.md",
+      "file": "tuimm/tuimm/skills/devex-workflow/assets/templates/devex-i18n-coverage.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/devex-i18n-coverage.md"
+      "alias": "skills/devex-workflow/assets/templates/devex-i18n-coverage.md"
     },
-    "tuimm/tuimm/templates/ds-component-check.md": {
+    "tuimm/tuimm/skills/ds-workflow/assets/templates/ds-component-check.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/ds-component-check.md",
+      "file": "tuimm/tuimm/skills/ds-workflow/assets/templates/ds-component-check.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/ds-component-check.md"
+      "alias": "skills/ds-workflow/assets/templates/ds-component-check.md"
     },
-    "tuimm/tuimm/templates/ds-design-audit.md": {
+    "tuimm/tuimm/skills/ds-workflow/assets/templates/ds-design-audit.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/ds-design-audit.md",
+      "file": "tuimm/tuimm/skills/ds-workflow/assets/templates/ds-design-audit.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/ds-design-audit.md"
+      "alias": "skills/ds-workflow/assets/templates/ds-design-audit.md"
     },
-    "tuimm/tuimm/templates/get-commands-output.md": {
+    "tuimm/tuimm/skills/get-commands/assets/templates/get-commands-output.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/get-commands-output.md",
+      "file": "tuimm/tuimm/skills/get-commands/assets/templates/get-commands-output.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/get-commands-output.md"
+      "alias": "skills/get-commands/assets/templates/get-commands-output.md"
     },
-    "tuimm/tuimm/templates/jira-comment.md": {
+    "tuimm/tuimm/skills/jira-workflow/assets/templates/jira-comment.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/jira-comment.md",
+      "file": "tuimm/tuimm/skills/jira-workflow/assets/templates/jira-comment.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/jira-comment.md"
+      "alias": "skills/jira-workflow/assets/templates/jira-comment.md"
     },
-    "tuimm/tuimm/templates/jira-ticket.md": {
+    "tuimm/tuimm/skills/jira-workflow/assets/templates/jira-ticket.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/jira-ticket.md",
+      "file": "tuimm/tuimm/skills/jira-workflow/assets/templates/jira-ticket.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/jira-ticket.md"
+      "alias": "skills/jira-workflow/assets/templates/jira-ticket.md"
     },
-    "tuimm/tuimm/templates/kn-doc-health.md": {
+    "tuimm/tuimm/skills/kn-workflow/assets/templates/kn-doc-health.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/kn-doc-health.md",
+      "file": "tuimm/tuimm/skills/kn-workflow/assets/templates/kn-doc-health.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/kn-doc-health.md"
+      "alias": "skills/kn-workflow/assets/templates/kn-doc-health.md"
     },
-    "tuimm/tuimm/templates/kn-onboarding.md": {
+    "tuimm/tuimm/skills/kn-workflow/assets/templates/kn-onboarding.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/kn-onboarding.md",
+      "file": "tuimm/tuimm/skills/kn-workflow/assets/templates/kn-onboarding.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/kn-onboarding.md"
+      "alias": "skills/kn-workflow/assets/templates/kn-onboarding.md"
     },
-    "tuimm/tuimm/templates/kn-runbook.md": {
+    "tuimm/tuimm/skills/kn-workflow/assets/templates/kn-runbook.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/kn-runbook.md",
+      "file": "tuimm/tuimm/skills/kn-workflow/assets/templates/kn-runbook.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/kn-runbook.md"
+      "alias": "skills/kn-workflow/assets/templates/kn-runbook.md"
     },
-    "tuimm/tuimm/templates/mr-approve.md": {
+    "tuimm/tuimm/skills/mr-workflow/assets/templates/mr-approve.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/mr-approve.md",
+      "file": "tuimm/tuimm/skills/mr-workflow/assets/templates/mr-approve.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/mr-approve.md"
+      "alias": "skills/mr-workflow/assets/templates/mr-approve.md"
     },
-    "tuimm/tuimm/templates/mr-comment-item.md": {
+    "tuimm/tuimm/skills/mr-workflow/assets/templates/mr-comment-item.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/mr-comment-item.md",
+      "file": "tuimm/tuimm/skills/mr-workflow/assets/templates/mr-comment-item.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/mr-comment-item.md"
+      "alias": "skills/mr-workflow/assets/templates/mr-comment-item.md"
     },
-    "tuimm/tuimm/templates/mr-comments-summary.md": {
+    "tuimm/tuimm/skills/mr-workflow/assets/templates/mr-comments-summary.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/mr-comments-summary.md",
+      "file": "tuimm/tuimm/skills/mr-workflow/assets/templates/mr-comments-summary.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/mr-comments-summary.md"
+      "alias": "skills/mr-workflow/assets/templates/mr-comments-summary.md"
     },
-    "tuimm/tuimm/templates/mr-list-summary.md": {
+    "tuimm/tuimm/skills/mr-workflow/assets/templates/mr-list-summary.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/mr-list-summary.md",
+      "file": "tuimm/tuimm/skills/mr-workflow/assets/templates/mr-list-summary.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/mr-list-summary.md"
+      "alias": "skills/mr-workflow/assets/templates/mr-list-summary.md"
     },
-    "tuimm/tuimm/templates/mr-rebase.md": {
+    "tuimm/tuimm/skills/mr-workflow/assets/templates/mr-rebase.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/mr-rebase.md",
+      "file": "tuimm/tuimm/skills/mr-workflow/assets/templates/mr-rebase.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/mr-rebase.md"
+      "alias": "skills/mr-workflow/assets/templates/mr-rebase.md"
     },
-    "tuimm/tuimm/templates/mr-review-summary.md": {
+    "tuimm/tuimm/skills/mr-workflow/assets/templates/mr-review-summary.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/mr-review-summary.md",
+      "file": "tuimm/tuimm/skills/mr-workflow/assets/templates/mr-review-summary.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/mr-review-summary.md"
+      "alias": "skills/mr-workflow/assets/templates/mr-review-summary.md"
     },
-    "tuimm/tuimm/templates/obs-investigate.md": {
+    "tuimm/tuimm/skills/obs-workflow/assets/templates/obs-investigate.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/obs-investigate.md",
+      "file": "tuimm/tuimm/skills/obs-workflow/assets/templates/obs-investigate.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/obs-investigate.md"
+      "alias": "skills/obs-workflow/assets/templates/obs-investigate.md"
     },
-    "tuimm/tuimm/templates/obs-scan-summary.md": {
+    "tuimm/tuimm/skills/obs-workflow/assets/templates/obs-scan-summary.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/obs-scan-summary.md",
+      "file": "tuimm/tuimm/skills/obs-workflow/assets/templates/obs-scan-summary.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/obs-scan-summary.md"
+      "alias": "skills/obs-workflow/assets/templates/obs-scan-summary.md"
     },
-    "tuimm/tuimm/templates/planner-analyze.md": {
+    "tuimm/tuimm/skills/planner-workflow/assets/templates/planner-analyze.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/planner-analyze.md",
+      "file": "tuimm/tuimm/skills/planner-workflow/assets/templates/planner-analyze.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/planner-analyze.md"
+      "alias": "skills/planner-workflow/assets/templates/planner-analyze.md"
     },
-    "tuimm/tuimm/templates/planner-decompose.md": {
+    "tuimm/tuimm/skills/planner-workflow/assets/templates/planner-decompose.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/planner-decompose.md",
+      "file": "tuimm/tuimm/skills/planner-workflow/assets/templates/planner-decompose.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/planner-decompose.md"
+      "alias": "skills/planner-workflow/assets/templates/planner-decompose.md"
     },
-    "tuimm/tuimm/templates/planner-design.md": {
+    "tuimm/tuimm/skills/planner-workflow/assets/templates/planner-design.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/planner-design.md",
+      "file": "tuimm/tuimm/skills/planner-workflow/assets/templates/planner-design.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/planner-design.md"
+      "alias": "skills/planner-workflow/assets/templates/planner-design.md"
     },
-    "tuimm/tuimm/templates/qg-dependency-review.md": {
+    "tuimm/tuimm/skills/qg-workflow/assets/templates/qg-dependency-review.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/qg-dependency-review.md",
+      "file": "tuimm/tuimm/skills/qg-workflow/assets/templates/qg-dependency-review.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/qg-dependency-review.md"
+      "alias": "skills/qg-workflow/assets/templates/qg-dependency-review.md"
     },
-    "tuimm/tuimm/templates/qg-dependency-scan.md": {
+    "tuimm/tuimm/skills/qg-workflow/assets/templates/qg-dependency-scan.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/qg-dependency-scan.md",
+      "file": "tuimm/tuimm/skills/qg-workflow/assets/templates/qg-dependency-scan.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/qg-dependency-scan.md"
+      "alias": "skills/qg-workflow/assets/templates/qg-dependency-scan.md"
     },
-    "tuimm/tuimm/templates/qg-generate-guidelines.md": {
+    "tuimm/tuimm/skills/qg-workflow/assets/templates/qg-generate-guidelines.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/qg-generate-guidelines.md",
+      "file": "tuimm/tuimm/skills/qg-workflow/assets/templates/qg-generate-guidelines.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/qg-generate-guidelines.md"
+      "alias": "skills/qg-workflow/assets/templates/qg-generate-guidelines.md"
     },
-    "tuimm/tuimm/templates/qg-quality-check.md": {
+    "tuimm/tuimm/skills/qg-workflow/assets/templates/qg-quality-check.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/qg-quality-check.md",
+      "file": "tuimm/tuimm/skills/qg-workflow/assets/templates/qg-quality-check.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/qg-quality-check.md"
+      "alias": "skills/qg-workflow/assets/templates/qg-quality-check.md"
     },
-    "tuimm/tuimm/templates/qg-release.md": {
+    "tuimm/tuimm/skills/qg-workflow/assets/templates/qg-release.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/qg-release.md",
+      "file": "tuimm/tuimm/skills/qg-workflow/assets/templates/qg-release.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/qg-release.md"
+      "alias": "skills/qg-workflow/assets/templates/qg-release.md"
     },
-    "tuimm/tuimm/templates/qg-security-scan.md": {
+    "tuimm/tuimm/skills/qg-workflow/assets/templates/qg-security-scan.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/qg-security-scan.md",
+      "file": "tuimm/tuimm/skills/qg-workflow/assets/templates/qg-security-scan.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/qg-security-scan.md"
+      "alias": "skills/qg-workflow/assets/templates/qg-security-scan.md"
     },
-    "tuimm/tuimm/templates/qg-tech-debt-report.md": {
+    "tuimm/tuimm/skills/qg-workflow/assets/templates/qg-tech-debt-report.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/qg-tech-debt-report.md",
+      "file": "tuimm/tuimm/skills/qg-workflow/assets/templates/qg-tech-debt-report.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/qg-tech-debt-report.md"
+      "alias": "skills/qg-workflow/assets/templates/qg-tech-debt-report.md"
     },
-    "tuimm/tuimm/templates/template-blueprint.md": {
+    "tuimm/tuimm/skills/qg-workflow/assets/templates/template-blueprint.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/template-blueprint.md",
+      "file": "tuimm/tuimm/skills/qg-workflow/assets/templates/template-blueprint.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/template-blueprint.md"
+      "alias": "skills/qg-workflow/assets/templates/template-blueprint.md"
     },
-    "tuimm/tuimm/templates/weblate-add-key.md": {
+    "tuimm/tuimm/skills/weblate-workflow/assets/templates/weblate-add-key.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/weblate-add-key.md",
+      "file": "tuimm/tuimm/skills/weblate-workflow/assets/templates/weblate-add-key.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/weblate-add-key.md"
+      "alias": "skills/weblate-workflow/assets/templates/weblate-add-key.md"
     },
-    "tuimm/tuimm/templates/weblate-coverage.md": {
+    "tuimm/tuimm/skills/weblate-workflow/assets/templates/weblate-coverage.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/weblate-coverage.md",
+      "file": "tuimm/tuimm/skills/weblate-workflow/assets/templates/weblate-coverage.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/weblate-coverage.md"
+      "alias": "skills/weblate-workflow/assets/templates/weblate-coverage.md"
     },
-    "tuimm/tuimm/templates/weblate-translate-missing.md": {
+    "tuimm/tuimm/skills/weblate-workflow/assets/templates/weblate-translate-missing.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/weblate-translate-missing.md",
+      "file": "tuimm/tuimm/skills/weblate-workflow/assets/templates/weblate-translate-missing.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/weblate-translate-missing.md"
+      "alias": "skills/weblate-workflow/assets/templates/weblate-translate-missing.md"
     },
-    "tuimm/tuimm/templates/weblate-validate.md": {
+    "tuimm/tuimm/skills/weblate-workflow/assets/templates/weblate-validate.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/weblate-validate.md",
+      "file": "tuimm/tuimm/skills/weblate-workflow/assets/templates/weblate-validate.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/weblate-validate.md"
+      "alias": "skills/weblate-workflow/assets/templates/weblate-validate.md"
     },
-    "tuimm/tuimm/templates/guidelines-generator/extract.md": {
+    "tuimm/tuimm/skills/qg-workflow/assets/templates/guidelines-generator/extract.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/templates/guidelines-generator/extract.md",
+      "file": "tuimm/tuimm/skills/qg-workflow/assets/templates/guidelines-generator/extract.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "templates/guidelines-generator/extract.md"
+      "alias": "skills/qg-workflow/assets/templates/guidelines-generator/extract.md"
     },
-    "tuimm/tuimm/commands/get-commands.md": {
+    "tuimm/tuimm/skills/get-commands/commands/get-commands.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/get-commands.md",
+      "file": "tuimm/tuimm/skills/get-commands/commands/get-commands.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/get-commands.md"
+      "alias": "skills/get-commands/commands/get-commands.md"
     },
-    "tuimm/tuimm/commands/jira_create-ticket.md": {
+    "tuimm/tuimm/skills/jira-workflow/commands/create-ticket.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/jira_create-ticket.md",
+      "file": "tuimm/tuimm/skills/jira-workflow/commands/create-ticket.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/jira_create-ticket.md"
+      "alias": "skills/jira-workflow/commands/create-ticket.md"
     },
-    "tuimm/tuimm/commands/jira_edit-ticket.md": {
+    "tuimm/tuimm/skills/jira-workflow/commands/edit-ticket.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/jira_edit-ticket.md",
+      "file": "tuimm/tuimm/skills/jira-workflow/commands/edit-ticket.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/jira_edit-ticket.md"
+      "alias": "skills/jira-workflow/commands/edit-ticket.md"
     },
-    "tuimm/tuimm/commands/jira_comment-ticket.md": {
+    "tuimm/tuimm/skills/jira-workflow/commands/comment-ticket.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/jira_comment-ticket.md",
+      "file": "tuimm/tuimm/skills/jira-workflow/commands/comment-ticket.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/jira_comment-ticket.md"
+      "alias": "skills/jira-workflow/commands/comment-ticket.md"
     },
-    "tuimm/tuimm/commands/jira_set-ai-usage.md": {
+    "tuimm/tuimm/skills/jira-workflow/commands/set-ai-usage.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/jira_set-ai-usage.md",
+      "file": "tuimm/tuimm/skills/jira-workflow/commands/set-ai-usage.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/jira_set-ai-usage.md"
+      "alias": "skills/jira-workflow/commands/set-ai-usage.md"
     },
     "tuimm/tuimm/tools/bg/bg.py": {
       "repository": "javier.fernandez/tuimm-agents-poc",

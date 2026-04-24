@@ -35,55 +35,55 @@
         }
       ]
     },
-    "tuimm/tuimm/commands/mr_review.md": {
+    "tuimm/tuimm/skills/mr-workflow/commands/review.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/mr_review.md",
+      "file": "tuimm/tuimm/skills/mr-workflow/commands/review.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/mr_review.md"
+      "alias": "skills/mr-workflow/commands/review.md"
     },
-    "tuimm/tuimm/commands/mr_comments.md": {
+    "tuimm/tuimm/skills/mr-workflow/commands/comments.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/mr_comments.md",
+      "file": "tuimm/tuimm/skills/mr-workflow/commands/comments.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/mr_comments.md"
+      "alias": "skills/mr-workflow/commands/comments.md"
     },
-    "tuimm/tuimm/commands/mr_approve.md": {
+    "tuimm/tuimm/skills/mr-workflow/commands/approve.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/mr_approve.md",
+      "file": "tuimm/tuimm/skills/mr-workflow/commands/approve.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/mr_approve.md"
+      "alias": "skills/mr-workflow/commands/approve.md"
     },
-    "tuimm/tuimm/commands/mr_rebase.md": {
+    "tuimm/tuimm/skills/mr-workflow/commands/rebase.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/mr_rebase.md",
+      "file": "tuimm/tuimm/skills/mr-workflow/commands/rebase.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/mr_rebase.md"
+      "alias": "skills/mr-workflow/commands/rebase.md"
     },
-    "tuimm/tuimm/commands/mr_list.md": {
+    "tuimm/tuimm/skills/mr-workflow/commands/list.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/mr_list.md",
+      "file": "tuimm/tuimm/skills/mr-workflow/commands/list.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/mr_list.md"
+      "alias": "skills/mr-workflow/commands/list.md"
     }
   }
 }

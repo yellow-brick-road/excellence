@@ -35,35 +35,35 @@
         }
       ]
     },
-    "tuimm/tuimm/commands/dev_solve.md": {
+    "tuimm/tuimm/skills/dev-workflow/commands/solve.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/dev_solve.md",
+      "file": "tuimm/tuimm/skills/dev-workflow/commands/solve.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/dev_solve.md"
+      "alias": "skills/dev-workflow/commands/solve.md"
     },
-    "tuimm/tuimm/commands/dev_implement.md": {
+    "tuimm/tuimm/skills/dev-workflow/commands/implement.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/dev_implement.md",
+      "file": "tuimm/tuimm/skills/dev-workflow/commands/implement.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/dev_implement.md"
+      "alias": "skills/dev-workflow/commands/implement.md"
     },
-    "tuimm/tuimm/commands/dev_continue.md": {
+    "tuimm/tuimm/skills/dev-workflow/commands/continue.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/dev_continue.md",
+      "file": "tuimm/tuimm/skills/dev-workflow/commands/continue.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/dev_continue.md"
+      "alias": "skills/dev-workflow/commands/continue.md"
     }
   }
 }

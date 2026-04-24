@@ -35,25 +35,25 @@
         }
       ]
     },
-    "tuimm/tuimm/commands/obs_dd-scan.md": {
+    "tuimm/tuimm/skills/obs-workflow/commands/dd-scan.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/obs_dd-scan.md",
+      "file": "tuimm/tuimm/skills/obs-workflow/commands/dd-scan.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/obs_dd-scan.md"
+      "alias": "skills/obs-workflow/commands/dd-scan.md"
     },
-    "tuimm/tuimm/commands/obs_dd-investigate.md": {
+    "tuimm/tuimm/skills/obs-workflow/commands/dd-investigate.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/obs_dd-investigate.md",
+      "file": "tuimm/tuimm/skills/obs-workflow/commands/dd-investigate.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/obs_dd-investigate.md"
+      "alias": "skills/obs-workflow/commands/dd-investigate.md"
     }
   }
 }

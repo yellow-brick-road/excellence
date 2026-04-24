@@ -27,25 +27,25 @@
         }
       ]
     },
-    "tuimm/tuimm/commands/ds_design-audit.md": {
+    "tuimm/tuimm/skills/ds-workflow/commands/design-audit.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/ds_design-audit.md",
+      "file": "tuimm/tuimm/skills/ds-workflow/commands/design-audit.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/ds_design-audit.md"
+      "alias": "skills/ds-workflow/commands/design-audit.md"
     },
-    "tuimm/tuimm/commands/ds_component-check.md": {
+    "tuimm/tuimm/skills/ds-workflow/commands/component-check.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/ds_component-check.md",
+      "file": "tuimm/tuimm/skills/ds-workflow/commands/component-check.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/ds_component-check.md"
+      "alias": "skills/ds-workflow/commands/component-check.md"
     }
   }
 }
