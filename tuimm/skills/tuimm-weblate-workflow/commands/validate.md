@@ -8,7 +8,7 @@ description: |
 
 # Command: $weblate_validate
 
-> **Prerequisites**: Read `weblate-conventions` skill FIRST before executing this command.
+> **Prerequisites**: Read `tuimm-weblate-conventions` skill FIRST before executing this command.
 
 Validate XLIFF files in a weblate module. Reports structural errors without modifying anything.
 

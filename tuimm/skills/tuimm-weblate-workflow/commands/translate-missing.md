@@ -8,7 +8,7 @@ description: |
 
 # Command: $weblate_translate-missing
 
-> **Prerequisites**: Read `weblate-conventions` skill FIRST before executing this command.
+> **Prerequisites**: Read `tuimm-weblate-conventions` skill FIRST before executing this command.
 
 Detect untranslated keys in a module and propose translations using LLM. Creates a draft MR.
 

@@ -8,7 +8,7 @@ description: |
 
 # Command: $weblate_add-key
 
-> **Prerequisites**: Read `weblate-conventions` skill FIRST before executing this command.
+> **Prerequisites**: Read `tuimm-weblate-conventions` skill FIRST before executing this command.
 
 Add a translation key to a weblate module. Creates a draft MR for review.
 

@@ -8,7 +8,7 @@ description: |
 
 # Command: $weblate_coverage
 
-> **Prerequisites**: Read `weblate-conventions` skill FIRST before executing this command.
+> **Prerequisites**: Read `tuimm-weblate-conventions` skill FIRST before executing this command.
 
 Report translation coverage per module and locale.
 

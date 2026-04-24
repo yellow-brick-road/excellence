@@ -16,7 +16,7 @@ description: |
 
 ## Clone Pattern
 
-All weblate commands use a disposable temp clone under `~/.kiro/temp/weblate/` (see GIT.md § Workspace Conventions):
+All weblate commands use a disposable temp clone under `~/.kiro/temp/weblate/` (see TUIMM_GIT.md § Workspace Conventions):
 
 ```bash
 WORK_DIR="$HOME/.kiro/temp/weblate/weblate-$(date +%s)"
