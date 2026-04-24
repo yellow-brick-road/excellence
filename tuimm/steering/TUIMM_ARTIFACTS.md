@@ -71,13 +71,14 @@ Reports save to `outputs/YYYY-MM-DD_HHmm_NAME.md`
 | `$obs_dd-scan` | "scan", "morning scan" | Production error scan (Datadog) |
 | `$obs_dd-investigate` | "investigate [error]" | Deep root cause analysis (Datadog) |
 
-### Jira — shared (3)
+### Jira — shared (4)
 
 | Command | Trigger | Description |
 |---------|---------|-------------|
 | `$jira_create-ticket` | "create ticket", "new ticket" | Create a Jira ticket with structured template |
 | `$jira_edit-ticket` | "edit ticket [KEY]" | Edit an existing Jira ticket |
 | `$jira_comment-ticket` | "comment on [KEY]" | Add a comment to a Jira ticket |
+| `$jira_set-ai-usage` | "set ai usage [KEY]" | Set AI usage tracking fields on a ticket |
 
 ### Weblate — shared (4)
 
@@ -192,6 +193,9 @@ Reports save to `outputs/YYYY-MM-DD_HHmm_NAME.md`
 | `tuimm-known-error-patterns` | Observability, `$obs_dd-scan` | Known production error patterns with Datadog queries and severity baselines |
 | `tuimm-jira-context-gathering` | Jira commands, Dev commands | Full ticket context checklist — what to fetch and how to query the subagent |
 | `tuimm-security-preflight` | `$qg_security-scan`, `$mr_review` | Preflight-sast extraction procedure — find job, parse JUnit, classify SAST/SBOM |
+| `tuimm-autobuild-reference` | Autobuild engine, Planner | Task engine for multi-step plans (markdown tasks, ACP, waves) |
+| `tuimm-bg-reference` | Autobuild, Guidelines Generator | Background execution library (--bg/--status/--stop, launch_bg) |
+| `tuimm-logd-reference` | Observability, Autobuild | Local log daemon + client library (UDP, SQLite, LOGD_UID) |
 
 ## Tools
 
