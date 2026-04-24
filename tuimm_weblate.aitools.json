@@ -9,45 +9,45 @@
         }
       ]
     },
-    "tuimm/tuimm/skills/weblate-workflow/commands/add-key.md": {
+    "tuimm/skills/tuimm-weblate-workflow/commands/add-key.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/skills/weblate-workflow/commands/add-key.md",
+      "file": "tuimm/skills/tuimm-weblate-workflow/commands/add-key.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/weblate-workflow/commands/add-key.md"
+      "alias": "skills/tuimm-weblate-workflow/commands/add-key.md"
     },
-    "tuimm/tuimm/skills/weblate-workflow/commands/validate.md": {
+    "tuimm/skills/tuimm-weblate-workflow/commands/validate.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/skills/weblate-workflow/commands/validate.md",
+      "file": "tuimm/skills/tuimm-weblate-workflow/commands/validate.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/weblate-workflow/commands/validate.md"
+      "alias": "skills/tuimm-weblate-workflow/commands/validate.md"
     },
-    "tuimm/tuimm/skills/weblate-workflow/commands/coverage.md": {
+    "tuimm/skills/tuimm-weblate-workflow/commands/coverage.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/skills/weblate-workflow/commands/coverage.md",
+      "file": "tuimm/skills/tuimm-weblate-workflow/commands/coverage.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/weblate-workflow/commands/coverage.md"
+      "alias": "skills/tuimm-weblate-workflow/commands/coverage.md"
     },
-    "tuimm/tuimm/skills/weblate-workflow/commands/translate-missing.md": {
+    "tuimm/skills/tuimm-weblate-workflow/commands/translate-missing.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/skills/weblate-workflow/commands/translate-missing.md",
+      "file": "tuimm/skills/tuimm-weblate-workflow/commands/translate-missing.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/weblate-workflow/commands/translate-missing.md"
+      "alias": "skills/tuimm-weblate-workflow/commands/translate-missing.md"
     }
   }
 }

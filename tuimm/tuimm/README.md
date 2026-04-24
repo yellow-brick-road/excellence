@@ -1,57 +1,14 @@
-# What's in this folder
+# TUIMM Knowledge Base Index
 
-This is the TUIMM package — everything an agent needs to work. After installation, this lives at `~/.kiro/tuimm/`.
+This directory is the knowledgeBase index target for TUIMM agents. It exists so agents can use semantic search across TUIMM documentation.
 
-For credentials and installation steps, see [SETUP.md](SETUP.md).
+## Where the actual content lives
 
----
+After installation, TUIMM content is distributed across `~/.kiro/`:
 
-## steering/
+- `~/.kiro/steering/TUIMM_*.md` — 11 behavioral rules
+- `~/.kiro/skills/tuimm-*/` — 25 skills (commands, templates, references)
+- `~/.kiro/tools/` — Python scripts and utilities
+- `~/.kiro/agents/tuimm_*.json` — 19 agent configurations
 
-The rules. Every agent reads all 11 steering files before doing anything — they define how agents behave: git conventions, coding standards, communication style, error handling. Non-negotiable.
-
-Think of it as the team's engineering handbook, but machine-readable.
-
----
-
-## skills/
-
-Self-contained knowledge and workflow packages, following the [agentskills.io](https://agentskills.io) standard. Each skill is a folder with:
-
-```
-skill-name/
-├── SKILL.md              # Required: metadata + instructions
-├── commands/             # Executable workflows (step-by-step recipes)
-├── references/           # Additional documentation
-└── assets/
-    └── templates/        # Output format definitions
-```
-
-There are two types of skills:
-
-**Workflow skills** (11) — contain commands and templates for a specific domain. Each agent loads only the skills relevant to its domain. Users trigger commands with `$command-name` or natural language.
-- `dev-workflow`, `mr-workflow`, `obs-workflow`, `qg-workflow`, `devex-workflow`, `ds-workflow`, `kn-workflow`, `planner-workflow`
-- `jira-workflow`, `weblate-workflow` (shared across multiple agents)
-- `get-commands` (meta, available to all agents)
-
-**Knowledge skills** (14) — reference material agents read when they need specific expertise. For example: before creating a Jira ticket, the agent reads `jira-adf` for Atlassian Document Format. Before committing, it reads `commit-conventions` for the format rules.
-
-All skills load on-demand via progressive disclosure — agents see only the name and description at startup, and load the full content only when a task matches.
-
----
-
-## tools/
-
-Standalone scripts that agents run via shell. Not AI — just Python and Bash doing mechanical work.
-
-The main ones:
-- **guidelines-generator** — extracts coding conventions from real code (supports Nuxt, Java, Python, Go)
-- **autobuild** — task engine that executes multi-step plans
-- **gitlab-list-mrs.py** — queries GitLab for MRs across repos
-- **bg** and **logd** — background execution and structured logging for long-running tasks
-
----
-
-## prompts/
-
-Empty. Reserved for future multi-agent workflows. Not used yet.
+This directory is intentionally lightweight. Agent JSONs point their `knowledgeBase` source here for indexing purposes.

@@ -35,55 +35,55 @@
         }
       ]
     },
-    "tuimm/tuimm/skills/mr-workflow/commands/review.md": {
+    "tuimm/skills/tuimm-mr-workflow/commands/review.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/skills/mr-workflow/commands/review.md",
+      "file": "tuimm/skills/tuimm-mr-workflow/commands/review.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/mr-workflow/commands/review.md"
+      "alias": "skills/tuimm-mr-workflow/commands/review.md"
     },
-    "tuimm/tuimm/skills/mr-workflow/commands/comments.md": {
+    "tuimm/skills/tuimm-mr-workflow/commands/comments.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/skills/mr-workflow/commands/comments.md",
+      "file": "tuimm/skills/tuimm-mr-workflow/commands/comments.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/mr-workflow/commands/comments.md"
+      "alias": "skills/tuimm-mr-workflow/commands/comments.md"
     },
-    "tuimm/tuimm/skills/mr-workflow/commands/approve.md": {
+    "tuimm/skills/tuimm-mr-workflow/commands/approve.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/skills/mr-workflow/commands/approve.md",
+      "file": "tuimm/skills/tuimm-mr-workflow/commands/approve.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/mr-workflow/commands/approve.md"
+      "alias": "skills/tuimm-mr-workflow/commands/approve.md"
     },
-    "tuimm/tuimm/skills/mr-workflow/commands/rebase.md": {
+    "tuimm/skills/tuimm-mr-workflow/commands/rebase.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/skills/mr-workflow/commands/rebase.md",
+      "file": "tuimm/skills/tuimm-mr-workflow/commands/rebase.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/mr-workflow/commands/rebase.md"
+      "alias": "skills/tuimm-mr-workflow/commands/rebase.md"
     },
-    "tuimm/tuimm/skills/mr-workflow/commands/list.md": {
+    "tuimm/skills/tuimm-mr-workflow/commands/list.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/skills/mr-workflow/commands/list.md",
+      "file": "tuimm/skills/tuimm-mr-workflow/commands/list.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/mr-workflow/commands/list.md"
+      "alias": "skills/tuimm-mr-workflow/commands/list.md"
     }
   }
 }

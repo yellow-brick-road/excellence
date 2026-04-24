@@ -19,35 +19,35 @@
         }
       ]
     },
-    "tuimm/tuimm/skills/kn-workflow/commands/doc-health.md": {
+    "tuimm/skills/tuimm-kn-workflow/commands/doc-health.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/skills/kn-workflow/commands/doc-health.md",
+      "file": "tuimm/skills/tuimm-kn-workflow/commands/doc-health.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/kn-workflow/commands/doc-health.md"
+      "alias": "skills/tuimm-kn-workflow/commands/doc-health.md"
     },
-    "tuimm/tuimm/skills/kn-workflow/commands/runbook.md": {
+    "tuimm/skills/tuimm-kn-workflow/commands/runbook.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/skills/kn-workflow/commands/runbook.md",
+      "file": "tuimm/skills/tuimm-kn-workflow/commands/runbook.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/kn-workflow/commands/runbook.md"
+      "alias": "skills/tuimm-kn-workflow/commands/runbook.md"
     },
-    "tuimm/tuimm/skills/kn-workflow/commands/onboarding.md": {
+    "tuimm/skills/tuimm-kn-workflow/commands/onboarding.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/skills/kn-workflow/commands/onboarding.md",
+      "file": "tuimm/skills/tuimm-kn-workflow/commands/onboarding.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/kn-workflow/commands/onboarding.md"
+      "alias": "skills/tuimm-kn-workflow/commands/onboarding.md"
     }
   }
 }

@@ -28,8 +28,8 @@
     "file://./readme.md",
     "file://./AGENTS.md",
     "file://./agents.md",
-    "file://${INSTALL_DIRECTORY}/.kiro/tuimm/steering/*.md",
-    "skill://${INSTALL_DIRECTORY}/.kiro/tuimm/skills/**/SKILL.md",
+    "file://${INSTALL_DIRECTORY}/.kiro/steering/TUIMM_*.md",
+    "skill://${INSTALL_DIRECTORY}/.kiro/skills/tuimm-*/SKILL.md",
     {
       "type": "knowledgeBase",
       "source": "file://${INSTALL_DIRECTORY}/.kiro/tuimm",

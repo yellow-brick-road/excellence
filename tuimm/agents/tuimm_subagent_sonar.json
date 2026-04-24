@@ -23,7 +23,7 @@
     "@sonarqube"
   ],
   "resources": [
-    "skill://${INSTALL_DIRECTORY}/.kiro/tuimm/skills/**/SKILL.md"
+    "skill://${INSTALL_DIRECTORY}/.kiro/skills/tuimm-*/SKILL.md"
   ],
   "includeMcpJson": false
 }

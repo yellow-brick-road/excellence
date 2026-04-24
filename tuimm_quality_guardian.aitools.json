@@ -27,75 +27,75 @@
         }
       ]
     },
-    "tuimm/tuimm/skills/qg-workflow/commands/quality-check.md": {
+    "tuimm/skills/tuimm-qg-workflow/commands/quality-check.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/skills/qg-workflow/commands/quality-check.md",
+      "file": "tuimm/skills/tuimm-qg-workflow/commands/quality-check.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/qg-workflow/commands/quality-check.md"
+      "alias": "skills/tuimm-qg-workflow/commands/quality-check.md"
     },
-    "tuimm/tuimm/skills/qg-workflow/commands/tech-debt-report.md": {
+    "tuimm/skills/tuimm-qg-workflow/commands/tech-debt-report.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/skills/qg-workflow/commands/tech-debt-report.md",
+      "file": "tuimm/skills/tuimm-qg-workflow/commands/tech-debt-report.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/qg-workflow/commands/tech-debt-report.md"
+      "alias": "skills/tuimm-qg-workflow/commands/tech-debt-report.md"
     },
-    "tuimm/tuimm/skills/qg-workflow/commands/dependency-review.md": {
+    "tuimm/skills/tuimm-qg-workflow/commands/dependency-review.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/skills/qg-workflow/commands/dependency-review.md",
+      "file": "tuimm/skills/tuimm-qg-workflow/commands/dependency-review.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/qg-workflow/commands/dependency-review.md"
+      "alias": "skills/tuimm-qg-workflow/commands/dependency-review.md"
     },
-    "tuimm/tuimm/skills/qg-workflow/commands/dependency-scan.md": {
+    "tuimm/skills/tuimm-qg-workflow/commands/dependency-scan.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/skills/qg-workflow/commands/dependency-scan.md",
+      "file": "tuimm/skills/tuimm-qg-workflow/commands/dependency-scan.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/qg-workflow/commands/dependency-scan.md"
+      "alias": "skills/tuimm-qg-workflow/commands/dependency-scan.md"
     },
-    "tuimm/tuimm/skills/qg-workflow/commands/release.md": {
+    "tuimm/skills/tuimm-qg-workflow/commands/release.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/skills/qg-workflow/commands/release.md",
+      "file": "tuimm/skills/tuimm-qg-workflow/commands/release.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/qg-workflow/commands/release.md"
+      "alias": "skills/tuimm-qg-workflow/commands/release.md"
     },
-    "tuimm/tuimm/skills/qg-workflow/commands/security-scan.md": {
+    "tuimm/skills/tuimm-qg-workflow/commands/security-scan.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/skills/qg-workflow/commands/security-scan.md",
+      "file": "tuimm/skills/tuimm-qg-workflow/commands/security-scan.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/qg-workflow/commands/security-scan.md"
+      "alias": "skills/tuimm-qg-workflow/commands/security-scan.md"
     },
-    "tuimm/tuimm/skills/qg-workflow/commands/generate-guidelines.md": {
+    "tuimm/skills/tuimm-qg-workflow/commands/generate-guidelines.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/skills/qg-workflow/commands/generate-guidelines.md",
+      "file": "tuimm/skills/tuimm-qg-workflow/commands/generate-guidelines.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/qg-workflow/commands/generate-guidelines.md"
+      "alias": "skills/tuimm-qg-workflow/commands/generate-guidelines.md"
     }
   }
 }
