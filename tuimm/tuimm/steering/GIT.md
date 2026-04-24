@@ -75,7 +75,6 @@ At session start, a background check scans mr/ and dev/ for stale workspaces (me
 
 ## Rules
 
-- NEVER commit `session.md` — local-only ephemeral file
 - NEVER add `[skip ci]` in commits
 - NEVER use `git commit --amend` — make extra commits instead
 - NEVER force push

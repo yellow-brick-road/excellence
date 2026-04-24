@@ -55,7 +55,6 @@ description: |
 
 ## Rules
 
-- NEVER commit `session.md`
 - NEVER add `[skip ci]`
 - NEVER use `git commit --amend`
 
