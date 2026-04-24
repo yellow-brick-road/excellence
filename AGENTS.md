@@ -9,7 +9,7 @@ TUIMM is a set of 19 AI agent configurations for Kiro CLI, designed for TUI Muse
 ## Package structure
 
 ```
-tuimm/                              ← this directory
+tuimm/                              ← inside the excellence repo
 ├── AGENTS.md                       ← you are reading this
 ├── README.md                       ← human-readable overview
 ├── SETUP.md                        ← credentials and env var guide

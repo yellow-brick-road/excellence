@@ -2,7 +2,7 @@
 
 > A practical framework for accelerating software delivery through AI agents, shared tooling, and automated workflows.
 
-> ⚠️ **Vision document.** Written for the Excellence demo (Apr 10, 2026). Describes the target state, not current implementation. Some features (TUI CLI, routines, MCP Gateway) are planned, not built. For current state, see ROADMAP.md and the actual `.kiro/` implementation.
+> ⚠️ **Vision document.** Written for the Excellence demo (Apr 10, 2026). Describes the target state, not current implementation. Some features (TUI CLI, routines, MCP Gateway) are planned, not built. For current state, see ROADMAP.md and the actual `tuimm/` implementation.
 
 ## The Problem
 

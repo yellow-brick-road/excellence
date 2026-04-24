@@ -120,15 +120,19 @@ Each one wraps a single API via MCP (Model Context Protocol). They execute — t
 
 ### 1. Copy the files
 
-```bash
-# Agent configs go to ~/.kiro/agents/
-cp agents/*.json ~/.kiro/agents/
+Run from the `tuimm/` directory:
 
-# Package contents go to ~/.kiro/tuimm/
-cp -r tuimm/* ~/.kiro/tuimm/
+```bash
+mkdir -p ~/.kiro/agents ~/.kiro/steering ~/.kiro/skills ~/.kiro/tools ~/.kiro/tuimm
+
+cp agents/*.json ~/.kiro/agents/
+cp steering/TUIMM_*.md ~/.kiro/steering/
+cp -r skills/tuimm-* ~/.kiro/skills/
+cp -r tools/* ~/.kiro/tools/
+cp tuimm/README.md ~/.kiro/tuimm/
 ```
 
-That's it for the files. The agents reference `~/.kiro/tuimm/` for everything — steering rules, commands, skills, templates, tools.
+The `TUIMM_` and `tuimm-` prefixes prevent collisions with personal or other package files in the shared `~/.kiro/` directories.
 
 ### 2. Set up your credentials
 
@@ -193,13 +197,14 @@ You can also just talk naturally. "I need to review an MR" works as well as `$mr
 ```
 tuimm/
 ├── agents/          19 agent configs (→ ~/.kiro/agents/)
-└── tuimm/           package contents (→ ~/.kiro/ global dirs)
-    ├── SETUP.md     credentials guide — start here after copying files
-    ├── steering/    11 TUIMM_*.md behavioral rules (→ ~/.kiro/steering/)
-    ├── skills/      25 tuimm-* skill directories (→ ~/.kiro/skills/)
-    ├── skills/      14 knowledge skills (reference material)
-    │                 11 workflow skills (commands + templates inside)
-    └── tools/       scripts and utilities (→ ~/.kiro/tools/)
+├── steering/        11 TUIMM_*.md behavioral rules (→ ~/.kiro/steering/)
+├── skills/          25 tuimm-* skill directories (→ ~/.kiro/skills/)
+│                     11 workflow skills (commands + templates inside)
+│                     14 knowledge skills (reference material)
+├── tools/           scripts and utilities (→ ~/.kiro/tools/)
+├── tuimm/           knowledgeBase index (→ ~/.kiro/tuimm/)
+├── SETUP.md         credentials guide
+└── README.md        package overview
 ```
 
 **Steering** defines how agents behave: git conventions, communication style, error handling, coding standards. All agents share the same rules — consistency is built in.
@@ -241,6 +246,8 @@ The more teams contribute, the smarter the agents get for everyone.
 
 ```bash
 rm ~/.kiro/agents/tuimm_*.json
+rm ~/.kiro/steering/TUIMM_*.md
+rm -rf ~/.kiro/skills/tuimm-*/
 rm -rf ~/.kiro/tuimm/
 ```
 
