@@ -44,10 +44,10 @@ Task engine that executes markdown task files through kiro-cli agents. Used by t
 
 ```bash
 # Run tasks from a plan
-python3 ~/.kiro/tools/autobuild/engine.py --tasks .plan/my-feature/tasks/
+python3 ~/.kiro/tools/autobuild/engine.py .plan/my-feature/tasks/
 
 # Check status
-python3 ~/.kiro/tools/autobuild/engine.py --status
+python3 ~/.kiro/tools/autobuild/engine.py .plan/my-feature/tasks/ --status
 ```
 
 Tasks are markdown files with a description and acceptance criteria. Autobuild processes them in waves, respecting dependencies, with retry on failure.

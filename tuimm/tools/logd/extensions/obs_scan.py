@@ -6,8 +6,8 @@ Two actions:
   load-previous  — retrieve the most recent scan for a service
 
 Usage:
-  python3 obs_scan_log.py save '<json>'
-  python3 obs_scan_log.py load-previous --service <name>
+  python3 obs_scan.py save '<json>'
+  python3 obs_scan.py load-previous --service <name>
 """
 
 import argparse

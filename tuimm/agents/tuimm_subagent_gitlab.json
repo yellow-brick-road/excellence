@@ -30,7 +30,8 @@
   "toolsSettings": {
     "shell": {
       "deniedCommands": [
-        "git reset --hard.*"
+        "git reset --hard.*",
+        "git push.*"
       ],
       "autoAllowReadonly": true
     }
