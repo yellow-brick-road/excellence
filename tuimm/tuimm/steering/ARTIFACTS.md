@@ -6,10 +6,10 @@ Reference for all agent artifacts. Update this file each time a new command, pro
 
 | Type | Location | Loading | Purpose |
 |------|----------|---------|---------|
-| Command | `tuimm/commands/` | Loaded as skill via `skill://` in agent JSON | Single-agent or shared targeted actions |
-| Skill | `tuimm/skills/` | Loaded via `skill://` in agent JSON | Knowledge reference material |
-| Steering | `tuimm/steering/` | Loaded via `file://` glob at startup | Shared behavioral rules |
-| Template | `tuimm/templates/` | Loaded as skill via `skill://` in agent JSON | Output format definitions |
+| Skill | `tuimm/skills/` | Loaded via `skill://.../skills/**/SKILL.md` in agent JSON | Self-contained knowledge + commands + templates (agentskills.io pattern) |
+| Command | `tuimm/skills/*/commands/` | Part of skill — loaded when skill activates | Single-agent or shared targeted actions |
+| Template | `tuimm/skills/*/assets/templates/` | Part of skill — referenced by commands | Output format definitions |
+| Steering | `tuimm/steering/` | Loaded via `file://` glob at startup | Shared behavioral rules (transversal, not per-skill) |
 | Prompt | `tuimm/prompts/` | Preloaded as agent resource | Multi-domain workflows |
 | Tool | `tuimm/tools/` | Executed via `bash` from commands | Shell scripts and utilities for API queries and automation |
 

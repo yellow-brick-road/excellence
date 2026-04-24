@@ -14,38 +14,29 @@ Think of it as the team's engineering handbook, but machine-readable.
 
 ---
 
-## commands/
-
-The workflows. Each command is a step-by-step recipe for a specific task: "how to solve a Jira ticket", "how to review an MR", "how to scan production errors."
-
-**Why commands instead of prompts?** Kiro CLI has prompts (`@name`) — they're global, every agent sees all of them. If you put 36 workflows as prompts, every agent loads all 36 at startup. The list becomes noise and the agent can't tell which ones are relevant.
-
-Commands solve this with scoping. Each agent only loads its own commands via prefix:
-- Dev loads `dev_*` + `jira_*` + `weblate_*` → 10 commands
-- MR loads `mr_*` + `jira_*` + `weblate_*` → 12 commands
-- Quality Guardian loads `qg_*` + `jira_*` → 10 commands
-
-Each agent has a short, focused menu. It knows exactly what it can do. Users trigger them with `$command-name` or natural language.
-
-Commands also load on-demand (as skills), not at startup — they don't bloat the agent's context until they're actually needed.
-
----
-
 ## skills/
 
-Reference knowledge. Not executable — agents read them when they need specific expertise.
+Self-contained knowledge and workflow packages, following the [agentskills.io](https://agentskills.io) standard. Each skill is a folder with:
 
-For example: before creating a Jira ticket, the agent reads the `jira-adf` skill to understand Atlassian Document Format. Before committing code, it reads `commit-conventions` for the format rules. Before reviewing code, it reads `code-review-checklist` for what to look for.
+```
+skill-name/
+├── SKILL.md              # Required: metadata + instructions
+├── commands/             # Executable workflows (step-by-step recipes)
+├── references/           # Additional documentation
+└── assets/
+    └── templates/        # Output format definitions
+```
 
-14 skills covering: commit format, GitLab conventions, Jira format, Weblate workflow, code review checklist, MCP tool reference, known error patterns, and more.
+There are two types of skills:
 
----
+**Workflow skills** (11) — contain commands and templates for a specific domain. Each agent loads only the skills relevant to its domain. Users trigger commands with `$command-name` or natural language.
+- `dev-workflow`, `mr-workflow`, `obs-workflow`, `qg-workflow`, `devex-workflow`, `ds-workflow`, `kn-workflow`, `planner-workflow`
+- `jira-workflow`, `weblate-workflow` (shared across multiple agents)
+- `get-commands` (meta, available to all agents)
 
-## templates/
+**Knowledge skills** (14) — reference material agents read when they need specific expertise. For example: before creating a Jira ticket, the agent reads `jira-adf` for Atlassian Document Format. Before committing, it reads `commit-conventions` for the format rules.
 
-Output formats. Commands say "present results using the X template" — the template defines the exact structure so every output looks consistent.
-
-Every MR review has the same sections. Every quality check has the same format. Every scan summary follows the same pattern. 37 templates, one per command output.
+All skills load on-demand via progressive disclosure — agents see only the name and description at startup, and load the full content only when a task matches.
 
 ---
 
