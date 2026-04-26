@@ -7,7 +7,7 @@ Two modes:
 
 Usage (CLI):
     import sys, os
-    sys.path.insert(0, os.path.expanduser("~/.kiro/tools/bg"))
+    sys.path.insert(0, os.path.expanduser("~/.kiro/skills/tuimm-bg-reference/scripts"))
     from bg import setup_bg
     setup_bg()  # intercepts flags, exits if found
 
@@ -29,7 +29,7 @@ def _get_log():
     global _log
     if _log is None:
         try:
-            sys.path.insert(0, os.path.expanduser("~/.kiro/tools/logd"))
+            sys.path.insert(0, os.path.expanduser("~/.kiro/skills/tuimm-logd-reference/scripts"))
             from loglib import get_logger
             _log = get_logger("bg")
         except Exception:
@@ -129,7 +129,7 @@ def _log_path(uid: str) -> Path:
 def _logd_tail(uid: str, lines: int = 5) -> list[str]:
     """Query logd for recent entries with this uid."""
     try:
-        logd = os.path.expanduser("~/.kiro/tools/logd/logd.py")
+        logd = os.path.expanduser("~/.kiro/skills/tuimm-logd-reference/scripts/logd.py")
         r = subprocess.run(
             [sys.executable, logd, "tail", "--uid", uid, str(lines)],
             capture_output=True, text=True, timeout=5,
@@ -252,7 +252,7 @@ def _cli_tail():
     log_file = _log_path(uid)
     if log_file.exists():
         os.execvp("tail", ["tail", "-f", str(log_file)])
-    logd = os.path.expanduser("~/.kiro/tools/logd/logd.py")
+    logd = os.path.expanduser("~/.kiro/skills/tuimm-logd-reference/scripts/logd.py")
     os.execvp(sys.executable, [sys.executable, logd, "tail", "--uid", uid, "50"])
 
 

@@ -259,6 +259,16 @@
       ],
       "alias": "skills/tuimm-workspace-mcp/SKILL.md"
     },
+    "tuimm/skills/tuimm-guidelines-generator/SKILL.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-guidelines-generator/SKILL.md",
+      "targets": [
+        {
+          "type": "resource"
+        }
+      ],
+      "alias": "skills/tuimm-guidelines-generator/SKILL.md"
+    },
     "tuimm/skills/tuimm-dev-workflow/assets/templates/dev-continue.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
       "file": "tuimm/skills/tuimm-dev-workflow/assets/templates/dev-continue.md",
@@ -519,15 +529,15 @@
       ],
       "alias": "skills/tuimm-qg-workflow/assets/templates/qg-dependency-scan.md"
     },
-    "tuimm/skills/tuimm-qg-workflow/assets/templates/qg-generate-guidelines.md": {
+    "tuimm/skills/tuimm-guidelines-generator/assets/templates/qg-generate-guidelines.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/skills/tuimm-qg-workflow/assets/templates/qg-generate-guidelines.md",
+      "file": "tuimm/skills/tuimm-guidelines-generator/assets/templates/qg-generate-guidelines.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/tuimm-qg-workflow/assets/templates/qg-generate-guidelines.md"
+      "alias": "skills/tuimm-guidelines-generator/assets/templates/qg-generate-guidelines.md"
     },
     "tuimm/skills/tuimm-qg-workflow/assets/templates/qg-quality-check.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
@@ -619,15 +629,15 @@
       ],
       "alias": "skills/tuimm-weblate-workflow/assets/templates/weblate-validate.md"
     },
-    "tuimm/skills/tuimm-qg-workflow/assets/templates/guidelines-generator/extract.md": {
+    "tuimm/skills/tuimm-guidelines-generator/assets/templates/guidelines-generator/extract.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/skills/tuimm-qg-workflow/assets/templates/guidelines-generator/extract.md",
+      "file": "tuimm/skills/tuimm-guidelines-generator/assets/templates/guidelines-generator/extract.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "skills/tuimm-qg-workflow/assets/templates/guidelines-generator/extract.md"
+      "alias": "skills/tuimm-guidelines-generator/assets/templates/guidelines-generator/extract.md"
     },
     "tuimm/skills/tuimm-get-commands/commands/get-commands.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
@@ -679,105 +689,85 @@
       ],
       "alias": "skills/tuimm-jira-workflow/commands/set-ai-usage.md"
     },
-    "tuimm/tools/bg/bg.py": {
+    "tuimm/skills/tuimm-bg-reference/scripts/bg.py": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tools/bg/bg.py",
+      "file": "tuimm/skills/tuimm-bg-reference/scripts/bg.py",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "tools/bg/bg.py"
+      "alias": "skills/tuimm-bg-reference/scripts/bg.py"
     },
-    "tuimm/tools/logd/logd.py": {
+    "tuimm/skills/tuimm-logd-reference/scripts/logd.py": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tools/logd/logd.py",
+      "file": "tuimm/skills/tuimm-logd-reference/scripts/logd.py",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "tools/logd/logd.py"
+      "alias": "skills/tuimm-logd-reference/scripts/logd.py"
     },
-    "tuimm/tools/logd/loglib.py": {
+    "tuimm/skills/tuimm-logd-reference/scripts/loglib.py": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tools/logd/loglib.py",
+      "file": "tuimm/skills/tuimm-logd-reference/scripts/loglib.py",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "tools/logd/loglib.py"
+      "alias": "skills/tuimm-logd-reference/scripts/loglib.py"
     },
-    "tuimm/tools/logd/extensions/obs_scan.py": {
+    "tuimm/skills/tuimm-logd-reference/scripts/extensions/obs_scan.py": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tools/logd/extensions/obs_scan.py",
+      "file": "tuimm/skills/tuimm-logd-reference/scripts/extensions/obs_scan.py",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "tools/logd/extensions/obs_scan.py"
+      "alias": "skills/tuimm-logd-reference/scripts/extensions/obs_scan.py"
     },
-    "tuimm/tools/autobuild/engine.py": {
+    "tuimm/skills/tuimm-autobuild-reference/scripts/engine.py": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tools/autobuild/engine.py",
+      "file": "tuimm/skills/tuimm-autobuild-reference/scripts/engine.py",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "tools/autobuild/engine.py"
+      "alias": "skills/tuimm-autobuild-reference/scripts/engine.py"
     },
-    "tuimm/tools/autobuild/kiro.py": {
+    "tuimm/skills/tuimm-autobuild-reference/scripts/kiro.py": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tools/autobuild/kiro.py",
+      "file": "tuimm/skills/tuimm-autobuild-reference/scripts/kiro.py",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "tools/autobuild/kiro.py"
+      "alias": "skills/tuimm-autobuild-reference/scripts/kiro.py"
     },
-    "tuimm/tools/guidelines-generator/guidelines-generator.py": {
+    "tuimm/skills/tuimm-guidelines-generator/scripts/guidelines-generator.py": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tools/guidelines-generator/guidelines-generator.py",
+      "file": "tuimm/skills/tuimm-guidelines-generator/scripts/guidelines-generator.py",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "tools/guidelines-generator/guidelines-generator.py"
+      "alias": "skills/tuimm-guidelines-generator/scripts/guidelines-generator.py"
     },
-    "tuimm/tools/gitlab-list-mrs.py": {
+    "tuimm/steering/scripts/workspace-cleanup-check.py": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tools/gitlab-list-mrs.py",
+      "file": "tuimm/steering/scripts/workspace-cleanup-check.py",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "tools/gitlab-list-mrs.py"
-    },
-    "tuimm/tools/workspace-cleanup-check.py": {
-      "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tools/workspace-cleanup-check.py",
-      "targets": [
-        {
-          "type": "resource"
-        }
-      ],
-      "alias": "tools/workspace-cleanup-check.py"
-    },
-    "tuimm/tools/README.md": {
-      "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tools/README.md",
-      "targets": [
-        {
-          "type": "resource"
-        }
-      ],
-      "alias": "tools/README.md"
+      "alias": "steering/scripts/workspace-cleanup-check.py"
     }
   }
 }

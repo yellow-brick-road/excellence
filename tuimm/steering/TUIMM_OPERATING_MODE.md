@@ -12,7 +12,7 @@ Before acting on any request, check your loaded skills and steering files for re
 If `~/.kiro/temp/mr/` or `~/.kiro/temp/dev/` have any directories, launch the cleanup checker in background:
 
 ```bash
-python3 ~/.kiro/tools/workspace-cleanup-check.py &
+python3 ~/.kiro/steering/scripts/workspace-cleanup-check.py &
 ```
 
 Use `bg` if available, otherwise run inline. Continue with the user's request — don't block.

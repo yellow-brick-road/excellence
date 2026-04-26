@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """logd — Local log collector daemon for ~/.kiro.
 
-Receives JSON logs via UDP, writes to SQLite (~/.kiro/tools/logd/logs.db).
+Receives JSON logs via UDP, writes to SQLite (~/.kiro/skills/tuimm-logd-reference/scripts/logs.db).
 
 Usage:
   logd.py start                                    # start daemon (background)

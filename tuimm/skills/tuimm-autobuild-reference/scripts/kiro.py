@@ -22,7 +22,7 @@ def _get_log():
     global _log
     if _log is None:
         try:
-            sys.path.insert(0, os.path.expanduser("~/.kiro/tools/logd"))
+            sys.path.insert(0, os.path.expanduser("~/.kiro/skills/tuimm-logd-reference/scripts"))
             from loglib import get_logger
             _log = get_logger("autobuild.kiro")
         except Exception:

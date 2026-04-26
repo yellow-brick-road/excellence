@@ -27,7 +27,7 @@ Once a shared service registry exists, these can be auto-resolved. Until then, a
 ### 1. Load Previous Scan
 
 ```bash
-python3 ~/.kiro/tools/logd/extensions/obs_scan.py load-previous --service {service}
+python3 ~/.kiro/skills/tuimm-logd-reference/scripts/extensions/obs_scan.py load-previous --service {service}
 ```
 
 If `{"found": true}` — extract previous patterns and counts for comparison in Step 6.
@@ -101,7 +101,7 @@ Check the tuimm-known-error-patterns skill for baseline severity and context. Ov
 ### 7. Save to logd
 
 ```bash
-python3 ~/.kiro/tools/logd/extensions/obs_scan.py save '{JSON}'
+python3 ~/.kiro/skills/tuimm-logd-reference/scripts/extensions/obs_scan.py save '{JSON}'
 ```
 
 Build the JSON with service, repo, version, window, all patterns, and summary. See the script for the expected schema.

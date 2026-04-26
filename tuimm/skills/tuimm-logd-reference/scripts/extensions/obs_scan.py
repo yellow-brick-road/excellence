@@ -17,7 +17,7 @@ import sqlite3
 import subprocess
 import sys
 
-LOGD_DIR = os.path.expanduser("~/.kiro/tools/logd")
+LOGD_DIR = os.path.expanduser("~/.kiro/skills/tuimm-logd-reference/scripts")
 LOGD_DB = os.path.join(LOGD_DIR, "logs.db")
 LOGD_PY = os.path.join(LOGD_DIR, "logd.py")
 

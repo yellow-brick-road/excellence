@@ -5,7 +5,7 @@ description: Quality Guardian workflow commands for code quality, tech debt, dep
 
 # Quality Guardian Workflow
 
-Commands for the tuimm_quality_guardian agent: quality checks, tech debt, dependency health, releases, security, and guidelines generation.
+Commands for the tuimm_quality_guardian agent: quality checks, tech debt, dependency health, releases, and security.
 
 ## Available Commands
 
@@ -15,7 +15,6 @@ Commands for the tuimm_quality_guardian agent: quality checks, tech debt, depend
 - `$qg_dependency-scan` — "scan dependencies", "check updates" — Proactive dependency scanning. Read the command from [commands/dependency-scan.md](commands/dependency-scan.md)
 - `$qg_release` — "$release", "$release [package]" — Release management workflow. Read the command from [commands/release.md](commands/release.md)
 - `$qg_security-scan` — "security scan [MR]", "preflight [MR]" — Security preflight scan. Read the command from [commands/security-scan.md](commands/security-scan.md)
-- `$qg_generate-guidelines` — "generate guidelines", "extract guidelines" — Extract coding guidelines from codebase. Read the command from [commands/generate-guidelines.md](commands/generate-guidelines.md)
 
 ## Templates
 
@@ -25,6 +24,4 @@ Commands for the tuimm_quality_guardian agent: quality checks, tech debt, depend
 - [assets/templates/qg-dependency-scan.md](assets/templates/qg-dependency-scan.md)
 - [assets/templates/qg-release.md](assets/templates/qg-release.md)
 - [assets/templates/qg-security-scan.md](assets/templates/qg-security-scan.md)
-- [assets/templates/qg-generate-guidelines.md](assets/templates/qg-generate-guidelines.md)
 - [assets/templates/template-blueprint.md](assets/templates/template-blueprint.md) — Blueprint for creating new templates
-- [assets/templates/guidelines-generator/](assets/templates/guidelines-generator/) — Guidelines generator extraction templates

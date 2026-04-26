@@ -45,7 +45,7 @@ Based on the result, determine the right `--extensions` regex:
 ### 3. Scan (synchronous, fast)
 
 ```bash
-cd <project> && python3 ~/.kiro/tools/guidelines-generator/guidelines-generator.py --scan [--extensions 'REGEX']
+cd <project> && python3 ~/.kiro/skills/tuimm-guidelines-generator/scripts/guidelines-generator.py --scan [--extensions 'REGEX']
 ```
 
 Show the scan results (categories, file counts, LOC). If 0 files, wrong directory.
@@ -55,7 +55,7 @@ Show the scan results (categories, file counts, LOC). If 0 files, wrong director
 Show the user what was found. Ask for confirmation. Once confirmed:
 
 ```bash
-cd <project> && python3 ~/.kiro/tools/guidelines-generator/guidelines-generator.py --phase all --bg [--extensions 'REGEX']
+cd <project> && python3 ~/.kiro/skills/tuimm-guidelines-generator/scripts/guidelines-generator.py --phase all --bg [--extensions 'REGEX']
 ```
 
 Options the user might want:
@@ -71,7 +71,7 @@ Show the run UID. Tell the user how to check progress. Return control — do NOT
 When the user asks for progress ("report", "cómo va", "status"):
 
 ```bash
-cd <project> && python3 ~/.kiro/tools/guidelines-generator/guidelines-generator.py --report
+cd <project> && python3 ~/.kiro/skills/tuimm-guidelines-generator/scripts/guidelines-generator.py --report
 ```
 
 ### 6. Output

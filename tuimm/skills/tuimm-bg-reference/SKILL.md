@@ -1,7 +1,7 @@
 ---
 name: tuimm-bg-reference
 description: |
-  bg — background execution library at ~/.kiro/tools/bg/.
+  bg — background execution library at ~/.kiro/skills/tuimm-bg-reference/scripts/.
   Use when: running scripts in background, checking process status, stopping background tasks,
   building orchestrators that launch/monitor child scripts, integrating --bg/--status/--stop into any script.
   Contains: setup_bg() API, launch_bg() API, status/stop/tail commands, LOGD_UID propagation.
@@ -14,7 +14,7 @@ Gives any Python script background execution capabilities. Two modes: CLI (flags
 ## Location
 
 ```
-~/.kiro/tools/bg/bg.py
+~/.kiro/skills/tuimm-bg-reference/scripts/bg.py
 ```
 
 ## CLI Mode — setup_bg()
@@ -23,7 +23,7 @@ Add to the top of any script to get --bg/--status/--tail/--stop flags:
 
 ```python
 import sys, os
-sys.path.insert(0, os.path.expanduser("~/.kiro/tools/bg"))
+sys.path.insert(0, os.path.expanduser("~/.kiro/skills/tuimm-bg-reference/scripts"))
 from bg import setup_bg
 
 setup_bg()  # intercepts flags, exits if found
@@ -106,5 +106,5 @@ stop(uid)
 
 ## Dependencies
 
-- logd (`~/.kiro/tools/logd/`) — for structured logging and LOGD_UID correlation
+- logd (`~/.kiro/skills/tuimm-logd-reference/scripts/`) — for structured logging and LOGD_UID correlation
 - Python 3.10+, stdlib only

@@ -21,8 +21,8 @@ from pathlib import Path
 
 # ── Dependencies ─────────────────────────────────────────────────────────────
 
-sys.path.insert(0, os.path.expanduser("~/.kiro/tools/bg"))
-sys.path.insert(0, os.path.expanduser("~/.kiro/tools/logd"))
+sys.path.insert(0, os.path.expanduser("~/.kiro/skills/tuimm-bg-reference/scripts"))
+sys.path.insert(0, os.path.expanduser("~/.kiro/skills/tuimm-logd-reference/scripts"))
 
 from bg import setup_bg
 
@@ -274,7 +274,7 @@ def run_health_checks(config: dict) -> bool:
         # logd running
         try:
             r = subprocess.run(
-                [sys.executable, os.path.expanduser("~/.kiro/tools/logd/logd.py"), "status"],
+                [sys.executable, os.path.expanduser("~/.kiro/skills/tuimm-logd-reference/scripts/logd.py"), "status"],
                 capture_output=True, text=True, timeout=5,
             )
             if "running" in r.stdout.lower():

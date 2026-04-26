@@ -1,8 +1,8 @@
-"""loglib — Fire-and-forget UDP log client for ~/.kiro/tools/logd.
+"""loglib — Fire-and-forget UDP log client for ~/.kiro/skills/tuimm-logd-reference/scripts.
 
 Usage:
     import sys, os
-    sys.path.insert(0, os.path.expanduser("~/.kiro/tools/logd"))
+    sys.path.insert(0, os.path.expanduser("~/.kiro/skills/tuimm-logd-reference/scripts"))
     from loglib import get_logger
 
     log = get_logger("gather")

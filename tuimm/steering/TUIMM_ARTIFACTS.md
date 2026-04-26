@@ -11,7 +11,6 @@ Reference for all agent artifacts. Update this file each time a new command, pro
 | Template | `skills/tuimm-*/assets/templates/` | Part of skill — referenced by commands | Output format definitions |
 | Steering | `steering/TUIMM_*` | Loaded via `file://` glob at startup | Shared behavioral rules (transversal, not per-skill) |
 | Prompt | `prompts/` | Preloaded as agent resource | Multi-domain workflows |
-| Tool | `tools/` | Executed via `bash` from commands | Shell scripts and utilities for API queries and automation |
 
 ## Command Execution Rules
 
@@ -89,7 +88,7 @@ Reports save to `outputs/YYYY-MM-DD_HHmm_NAME.md`
 | `$weblate_coverage` | "translation coverage" | Coverage report per module/locale |
 | `$weblate_translate-missing` | "translate missing keys" | LLM-proposed translations, draft MR |
 
-### TUIMM Quality Guardian (7)
+### TUIMM Quality Guardian (6)
 
 | Command | Trigger | Description |
 |---------|---------|-------------|
@@ -99,7 +98,6 @@ Reports save to `outputs/YYYY-MM-DD_HHmm_NAME.md`
 | `$qg_dependency-scan` | "scan dependencies", "check updates" | Proactive dependency analysis |
 | `$qg_release` | "$release", "$release [pkg]" | Analyze changes, propose version, publish |
 | `$qg_security-scan` | "security scan [MR]", "preflight [MR]" | Preflight-sast findings analysis for MR pipelines |
-| `$qg_generate-guidelines` | "generate guidelines", "extract guidelines" | Extract coding guidelines from project code |
 
 ### TUIMM DevEx (3)
 
@@ -131,6 +129,12 @@ Reports save to `outputs/YYYY-MM-DD_HHmm_NAME.md`
 | `$planner_analyze` | "analyze [requirement]" | Determine planning level (0-3) |
 | `$planner_design` | "design [topic]", "plan [topic]" | Technical design with specialist consultation |
 | `$planner_decompose` | "decompose", "break into tasks" | Autobuild-compatible task files |
+
+### TUIMM Guidelines Generator (1)
+
+| Command | Trigger | Description |
+|---------|---------|-------------|
+| `$qg_generate-guidelines` | "generate guidelines", "extract guidelines" | Extract coding guidelines from project code |
 
 ## Prompts
 
@@ -180,6 +184,27 @@ Reports save to `outputs/YYYY-MM-DD_HHmm_NAME.md`
 
 ## Skills
 
+26 skills total: 12 workflow + 14 knowledge.
+
+### Workflow Skills (12)
+
+| Skill | Used by | Description |
+|-------|---------|-------------|
+| `tuimm-dev-workflow` | Dev | Ticket-to-MR lifecycle (solve, implement, continue) |
+| `tuimm-devex-workflow` | DevEx | Feature flags, i18n, content models |
+| `tuimm-ds-workflow` | Design System | Figma-to-code alignment, component governance |
+| `tuimm-get-commands` | Default | Meta-command listing all TUIMM commands |
+| `tuimm-guidelines-generator` | Guidelines Generator | AI-powered coding convention extractor |
+| `tuimm-jira-workflow` | Dev, MR, Obs, QG, DevEx, DS, Knowledge, Planner | Jira ticket CRUD and AI usage tracking |
+| `tuimm-kn-workflow` | Knowledge | Documentation health, runbooks, onboarding |
+| `tuimm-mr-workflow` | MR | MR review, feedback, approval, rebasing |
+| `tuimm-obs-workflow` | Observability | Production error scanning and investigation |
+| `tuimm-planner-workflow` | Planner | Requirement analysis, technical design, task decomposition |
+| `tuimm-qg-workflow` | Quality Guardian | Code quality, tech debt, dependencies, releases |
+| `tuimm-weblate-workflow` | Dev, MR, DevEx, Design System | Translation key management and validation |
+
+### Knowledge Skills (14)
+
 | Skill | Used by | Description |
 |-------|---------|-------------|
 | `tuimm-commit-conventions` | GitLab subagent, Code Reviewer | Commit format, types, scope, process |
@@ -197,9 +222,8 @@ Reports save to `outputs/YYYY-MM-DD_HHmm_NAME.md`
 | `tuimm-bg-reference` | Autobuild, Guidelines Generator | Background execution library (--bg/--status/--stop, launch_bg) |
 | `tuimm-logd-reference` | Observability, Autobuild | Local log daemon + client library (UDP, SQLite, LOGD_UID) |
 
-## Tools
+## Scripts
 
-| Tool | Used by | Description |
-|------|---------|-------------|
-| `gitlab-list-mrs.py` | `$mr_list` | Cross-repo MR listing — personal + bot MRs, auto-discovers projects via API |
-| `workspace-cleanup-check.py` | Session start (bg) | Scans temp workspaces, checks GitLab for merged/closed MRs and branches |
+| Script | Location | Used by | Description |
+|--------|----------|---------|-------------|
+| `workspace-cleanup-check.py` | `steering/scripts/` | Session start (bg) | Scans temp workspaces, checks GitLab for merged/closed MRs and branches |

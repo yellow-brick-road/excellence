@@ -27,17 +27,9 @@ tuimm-skill-name/
     └── templates/        # Output format definitions
 ```
 
-25 skills total: 11 workflow skills (with commands and templates) + 14 knowledge skills (reference material only). All prefixed with `tuimm-` to avoid collisions.
+26 skills total: 12 workflow skills (with commands and templates) + 14 knowledge skills (reference material only). All prefixed with `tuimm-` to avoid collisions.
 
 Installed to: `~/.kiro/skills/tuimm-*/`
-
----
-
-## tools/
-
-Standalone scripts that agents run via shell. Python and Bash doing mechanical work.
-
-Installed to: `~/.kiro/tools/`
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: tuimm-logd-reference
 description: |
-  logd — local log daemon and client library at ~/.kiro/tools/logd/.
+  logd — local log daemon and client library at ~/.kiro/skills/tuimm-logd-reference/scripts/.
   Use when: sending structured logs from Python scripts, querying logs by uid/service/level,
   tailing background process output, debugging pipeline runs, correlating parent-child logs.
   Contains: daemon commands, loglib API, query examples, LOGD_UID correlation pattern.
@@ -14,7 +14,7 @@ UDP log collector with SQLite storage. Base tool for the `~/.kiro` ecosystem.
 ## Location
 
 ```
-~/.kiro/tools/logd/
+~/.kiro/skills/tuimm-logd-reference/scripts/
   logd.py      # daemon + CLI
   loglib.py    # client library
   logs.db      # SQLite database (WAL mode)
@@ -23,37 +23,37 @@ UDP log collector with SQLite storage. Base tool for the `~/.kiro` ecosystem.
 ## Daemon Commands
 
 ```bash
-python3 ~/.kiro/tools/logd/logd.py start       # start daemon (background)
-python3 ~/.kiro/tools/logd/logd.py stop        # stop daemon
-python3 ~/.kiro/tools/logd/logd.py status      # running? entry count? DB size?
-python3 ~/.kiro/tools/logd/logd.py run         # foreground (debug)
+python3 ~/.kiro/skills/tuimm-logd-reference/scripts/logd.py start       # start daemon (background)
+python3 ~/.kiro/skills/tuimm-logd-reference/scripts/logd.py stop        # stop daemon
+python3 ~/.kiro/skills/tuimm-logd-reference/scripts/logd.py status      # running? entry count? DB size?
+python3 ~/.kiro/skills/tuimm-logd-reference/scripts/logd.py run         # foreground (debug)
 ```
 
 ## Query Commands
 
 ```bash
 # Tail recent logs
-python3 ~/.kiro/tools/logd/logd.py tail [N]                    # last N entries (default 30)
-python3 ~/.kiro/tools/logd/logd.py tail --uid XXX              # filter by run uid
-python3 ~/.kiro/tools/logd/logd.py tail --service autobuild    # filter by service
-python3 ~/.kiro/tools/logd/logd.py tail --level ERROR          # filter by level
-python3 ~/.kiro/tools/logd/logd.py tail --last 2h              # last 2 hours
-python3 ~/.kiro/tools/logd/logd.py tail --json                 # JSON output
+python3 ~/.kiro/skills/tuimm-logd-reference/scripts/logd.py tail [N]                    # last N entries (default 30)
+python3 ~/.kiro/skills/tuimm-logd-reference/scripts/logd.py tail --uid XXX              # filter by run uid
+python3 ~/.kiro/skills/tuimm-logd-reference/scripts/logd.py tail --service autobuild    # filter by service
+python3 ~/.kiro/skills/tuimm-logd-reference/scripts/logd.py tail --level ERROR          # filter by level
+python3 ~/.kiro/skills/tuimm-logd-reference/scripts/logd.py tail --last 2h              # last 2 hours
+python3 ~/.kiro/skills/tuimm-logd-reference/scripts/logd.py tail --json                 # JSON output
 
 # Search
-python3 ~/.kiro/tools/logd/logd.py search "pattern"            # text search
-python3 ~/.kiro/tools/logd/logd.py search "failed" --service bg --last 1h
+python3 ~/.kiro/skills/tuimm-logd-reference/scripts/logd.py search "pattern"            # text search
+python3 ~/.kiro/skills/tuimm-logd-reference/scripts/logd.py search "failed" --service bg --last 1h
 
 # List runs
-python3 ~/.kiro/tools/logd/logd.py runs                        # recent execution runs
-python3 ~/.kiro/tools/logd/logd.py runs --last 7d              # last 7 days
+python3 ~/.kiro/skills/tuimm-logd-reference/scripts/logd.py runs                        # recent execution runs
+python3 ~/.kiro/skills/tuimm-logd-reference/scripts/logd.py runs --last 7d              # last 7 days
 ```
 
 ## Client Library (loglib)
 
 ```python
 import sys, os
-sys.path.insert(0, os.path.expanduser("~/.kiro/tools/logd"))
+sys.path.insert(0, os.path.expanduser("~/.kiro/skills/tuimm-logd-reference/scripts"))
 from loglib import get_logger
 
 log = get_logger("my-service")
@@ -117,7 +117,7 @@ CREATE TABLE logs (
 
 - Port: `127.0.0.1:5514` (UDP)
 - Retention: 30 days (override with `LOGD_RETENTION_DAYS` env var)
-- Database: `~/.kiro/tools/logd/logs.db` (SQLite WAL mode)
+- Database: `~/.kiro/skills/tuimm-logd-reference/scripts/logs.db` (SQLite WAL mode)
 
 ## Dependencies
 

@@ -1,7 +1,7 @@
 ---
 name: tuimm-autobuild-reference
 description: |
-  autobuild — task engine at ~/.kiro/tools/autobuild/ for executing markdown task files via kiro-cli agents.
+  autobuild — task engine at ~/.kiro/skills/tuimm-autobuild-reference/scripts/ for executing markdown task files via kiro-cli agents.
   Use when: running multi-step pipelines, executing .plan/ output, building tools via task files,
   checking pipeline status, retrying failed tasks, understanding autobuild.json config.
   Contains: CLI reference, task file format, autobuild.json config, review modes, execution cycle.
@@ -14,7 +14,7 @@ Reads a folder of markdown task files and executes each through kiro-cli agents 
 ## Location
 
 ```
-~/.kiro/tools/autobuild/
+~/.kiro/skills/tuimm-autobuild-reference/scripts/
   engine.py    # CLI + task engine
   kiro.py      # ACP client (kiro-cli wrapper)
 ```
@@ -169,7 +169,7 @@ Custom checks via `health.checks[]` in autobuild.json.
 
 ## Dependencies
 
-- logd (`~/.kiro/tools/logd/`) — structured logging
-- bg (`~/.kiro/tools/bg/`) — background execution (--bg/--status/--tail/--stop)
+- logd (`~/.kiro/skills/tuimm-logd-reference/scripts/`) — structured logging
+- bg (`~/.kiro/skills/tuimm-bg-reference/scripts/`) — background execution (--bg/--status/--tail/--stop)
 - kiro-cli in PATH with ACP support
 - Python 3.10+, stdlib only

@@ -123,12 +123,12 @@ Each one wraps a single API via MCP (Model Context Protocol). They execute — t
 Run from the `tuimm/` directory:
 
 ```bash
-mkdir -p ~/.kiro/agents ~/.kiro/steering ~/.kiro/skills ~/.kiro/tools ~/.kiro/tuimm
+mkdir -p ~/.kiro/agents ~/.kiro/steering ~/.kiro/skills ~/.kiro/tuimm
 
 cp agents/*.json ~/.kiro/agents/
 cp steering/TUIMM_*.md ~/.kiro/steering/
+cp -r steering/scripts ~/.kiro/steering/
 cp -r skills/tuimm-* ~/.kiro/skills/
-cp -r tools/* ~/.kiro/tools/
 cp tuimm/README.md ~/.kiro/tuimm/
 ```
 
@@ -198,10 +198,10 @@ You can also just talk naturally. "I need to review an MR" works as well as `$mr
 tuimm/
 ├── agents/          19 agent configs (→ ~/.kiro/agents/)
 ├── steering/        11 TUIMM_*.md behavioral rules (→ ~/.kiro/steering/)
-├── skills/          25 tuimm-* skill directories (→ ~/.kiro/skills/)
-│                     11 workflow skills (commands + templates inside)
-│                     14 knowledge skills (reference material)
-├── tools/           scripts and utilities (→ ~/.kiro/tools/)
+│                     + scripts/ session utilities
+├── skills/          26 tuimm-* skill directories (→ ~/.kiro/skills/)
+│                     12 workflow skills (commands + templates inside)
+│                     14 knowledge skills (reference material, some with scripts/)
 ├── tuimm/           knowledgeBase index (→ ~/.kiro/tuimm/)
 ├── SETUP.md         credentials guide
 └── README.md        package overview
@@ -211,9 +211,9 @@ tuimm/
 
 **Commands** are step-by-step workflows. When you type `$dev_solve`, the agent reads the command file, follows the steps, delegates to subagents, and formats the output using a template. 37 commands across 11 domains.
 
-**Skills** are reference knowledge. Commit conventions, code review checklists, Weblate workflows, Jira document format. Agents load them when they need specific expertise.
+**Skills** are reference knowledge. Commit conventions, code review checklists, Weblate workflows, Jira document format. Agents load them when they need specific expertise. Some skills also bundle scripts (autobuild, bg, logd, guidelines-generator) that agents run via shell.
 
-**Tools** are standalone scripts: a task engine (autobuild), a coding guidelines extractor (guidelines-generator), background execution support, structured logging, and GitLab utilities.
+**Scripts** live inside their respective skills under `scripts/` subdirectories, plus `steering/scripts/` for session utilities like workspace cleanup.
 
 ---
 
@@ -221,7 +221,7 @@ tuimm/
 
 - [Kiro CLI](https://kiro.dev) installed and working
 - Node.js 18+ with npx
-- Python 3.10+ (for tools)
+- Python 3.10+ (for scripts)
 - Git with SSH access to `ssh.source.tui`
 - VPN for SonarQube
 - Linux, WSL, or macOS

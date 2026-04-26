@@ -22,10 +22,10 @@ mkdir -p ~/.kiro/agents ~/.kiro/steering ~/.kiro/skills ~/.kiro/tools ~/.kiro/tu
 # Copy agent configs
 cp agents/*.json ~/.kiro/agents/
 
-# Copy steering, skills, tools
+# Copy steering and skills
 cp steering/TUIMM_*.md ~/.kiro/steering/
+cp -r steering/scripts ~/.kiro/steering/
 cp -r skills/tuimm-* ~/.kiro/skills/
-cp -r tools/* ~/.kiro/tools/
 
 # Copy knowledgeBase index
 cp tuimm/README.md ~/.kiro/tuimm/
@@ -36,7 +36,7 @@ Verify the structure:
 ```bash
 ls ~/.kiro/agents/tuimm_*.json         # should list 19 files
 ls ~/.kiro/steering/TUIMM_*.md         # should list 11 files
-ls -d ~/.kiro/skills/tuimm-*/          # should list 25 directories
+ls -d ~/.kiro/skills/tuimm-*/          # should list 26 directories
 ```
 
 ## 2. Configure credentials

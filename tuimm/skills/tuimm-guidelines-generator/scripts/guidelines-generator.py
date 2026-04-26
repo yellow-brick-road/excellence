@@ -27,8 +27,8 @@ from datetime import datetime
 from itertools import combinations
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-sys.path.insert(0, os.path.expanduser("~/.kiro/tools/bg"))
-sys.path.insert(0, os.path.expanduser("~/.kiro/tools/logd"))
+sys.path.insert(0, os.path.expanduser("~/.kiro/skills/tuimm-bg-reference/scripts"))
+sys.path.insert(0, os.path.expanduser("~/.kiro/skills/tuimm-logd-reference/scripts"))
 
 try:
     from bg import setup_bg
@@ -46,7 +46,7 @@ TIMEOUT = 300
 MAX_RETRIES = 2
 DEFAULT_AGENT = "tuimm_default"
 DEFAULT_MODEL = "claude-opus-4.6"
-TEMPLATES_DIR = Path(os.path.expanduser("~/.kiro/skills/tuimm-qg-workflow/assets/templates/guidelines-generator"))
+TEMPLATES_DIR = Path(os.path.expanduser("~/.kiro/skills/tuimm-guidelines-generator/assets/templates/guidelines-generator"))
 SKILLS_DIR = Path(os.path.expanduser("~/.kiro/skills"))
 
 STOP = False
@@ -606,7 +606,7 @@ def phase_extract(files: list[FileInfo], repo_root: Path, work_dir: Path,
     print(f"🚀 Running autobuild...")
 
     # Run autobuild
-    engine = os.path.expanduser("~/.kiro/tools/autobuild/engine.py")
+    engine = os.path.expanduser("~/.kiro/skills/tuimm-autobuild-reference/scripts/engine.py")
     result = subprocess.run(
         [sys.executable, engine, str(tasks_dir)],
         cwd=repo_root

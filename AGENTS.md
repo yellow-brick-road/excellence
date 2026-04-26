@@ -22,24 +22,21 @@ tuimm/                              ← inside the excellence repo
 ├── steering/                       ← 11 TUIMM_*.md behavioral rules
 │   ├── TUIMM_1_AGENT_RULES.md      ← hub file, references all others
 │   ├── TUIMM_GIT.md
+│   ├── scripts/                    ← session utilities
+│   │   └── workspace-cleanup-check.py
 │   └── ...
 │
-├── skills/                         ← 25 tuimm-* skill directories
+├── skills/                         ← 26 tuimm-* skill directories
 │   ├── tuimm-dev-workflow/          ← workflow skill (commands + templates)
 │   │   ├── SKILL.md
 │   │   ├── commands/
 │   │   └── assets/templates/
+│   ├── tuimm-autobuild-reference/   ← knowledge skill with scripts
+│   │   ├── SKILL.md
+│   │   └── scripts/
 │   ├── tuimm-commit-conventions/    ← knowledge skill (reference only)
 │   │   └── SKILL.md
 │   └── ...
-│
-├── tools/                          ← Python scripts and shell utilities
-│   ├── gitlab-list-mrs.py
-│   ├── workspace-cleanup-check.py
-│   ├── autobuild/
-│   ├── bg/
-│   ├── logd/
-│   └── guidelines-generator/
 │
 ├── tuimm/                          ← knowledgeBase index (just README.md)
 │   └── README.md
@@ -48,7 +45,7 @@ tuimm/                              ← inside the excellence repo
 ```
 
 Skills follow the [agentskills.io](https://agentskills.io) standard. There are two types:
-- **Workflow skills** (11): contain commands + templates for a domain (e.g. `tuimm-dev-workflow`)
+- **Workflow skills** (12): contain commands + templates for a domain (e.g. `tuimm-dev-workflow`)
 - **Knowledge skills** (14): reference material only (e.g. `tuimm-commit-conventions`)
 
 ## Installation steps
@@ -58,12 +55,12 @@ Skills follow the [agentskills.io](https://agentskills.io) standard. There are t
 Contents go to `~/.kiro/` global directories. The `TUIMM_` and `tuimm-` prefixes prevent collisions with other packages.
 
 ```bash
-mkdir -p ~/.kiro/agents ~/.kiro/steering ~/.kiro/skills ~/.kiro/tools ~/.kiro/tuimm
+mkdir -p ~/.kiro/agents ~/.kiro/steering ~/.kiro/skills ~/.kiro/tuimm
 
 cp agents/*.json ~/.kiro/agents/
 cp steering/TUIMM_*.md ~/.kiro/steering/
+cp -r steering/scripts ~/.kiro/steering/
 cp -r skills/tuimm-* ~/.kiro/skills/
-cp -r tools/* ~/.kiro/tools/
 cp tuimm/README.md ~/.kiro/tuimm/
 ```
 
@@ -72,7 +69,7 @@ cp tuimm/README.md ~/.kiro/tuimm/
 ```bash
 ls ~/.kiro/agents/tuimm_*.json | wc -l         # expect: 19
 ls ~/.kiro/steering/TUIMM_*.md | wc -l         # expect: 11
-ls -d ~/.kiro/skills/tuimm-*/ | wc -l          # expect: 25
+ls -d ~/.kiro/skills/tuimm-*/ | wc -l          # expect: 26
 ```
 
 After copying, the structure must be:
@@ -92,14 +89,7 @@ After copying, the structure must be:
 │   ├── tuimm-dev-workflow/
 │   ├── tuimm-mr-workflow/
 │   ├── tuimm-commit-conventions/
-│   └── ... (25 total tuimm-* directories)
-│
-├── tools/
-│   ├── gitlab-list-mrs.py
-│   ├── autobuild/
-│   ├── bg/
-│   ├── logd/
-│   └── guidelines-generator/
+│   └── ... (26 total tuimm-* directories)
 │
 └── tuimm/
     └── README.md    ← knowledgeBase index target
@@ -167,8 +157,8 @@ Agent JSON (tuimm_dev.json)
   │     tuimm_subagent_code_reviewer → 5 MCPs (read-only)
   │     ...
   │
-  └── uses tools/ scripts via shell:
-        gitlab-list-mrs.py, workspace-cleanup-check.py, logd, etc.
+  └── runs scripts bundled inside skills via shell:
+        autobuild (engine.py), bg (bg.py), logd, guidelines-generator, etc.
 ```
 
 Commands reference templates: "present results using the mr-review-summary template."
@@ -195,7 +185,7 @@ rm -rf ~/.kiro/skills/tuimm-*/
 rm -rf ~/.kiro/tuimm/
 ```
 
-This removes all TUIMM agents and content. It does not remove env vars from the shell config or shared tools — those are harmless to leave.
+This removes all TUIMM agents and content. It does not remove env vars from the shell config — those are harmless to leave.
 
 ## Do NOT modify
 
