@@ -12,9 +12,12 @@ Commands for the tuimm-planner agent: analysis, design, and decomposition.
 - `$planner_analyze` — "analyze [requirement]" — Analyze requirements and determine planning level. Read the command from [commands/analyze.md](commands/analyze.md)
 - `$planner_design` — "design [topic]", "plan [topic]" — Full technical design document. Read the command from [commands/design.md](commands/design.md)
 - `$planner_decompose` — "decompose", "break into tasks" — Break design into autobuild-compatible tasks. Read the command from [commands/decompose.md](commands/decompose.md)
+- `$planner_autobuild` — "autobuild", "build plan", "execute in parallel" — Execute a large plan using autobuild engine (parallel tasks, pre-flight review, monitoring). Read [commands/autobuild.md](commands/autobuild.md)
 
 ## Templates
 
 - [assets/templates/planner-analyze.md](assets/templates/planner-analyze.md)
 - [assets/templates/planner-design.md](assets/templates/planner-design.md)
 - [assets/templates/planner-decompose.md](assets/templates/planner-decompose.md)
+- [assets/templates/planner-autobuild-task.md](assets/templates/planner-autobuild-task.md)
+- [assets/templates/planner-autobuild-report.md](assets/templates/planner-autobuild-report.md)

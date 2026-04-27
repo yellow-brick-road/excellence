@@ -122,13 +122,14 @@ Reports save to `outputs/YYYY-MM-DD_HHmm_NAME.md`
 | `$kn_runbook` | "runbook [topic]" | Generate runbook from existing knowledge |
 | `$kn_onboarding` | "onboarding [team]" | Personalized onboarding guide |
 
-### TUIMM Planner (3)
+### TUIMM Planner (4)
 
 | Command | Trigger | Description |
 |---------|---------|-------------|
 | `$planner_analyze` | "analyze [requirement]" | Determine planning level (0-3) |
 | `$planner_design` | "design [topic]", "plan [topic]" | Technical design with specialist consultation |
 | `$planner_decompose` | "decompose", "break into tasks" | Autobuild-compatible task files |
+| `$planner_autobuild` | "autobuild [plan]" | Execute large plan with parallel autobuild tasks |
 
 ### TUIMM Guidelines Generator (1)
 
@@ -176,6 +177,8 @@ Reports save to `outputs/YYYY-MM-DD_HHmm_NAME.md`
 | `planner-analyze.md` | `$planner_analyze` | Requirement analysis report |
 | `planner-decompose.md` | `$planner_decompose` | Task decomposition summary |
 | `planner-design.md` | `$planner_design` | Technical design document format |
+| `planner-autobuild-task.md` | `$planner_autobuild` | Individual autobuild task format |
+| `planner-autobuild-report.md` | `$planner_autobuild` | Autobuild execution report |
 | `weblate-add-key.md` | `$weblate_add-key` | Translation key addition confirmation |
 | `weblate-coverage.md` | `$weblate_coverage` | Translation coverage report |
 | `weblate-translate-missing.md` | `$weblate_translate-missing` | Missing translations completion confirmation |
@@ -199,7 +202,7 @@ Reports save to `outputs/YYYY-MM-DD_HHmm_NAME.md`
 | `tuimm-kn-workflow` | Knowledge | Documentation health, runbooks, onboarding |
 | `tuimm-mr-workflow` | MR | MR review, feedback, approval, rebasing |
 | `tuimm-obs-workflow` | Observability | Production error scanning and investigation |
-| `tuimm-planner-workflow` | Planner | Requirement analysis, technical design, task decomposition |
+| `tuimm-planner-workflow` | Planner | Requirement analysis, technical design, task decomposition, autobuild execution |
 | `tuimm-qg-workflow` | Quality Guardian | Code quality, tech debt, dependencies, releases |
 | `tuimm-weblate-workflow` | Dev, MR, DevEx, Design System | Translation key management and validation |
 

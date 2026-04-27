@@ -176,7 +176,7 @@ Then launch any TUIMM agent to verify everything works:
 kiro-cli --agent tuimm-default
 ```
 
-Type `$get-commands` — if it lists all 37 commands across 9 agents, you're good.
+Type `$get-commands` — if it lists all 38 commands across 9 agents, you're good.
 
 **Note**: On first launch, `npx` downloads MCP packages which can timeout in kiro-cli. If a server shows "still loading", just try again — the package will be cached from the first attempt.
 
