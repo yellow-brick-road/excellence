@@ -1,38 +1,4 @@
 {
-  "extends": [
-    {
-      "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm_dev.aitools.json"
-    },
-    {
-      "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm_mr.aitools.json"
-    },
-    {
-      "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm_quality_guardian.aitools.json"
-    },
-    {
-      "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm_observability.aitools.json"
-    },
-    {
-      "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm_devex.aitools.json"
-    },
-    {
-      "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm_design_system.aitools.json"
-    },
-    {
-      "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm_knowledge.aitools.json"
-    },
-    {
-      "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm_planner.aitools.json"
-    }
-  ],
   "tools": {
     "tuimm/agents/tuimm_default.json": {
       "repository": "javier.fernandez/tuimm-agents-poc",
@@ -40,6 +6,516 @@
       "targets": [
         {
           "type": "default-agent"
+        }
+      ]
+    },
+    "tuimm/agents/tuimm_dev.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_dev.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/agents/tuimm_mr.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_mr.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/agents/tuimm_quality_guardian.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_quality_guardian.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/agents/tuimm_observability.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_observability.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/agents/tuimm_devex.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_devex.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/agents/tuimm_design_system.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_design_system.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/agents/tuimm_knowledge.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_knowledge.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/agents/tuimm_planner.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_planner.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/agents/tuimm_subagent_jira.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_subagent_jira.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/agents/tuimm_subagent_gitlab.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_subagent_gitlab.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ],
+      "required_environment_variables": [
+        {
+          "name": "GITLAB_PERSONAL_ACCESS_TOKEN",
+          "description": "Gitlab Personal Access token with repository and api scopes"
+        }
+      ]
+    },
+    "tuimm/agents/tuimm_subagent_sonar.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_subagent_sonar.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/agents/tuimm_subagent_datadog.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_subagent_datadog.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/agents/tuimm_subagent_figma.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_subagent_figma.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/agents/tuimm_subagent_confluence.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_subagent_confluence.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/agents/tuimm_subagent_contentful.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_subagent_contentful.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/agents/tuimm_subagent_configcat.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_subagent_configcat.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/agents/tuimm_subagent_code_reviewer.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_subagent_code_reviewer.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/agents/tuimm_subagent_nuxt.json": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/agents/tuimm_subagent_nuxt.json",
+      "targets": [
+        {
+          "type": "agent"
+        }
+      ]
+    },
+    "tuimm/steering/TUIMM_1_AGENT_RULES.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/steering/TUIMM_1_AGENT_RULES.md",
+      "targets": [
+        {
+          "type": "steering"
+        }
+      ]
+    },
+    "tuimm/steering/TUIMM_AI_USAGE_TRACKING.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/steering/TUIMM_AI_USAGE_TRACKING.md",
+      "targets": [
+        {
+          "type": "steering"
+        }
+      ]
+    },
+    "tuimm/steering/TUIMM_ARTIFACTS.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/steering/TUIMM_ARTIFACTS.md",
+      "targets": [
+        {
+          "type": "steering"
+        }
+      ]
+    },
+    "tuimm/steering/TUIMM_COMMUNICATION.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/steering/TUIMM_COMMUNICATION.md",
+      "targets": [
+        {
+          "type": "steering"
+        }
+      ]
+    },
+    "tuimm/steering/TUIMM_CONVENTIONS.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/steering/TUIMM_CONVENTIONS.md",
+      "targets": [
+        {
+          "type": "steering"
+        }
+      ]
+    },
+    "tuimm/steering/TUIMM_ERROR_HANDLING.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/steering/TUIMM_ERROR_HANDLING.md",
+      "targets": [
+        {
+          "type": "steering"
+        }
+      ]
+    },
+    "tuimm/steering/TUIMM_GIT.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/steering/TUIMM_GIT.md",
+      "targets": [
+        {
+          "type": "steering"
+        }
+      ]
+    },
+    "tuimm/steering/TUIMM_OPERATING_MODE.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/steering/TUIMM_OPERATING_MODE.md",
+      "targets": [
+        {
+          "type": "steering"
+        }
+      ]
+    },
+    "tuimm/steering/TUIMM_SUBAGENTS.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/steering/TUIMM_SUBAGENTS.md",
+      "targets": [
+        {
+          "type": "steering"
+        }
+      ]
+    },
+    "tuimm/steering/TUIMM_TECH_STACK.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/steering/TUIMM_TECH_STACK.md",
+      "targets": [
+        {
+          "type": "steering"
+        }
+      ]
+    },
+    "tuimm/steering/TUIMM_TOOL_RULES.md": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/steering/TUIMM_TOOL_RULES.md",
+      "targets": [
+        {
+          "type": "steering"
+        }
+      ]
+    },
+    "tuimm/steering/scripts/workspace-cleanup-check.py": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/steering/scripts/workspace-cleanup-check.py",
+      "targets": [
+        {
+          "type": "steering"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-autobuild-reference": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-autobuild-reference",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-bg-reference": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-bg-reference",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-code-review-checklist": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-code-review-checklist",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-commit-conventions": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-commit-conventions",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-dev-workflow": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-dev-workflow",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-devex-workflow": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-devex-workflow",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-ds-workflow": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-ds-workflow",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-file-modifier": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-file-modifier",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-get-commands": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-get-commands",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-gitlab-conventions": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-gitlab-conventions",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-guidelines-generator": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-guidelines-generator",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-jira-adf": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-jira-adf",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-jira-context-gathering": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-jira-context-gathering",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-jira-workflow": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-jira-workflow",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-kn-workflow": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-kn-workflow",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-known-error-patterns": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-known-error-patterns",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-logd-reference": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-logd-reference",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-mcp-tools-reference": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-mcp-tools-reference",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-mr-workflow": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-mr-workflow",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-obs-workflow": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-obs-workflow",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-planner-workflow": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-planner-workflow",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-qg-workflow": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-qg-workflow",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-security-preflight": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-security-preflight",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-weblate-conventions": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-weblate-conventions",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-weblate-workflow": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-weblate-workflow",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
+    "tuimm/skills/tuimm-workspace-mcp": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/tuimm-workspace-mcp",
+      "targets": [
+        {
+          "type": "skill"
         }
       ]
     }
