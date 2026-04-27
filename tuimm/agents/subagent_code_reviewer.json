@@ -20,7 +20,8 @@
       "env": {
         "GITLAB_API_URL": "https://source.tui/api/v4",
         "GITLAB_READ_ONLY_MODE": "true",
-        "USE_PIPELINE": "true"
+        "USE_PIPELINE": "true",
+        "GITLAB_PERSONAL_ACCESS_TOKEN": "${GITLAB_PERSONAL_ACCESS_TOKEN}"
       }
     },
     "sonarqube": {
@@ -30,14 +31,17 @@
         "sonarqube-mcp-server@1.10.21"
       ],
       "env": {
-        "SONARQUBE_URL": "https://sonarqube.devops.tui"
+        "SONARQUBE_URL": "https://sonarqube.devops.tui",
+        "SONARQUBE_TOKEN": "${SONARQUBE_TOKEN}"
       }
     },
     "datadog": {
       "command": "datadog-mcp-server",
       "args": [],
       "env": {
-        "DD_SITE": "datadoghq.eu"
+        "DD_SITE": "datadoghq.eu",
+        "DD_API_KEY": "${DD_API_KEY}",
+        "DD_APP_KEY": "${DD_APP_KEY}"
       }
     },
     "figma": {
@@ -46,7 +50,10 @@
         "-y",
         "figma-developer-mcp",
         "--stdio"
-      ]
+      ],
+      "env": {
+        "FIGMA_API_KEY": "${FIGMA_API_KEY}"
+      }
     }
   },
   "tools": [

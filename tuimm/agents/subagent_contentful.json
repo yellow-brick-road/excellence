@@ -12,7 +12,8 @@
       "env": {
         "SPACE_ID": "m0d454rkzj24",
         "ENVIRONMENT_ID": "master",
-        "CONTENTFUL_HOST": "api.contentful.com"
+        "CONTENTFUL_HOST": "api.contentful.com",
+        "CONTENTFUL_MANAGEMENT_ACCESS_TOKEN": "${CONTENTFUL_MANAGEMENT_ACCESS_TOKEN}"
       }
     }
   },

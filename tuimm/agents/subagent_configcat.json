@@ -8,7 +8,11 @@
       "args": [
         "-y",
         "@configcat/mcp-server"
-      ]
+      ],
+      "env": {
+        "CONFIGCAT_API_USER": "${CONFIGCAT_API_USER}",
+        "CONFIGCAT_API_PASS": "${CONFIGCAT_API_PASS}"
+      }
     }
   },
   "tools": [

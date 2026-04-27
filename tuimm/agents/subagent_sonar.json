@@ -10,7 +10,8 @@
         "sonarqube-mcp-server@1.10.21"
       ],
       "env": {
-        "SONARQUBE_URL": "https://sonarqube.devops.tui"
+        "SONARQUBE_URL": "https://sonarqube.devops.tui",
+        "SONARQUBE_TOKEN": "${SONARQUBE_TOKEN}"
       }
     }
   },

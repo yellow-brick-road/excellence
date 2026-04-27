@@ -7,7 +7,9 @@
       "command": "datadog-mcp-server",
       "args": [],
       "env": {
-        "DD_SITE": "datadoghq.eu"
+        "DD_SITE": "datadoghq.eu",
+        "DD_API_KEY": "${DD_API_KEY}",
+        "DD_APP_KEY": "${DD_APP_KEY}"
       }
     }
   },

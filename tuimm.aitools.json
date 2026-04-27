@@ -112,6 +112,12 @@
         {
           "type": "agent"
         }
+      ],
+      "required_environment_variables": [
+        {
+          "name": "SONARQUBE_TOKEN",
+          "description": "SonarQube token (https://sonarqube.devops.tui/account/security)"
+        }
       ]
     },
     "tuimm/agents/subagent_datadog.json": {
@@ -121,6 +127,16 @@
         {
           "type": "agent"
         }
+      ],
+      "required_environment_variables": [
+        {
+          "name": "DD_API_KEY",
+          "description": "Datadog API key (https://tui-musement.datadoghq.eu/organization-settings/api-keys)"
+        },
+        {
+          "name": "DD_APP_KEY",
+          "description": "Datadog Application key (same URL)"
+        }
       ]
     },
     "tuimm/agents/subagent_figma.json": {
@@ -129,6 +145,12 @@
       "targets": [
         {
           "type": "agent"
+        }
+      ],
+      "required_environment_variables": [
+        {
+          "name": "FIGMA_API_KEY",
+          "description": "Figma personal access token (https://www.figma.com/settings)"
         }
       ]
     },
@@ -148,6 +170,12 @@
         {
           "type": "agent"
         }
+      ],
+      "required_environment_variables": [
+        {
+          "name": "CONTENTFUL_MANAGEMENT_ACCESS_TOKEN",
+          "description": "Contentful CMA token (https://app.contentful.com/account/profile/cma_tokens)"
+        }
       ]
     },
     "tuimm/agents/subagent_configcat.json": {
@@ -157,6 +185,16 @@
         {
           "type": "agent"
         }
+      ],
+      "required_environment_variables": [
+        {
+          "name": "CONFIGCAT_API_USER",
+          "description": "ConfigCat Public API user (https://app.configcat.com/my-account/public-api-credentials)"
+        },
+        {
+          "name": "CONFIGCAT_API_PASS",
+          "description": "ConfigCat Public API password (shown once, save it)"
+        }
       ]
     },
     "tuimm/agents/subagent_code_reviewer.json": {
@@ -165,6 +203,28 @@
       "targets": [
         {
           "type": "agent"
+        }
+      ],
+      "required_environment_variables": [
+        {
+          "name": "GITLAB_PERSONAL_ACCESS_TOKEN",
+          "description": "GitLab PAT with api and read_repository scopes"
+        },
+        {
+          "name": "SONARQUBE_TOKEN",
+          "description": "SonarQube token"
+        },
+        {
+          "name": "DD_API_KEY",
+          "description": "Datadog API key"
+        },
+        {
+          "name": "DD_APP_KEY",
+          "description": "Datadog Application key"
+        },
+        {
+          "name": "FIGMA_API_KEY",
+          "description": "Figma personal access token"
         }
       ]
     },
