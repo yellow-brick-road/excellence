@@ -11,8 +11,8 @@ Address review comments on your own MR — analyze each one, recommend action, a
 
 ### 1. Get MR Context
 
-- Fetch MR info + all discussions via tuimm_subagent_gitlab
-- Get ticket context via tuimm_subagent_jira if linked (follow jira-context-gathering skill)
+- Fetch MR info + all discussions via tuimm-subagent_gitlab
+- Get ticket context via tuimm-subagent_jira if linked (follow jira-context-gathering skill)
 - Clone or reuse workspace at `~/.kiro/temp/mr/mr-{iid}-{repo_name}/` (see GIT.md § Workspace Conventions). If dir exists: fetch + checkout. If not: clone + checkout MR source branch
 - Count unresolved threads. If zero: "No unresolved comments. Nothing to do."
 
@@ -36,8 +36,8 @@ When applying code changes:
 1. Show proposed change with context, ask confirmation
 2. Apply change
 3. Run quality checks (lint, types)
-4. Commit via tuimm_subagent_gitlab (follow commit-conventions skill)
-5. Mark comment as resolved via tuimm_subagent_gitlab
+4. Commit via tuimm-subagent_gitlab (follow commit-conventions skill)
+5. Mark comment as resolved via tuimm-subagent_gitlab
 
 ### 4. Response Tone
 

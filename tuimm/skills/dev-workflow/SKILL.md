@@ -5,7 +5,7 @@ description: Development workflow commands for ticket-to-MR lifecycle. Use when 
 
 # Dev Workflow
 
-Commands for the tuimm_dev agent's core workflow: reading requirements, implementing changes, and creating merge requests.
+Commands for the tuimm-dev agent's core workflow: reading requirements, implementing changes, and creating merge requests.
 
 ## Available Commands
 

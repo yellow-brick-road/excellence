@@ -47,6 +47,6 @@ Add a translation key to a weblate module. Creates a draft MR for review.
 5. Verify: `grep resname="{KEY}" {MODULE}.en-GB.xliff`
 6. Commit: `feat({task}): add {KEY} translation key to {MODULE}`
 7. Push branch
-8. Create draft MR via `tuimm_subagent_gitlab` (project: `dx/distribution/discovery/weblate-translations`, target: `master`)
+8. Create draft MR via `tuimm-subagent_gitlab` (project: `dx/distribution/discovery/weblate-translations`, target: `master`)
 9. Cleanup temp dir
 10. Present result using the weblate-add-key template. Follow it EXACTLY — LAST STEP, nothing after this.

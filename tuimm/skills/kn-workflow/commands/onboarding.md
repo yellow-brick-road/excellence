@@ -16,27 +16,27 @@ Generate a personalized onboarding guide for a new team member — repos, tools,
 
 ### 1. Existing Onboarding Docs
 
-Delegate to tuimm_subagent_confluence:
+Delegate to tuimm-subagent_confluence:
 - Search for existing onboarding docs for the team
 - Collect any setup guides, conventions, or team-specific docs
 
 ### 2. Team Repos
 
-Delegate to tuimm_subagent_gitlab:
+Delegate to tuimm-subagent_gitlab:
 - List team's repos with descriptions
 - Identify main repo(s) vs supporting repos
 - Check each repo for README quality
 
 ### 3. Team Context
 
-Delegate to tuimm_subagent_jira:
+Delegate to tuimm-subagent_jira:
 - Get team's active project and board
 - Current sprint overview (to suggest first tasks)
 - Team members (for contacts)
 
 ### 4. Content Models (if applicable)
 
-Delegate to tuimm_subagent_contentful:
+Delegate to tuimm-subagent_contentful:
 - List content models the team works with
 - Key content types and their purpose
 
@@ -81,7 +81,7 @@ Show the guide to the user for review.
 
 ### 7. Create Page
 
-On approval, delegate to tuimm_subagent_confluence:
+On approval, delegate to tuimm-subagent_confluence:
 - Create page in the team's space
 - Apply onboarding template/labels
 - Link to related docs

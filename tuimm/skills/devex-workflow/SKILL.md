@@ -5,7 +5,7 @@ description: Developer experience workflow commands for feature flags, i18n, and
 
 # DevEx Workflow
 
-Commands for the tuimm_devex agent: feature flag lifecycle, translation management, and content model auditing.
+Commands for the tuimm-devex agent: feature flag lifecycle, translation management, and content model auditing.
 
 ## Available Commands
 

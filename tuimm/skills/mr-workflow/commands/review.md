@@ -11,8 +11,8 @@ Full MR review with structured feedback and severity levels.
 
 ### 1. Get MR Context
 
-- Fetch MR info via tuimm_subagent_gitlab: title, description, source/target branches, changed files, pipeline status
-- If MR has a linked Jira ticket, fetch ticket context via tuimm_subagent_jira: requirements, acceptance criteria
+- Fetch MR info via tuimm-subagent_gitlab: title, description, source/target branches, changed files, pipeline status
+- If MR has a linked Jira ticket, fetch ticket context via tuimm-subagent_jira: requirements, acceptance criteria
 
 ### 2. Ensure Local Repo Access
 
@@ -25,7 +25,7 @@ Do NOT delete after review — mr_comments may reuse it.
 
 ### 3. Get Full Diff
 
-- Fetch MR diff via tuimm_subagent_gitlab
+- Fetch MR diff via tuimm-subagent_gitlab
 
 ### 4. Global Analysis
 
@@ -56,7 +56,7 @@ If no `preflight-sast` job in the pipeline: skip silently. Do not mention it.
 
 ### 7. Quality Gate
 
-- Check SonarQube quality gate via tuimm_subagent_sonar (if project key known)
+- Check SonarQube quality gate via tuimm-subagent_sonar (if project key known)
 - Feature branch URL for manual testing: `https://tuimusement-{BRANCH}.dev.musement.com` (replace `/` with `-` in branch name)
 
 ### 8. Summary

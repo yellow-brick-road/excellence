@@ -16,7 +16,7 @@ Compare a specific component's Figma design spec with its code implementation.
 
 ### 1. Extract Figma Spec
 
-Delegate to tuimm_subagent_figma:
+Delegate to tuimm-subagent_figma:
 - Component props and variants
 - Spacing (padding, margin, gap)
 - Colors (background, text, border)
@@ -59,7 +59,7 @@ Search codebase for the component:
 
 ### 7. Quality
 
-Delegate to tuimm_subagent_sonar:
+Delegate to tuimm-subagent_sonar:
 - Component-specific issues
 - Coverage, complexity
 

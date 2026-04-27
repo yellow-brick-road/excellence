@@ -15,21 +15,21 @@ Generate a runbook for a specific topic — synthesize incidents, code, and docs
 
 ### 1. Search Existing Knowledge
 
-Delegate to tuimm_subagent_confluence:
+Delegate to tuimm-subagent_confluence:
 - Search for pages related to the topic
 - Collect relevant content, procedures, notes
 
 ### 2. Get Incident History
 
-Delegate to tuimm_observability (cross-agent):
+Delegate to tuimm-observability (cross-agent):
 - Request historical incidents related to the topic
 - What went wrong, how it was resolved, timeline
 
-If tuimm_observability is not available, skip this step and note it in the output.
+If tuimm-observability is not available, skip this step and note it in the output.
 
 ### 3. Get Code Context
 
-Delegate to tuimm_subagent_gitlab:
+Delegate to tuimm-subagent_gitlab:
 - Find relevant code, configs, scripts related to the topic
 - CI/CD pipeline definitions if deployment-related
 - Environment configs if infrastructure-related
@@ -73,7 +73,7 @@ Show the runbook draft to the user for review.
 
 ### 6. Create Page
 
-On approval, delegate to tuimm_subagent_confluence:
+On approval, delegate to tuimm-subagent_confluence:
 - Create page in the appropriate space
 - Apply runbook template/labels
 - Link to related pages

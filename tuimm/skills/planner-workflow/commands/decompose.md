@@ -35,7 +35,7 @@ Create `.plan/{topic}/tasks/NN_short-name.md` for each task:
 ```markdown
 ---
 type: {component|composable|page|test|config|infra|refactor}
-agent: tuimm_dev
+agent: tuimm-dev
 verify: "{command to verify task is done}"
 gate: {true|false}
 deps: ["{NN}"]
@@ -66,10 +66,10 @@ Create `.plan/{topic}/autobuild.json`:
 
 ```json
 {
-  "agent": "tuimm_dev",
+  "agent": "tuimm-dev",
   "review": "final",
   "agent_map": {
-    "default": "tuimm_dev",
+    "default": "tuimm-dev",
     "rules": []
   },
   "health": {

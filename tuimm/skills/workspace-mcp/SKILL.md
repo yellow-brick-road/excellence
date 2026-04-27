@@ -19,7 +19,7 @@ Kiro CLI loads MCP servers from two locations:
 
 Agents with `includeMcpJson: true` inherit both. Other agents access workspace MCPs only if their JSON explicitly includes them.
 
-Currently, only `tuimm_default` has `includeMcpJson: true`. Other Tier 1 agents access project-specific MCPs via subagent delegation through the default agent.
+Currently, only `tuimm-default` has `includeMcpJson: true`. Other Tier 1 agents access project-specific MCPs via subagent delegation through the default agent.
 
 ## Workspace Config for Nuxt Projects
 

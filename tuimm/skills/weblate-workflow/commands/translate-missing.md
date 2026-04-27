@@ -36,7 +36,7 @@ Detect untranslated keys in a module and propose translations using LLM. Creates
 6. After approval, update the XLIFF: set `<target>` value and `state="needs-review-translation"`
    (NOT `translated` — human must review LLM translations)
 7. Commit: `feat({task}): add {locale} translations for {MODULE} ({N} keys)`
-8. Push branch, create draft MR via `tuimm_subagent_gitlab`
+8. Push branch, create draft MR via `tuimm-subagent_gitlab`
 9. Cleanup temp dir
 10. Present result using the weblate-translate-missing template. Follow it EXACTLY — LAST STEP, nothing after this.
 

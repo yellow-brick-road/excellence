@@ -5,7 +5,7 @@ description: Knowledge management workflow commands for documentation health, ru
 
 # Knowledge Workflow
 
-Commands for the tuimm_knowledge agent: documentation health, runbook generation, and onboarding.
+Commands for the tuimm-knowledge agent: documentation health, runbook generation, and onboarding.
 
 ## Available Commands
 

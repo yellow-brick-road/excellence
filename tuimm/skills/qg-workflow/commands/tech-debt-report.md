@@ -15,20 +15,20 @@ Ask the user which projects to analyze. If not specified, ask before proceeding.
 
 ### 1. Debt Metrics
 
-Delegate to tuimm_subagent_sonar for each project:
+Delegate to tuimm-subagent_sonar for each project:
 - Total debt (hours/days)
 - Debt by category: reliability, security, maintainability
 - Reliability, security, maintainability ratings (A-E)
 
 ### 2. Hotspots
 
-Delegate to tuimm_subagent_sonar:
+Delegate to tuimm-subagent_sonar:
 - Top 10 files with most debt per project
 - For each: file path, debt (hours), issue count, complexity
 
 ### 3. Trends
 
-Delegate to tuimm_subagent_sonar:
+Delegate to tuimm-subagent_sonar:
 - Debt trend over last 4 analyses
 - Growing or shrinking per category
 
@@ -41,13 +41,13 @@ Calculate for top hotspots:
 
 ### 5. Existing Tickets
 
-Delegate to tuimm_subagent_jira:
+Delegate to tuimm-subagent_jira:
 - Search for existing tech debt tickets related to the hotspot files
 - Flag hotspots with no ticket (untracked debt)
 
 ### 6. Production Impact
 
-Delegate to tuimm_subagent_datadog:
+Delegate to tuimm-subagent_datadog:
 - Check if any debt hotspot files correlate with production errors
 - Prioritize debt that causes real user impact
 

@@ -5,7 +5,7 @@ description: Quality Guardian workflow commands for code quality, tech debt, dep
 
 # Quality Guardian Workflow
 
-Commands for the tuimm_quality_guardian agent: quality checks, tech debt, dependency health, releases, and security.
+Commands for the tuimm-quality_guardian agent: quality checks, tech debt, dependency health, releases, and security.
 
 ## Available Commands
 

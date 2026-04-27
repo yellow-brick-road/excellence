@@ -126,7 +126,7 @@ def load_tasks(folder: Path, config: dict) -> list[Task]:
 
     # Resolve agents via priority chain
     agent_map = config.get("agent_map", {})
-    default_agent = config.get("agent", "tuimm_default")
+    default_agent = config.get("agent", "tuimm-default")
 
     for t in tasks:
         if not t.agent:

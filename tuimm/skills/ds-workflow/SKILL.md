@@ -5,7 +5,7 @@ description: Design system workflow commands for Figma-to-code alignment and com
 
 # Design System Workflow
 
-Commands for the tuimm_design_system agent: design audits and component checks.
+Commands for the tuimm-design_system agent: design audits and component checks.
 
 ## Available Commands
 

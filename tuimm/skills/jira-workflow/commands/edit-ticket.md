@@ -16,11 +16,11 @@ Edit fields on an existing Jira ticket.
 
 ## Process
 
-1. Gather full ticket context via tuimm_subagent_jira following the jira-context-gathering skill — parent, links, comments, attachments. If the ticket has sub-tasks or linked issues, fetch their full details too (second subagent call)
+1. Gather full ticket context via tuimm-subagent_jira following the jira-context-gathering skill — parent, links, comments, attachments. If the ticket has sub-tasks or linked issues, fetch their full details too (second subagent call)
 2. Show current values for the fields being changed
 3. Ask user to confirm the changes
 4. Convert description/comment content to ADF format (consult jira-adf skill)
-5. Update the ticket via tuimm_subagent_jira
+5. Update the ticket via tuimm-subagent_jira
 6. Present result using the jira-ticket template for the updated ticket. Follow it EXACTLY — LAST STEP, nothing after this.
 
 ## Rules

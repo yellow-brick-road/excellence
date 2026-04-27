@@ -19,7 +19,7 @@ Deep root cause analysis with cross-service correlation.
 
 ### 1. Gather Error Context
 
-Via tuimm_subagent_datadog:
+Via tuimm-subagent_datadog:
 - Search for the error pattern in logs
 - Get full stack trace from a representative log entry
 - Check error frequency and timeline (when did it start? spike or steady?)
@@ -28,13 +28,13 @@ Via tuimm_subagent_datadog:
 ### 2. Trace Origin
 
 Read source code to understand the error:
-- Use tuimm_subagent_gitlab to fetch the file and line from the stack trace
+- Use tuimm-subagent_gitlab to fetch the file and line from the stack trace
 - Or grep/glob on local code if the repo is cloned
 - Trace the call chain backward — where does the data come from?
 
 ### 3. Correlate with Changes
 
-Via tuimm_subagent_gitlab:
+Via tuimm-subagent_gitlab:
 - Check recent deploys and MRs merged around the time the error started
 - Compare error timeline with deploy timestamps
 - Identify which MR might have introduced the issue
@@ -42,14 +42,14 @@ Via tuimm_subagent_gitlab:
 ### 4. Cross-Service Correlation
 
 If the error involves API calls or external services:
-- Check upstream service logs via tuimm_subagent_datadog
+- Check upstream service logs via tuimm-subagent_datadog
 - Trace request flow: frontend → API → database
 - Check if the upstream service has its own errors in the same time window
 
 ### 5. Check Related Systems
 
-- Feature flags: via tuimm_subagent_configcat — any recent flag changes that could affect this code path?
-- Code quality: via tuimm_subagent_sonar — any known issues in the affected files?
+- Feature flags: via tuimm-subagent_configcat — any recent flag changes that could affect this code path?
+- Code quality: via tuimm-subagent_sonar — any known issues in the affected files?
 
 ### 6. Root Cause Analysis
 

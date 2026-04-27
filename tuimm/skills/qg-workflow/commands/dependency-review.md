@@ -15,7 +15,7 @@ Ask the user which project to review. If not specified, ask before proceeding.
 
 ### 1. List Renovate MRs
 
-Delegate to tuimm_subagent_gitlab:
+Delegate to tuimm-subagent_gitlab:
 - List open MRs authored by Renovate Bot (or similar dependency bots)
 - Get title, source branch, pipeline status for each
 
@@ -24,7 +24,7 @@ Delegate to tuimm_subagent_gitlab:
 For each Renovate MR:
 
 #### a. Parse Update
-- Delegate to tuimm_subagent_gitlab: get diff (package.json/lock changes)
+- Delegate to tuimm-subagent_gitlab: get diff (package.json/lock changes)
 - Extract: package name, old version → new version, update type (patch/minor/major)
 
 #### b. Scan Codebase Usage
@@ -37,10 +37,10 @@ For each Renovate MR:
 - If breaking changes don't affect any used APIs → safe
 
 #### d. Check Pipeline
-- Delegate to tuimm_subagent_gitlab: pipeline status (tests passing?)
+- Delegate to tuimm-subagent_gitlab: pipeline status (tests passing?)
 
 #### e. Check Quality
-- Delegate to tuimm_subagent_sonar: any new issues introduced?
+- Delegate to tuimm-subagent_sonar: any new issues introduced?
 
 #### f. Decision
 

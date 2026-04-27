@@ -11,7 +11,7 @@ Analyze preflight-sast findings from an MR pipeline — classify SAST vs SBOM, d
 
 ### 1. Get MR Context
 
-Parse MR URL or ask for project + IID. Delegate to tuimm_subagent_gitlab:
+Parse MR URL or ask for project + IID. Delegate to tuimm-subagent_gitlab:
 - Fetch MR info (source branch, target branch, changed files list)
 - Fetch MR diff (list of changed file paths)
 

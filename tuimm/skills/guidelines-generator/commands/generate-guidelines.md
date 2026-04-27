@@ -61,7 +61,7 @@ cd <project> && python3 ~/.kiro/skills/guidelines-generator/scripts/guidelines-g
 Options the user might want:
 - `--workers N` — parallel workers (default: 3)
 - `--max-tasks N` — limit extraction tasks
-- `--agent NAME` — override agent (default: tuimm_default)
+- `--agent NAME` — override agent (default: tuimm-default)
 - `--only CATEGORY` — filter categories (comma-separated)
 
 ### 5. Return control immediately

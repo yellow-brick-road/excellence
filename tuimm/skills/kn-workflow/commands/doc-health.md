@@ -15,7 +15,7 @@ Documentation health audit — stale pages, orphans, broken links, freshness sco
 
 ### 1. Inventory
 
-Delegate to tuimm_subagent_confluence:
+Delegate to tuimm-subagent_confluence:
 - List all pages in the space(s)
 - For each: title, last updated date, author, parent page, labels
 
@@ -27,13 +27,13 @@ Flag pages not updated in 6+ months:
 
 ### 3. Orphan Pages
 
-Delegate to tuimm_subagent_confluence:
+Delegate to tuimm-subagent_confluence:
 - Find pages with no incoming links from other pages
 - Exclude root/index pages
 
 ### 4. Broken Links
 
-Delegate to tuimm_subagent_confluence:
+Delegate to tuimm-subagent_confluence:
 - Scan page content for links
 - Check if linked pages still exist
 - Check if external URLs are reachable

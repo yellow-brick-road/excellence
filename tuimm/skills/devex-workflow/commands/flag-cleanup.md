@@ -15,7 +15,7 @@ Ask the user which project to analyze. If not specified, ask before proceeding.
 
 ### 1. List All Flags
 
-Delegate to tuimm_subagent_configcat:
+Delegate to tuimm-subagent_configcat:
 - List all feature flags with: key, last toggle date, rollout percentage per environment, creation date
 
 ### 2. Detect Stale Flags

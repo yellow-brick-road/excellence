@@ -15,7 +15,7 @@ Ask the user which project or Contentful space to audit. If not specified, ask b
 
 ### 1. List Content Types
 
-Delegate to tuimm_subagent_contentful:
+Delegate to tuimm-subagent_contentful:
 - List all content types in each environment (master, staging if exists)
 - For each: name, ID, field count, last updated
 
@@ -28,13 +28,13 @@ Compare content models across environments:
 
 ### 3. Unused Content Types
 
-Delegate to tuimm_subagent_contentful:
+Delegate to tuimm-subagent_contentful:
 - For each content type: count entries
 - Flag types with 0 entries as unused
 
 ### 4. Content Freshness
 
-Delegate to tuimm_subagent_contentful:
+Delegate to tuimm-subagent_contentful:
 - For each content type: last entry created/updated date
 - Flag stale content (no updates in 6+ months)
 

@@ -17,7 +17,7 @@ Analyze changes since last release, propose version bump, generate changelog, pu
 
 ### 2. Find Last Release
 
-Delegate to tuimm_subagent_gitlab:
+Delegate to tuimm-subagent_gitlab:
 - Find last release tag for the package
 - Get all MRs merged since that tag
 
@@ -32,7 +32,7 @@ Compare last tag → HEAD:
 
 ### 4. Fetch Ticket Context
 
-Delegate to tuimm_subagent_jira:
+Delegate to tuimm-subagent_jira:
 - For each MR with a linked ticket: fetch title and description
 - Use for changelog context
 
@@ -80,9 +80,9 @@ User can adjust: version number, changelog content, classification.
 2. Update `CHANGELOG.md`
 3. Commit: `chore(release): {package}@{version}`
 4. Remind user to push
-5. After push confirmed: create git tag via tuimm_subagent_gitlab
+5. After push confirmed: create git tag via tuimm-subagent_gitlab
 6. Run `npm publish` (shell)
-7. Delegate to tuimm_subagent_jira: comment on related tickets with release info
+7. Delegate to tuimm-subagent_jira: comment on related tickets with release info
 
 ### 9. Monorepo Cross-Impact
 

@@ -173,7 +173,7 @@ echo $DD_API_KEY                    # should print your Datadog API key
 Then launch any TUIMM agent to verify everything works:
 
 ```bash
-kiro-cli --agent tuimm_default
+kiro-cli --agent tuimm-default
 ```
 
 Type `$get-commands` — if it lists all 37 commands across 9 agents, you're good.
@@ -207,7 +207,7 @@ export default defineNuxtConfig({
 <project>/.kiro/settings/mcp.json
 ```
 
-When the dev server runs, the MCP endpoint is available at `http://localhost:3000/__mcp/sse`. Agents with `includeMcpJson: true` (tuimm_default) pick it up automatically. Other agents that need it must add the MCP server explicitly to their `mcpServers` config.
+When the dev server runs, the MCP endpoint is available at `http://localhost:3000/__mcp/sse`. Agents with `includeMcpJson: true` (tuimm-default) pick it up automatically. Other agents that need it must add the MCP server explicitly to their `mcpServers` config.
 
 If the dev server is not running, the MCP connection fails silently — agents continue without it.
 

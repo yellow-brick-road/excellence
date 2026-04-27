@@ -13,8 +13,8 @@ Usage:
   --dir src/features/booking   Filter directory
   --report                     Show progress
   --reset-phase review|all     Reset progress for a phase
-  --to-skills                  Copy testing guidelines to tuimm_testing-nuxt-* skills
-  --agent NAME                 Override agent (default: tuimm_default)
+  --to-skills                  Copy testing guidelines to tuimm-testing-nuxt-* skills
+  --agent NAME                 Override agent (default: tuimm-default)
   --model NAME                 Override model (default: claude-opus-4.6)
   --workers N                  Parallel workers for phase 1 (default: 3)
   --max-tasks N                Limit extraction tasks
@@ -44,7 +44,7 @@ except ImportError:
 
 TIMEOUT = 300
 MAX_RETRIES = 2
-DEFAULT_AGENT = "tuimm_default"
+DEFAULT_AGENT = "tuimm-default"
 DEFAULT_MODEL = "claude-opus-4.6"
 TEMPLATES_DIR = Path(os.path.expanduser("~/.kiro/skills/guidelines-generator/assets/templates/guidelines-generator"))
 SKILLS_DIR = Path(os.path.expanduser("~/.kiro/skills"))
@@ -749,15 +749,15 @@ def phase_split(repo_root: Path, work_dir: Path, agent: str, model: str, to_skil
         _copy_to_skills(tests_dir)
 
 def _copy_to_skills(tests_dir: Path):
-    """Copy testing guidelines to tuimm_testing-nuxt-* skills."""
+    """Copy testing guidelines to tuimm-testing-nuxt-* skills."""
     skill_map = {
-        "components": "tuimm_testing-nuxt-component",
-        "composables": "tuimm_testing-nuxt-composable",
-        "stores": "tuimm_testing-nuxt-store",
-        "utils": "tuimm_testing-nuxt-utility",
-        "middleware": "tuimm_testing-nuxt-middleware",
-        "services": "tuimm_testing-nuxt-api-layer",
-        "plugins": "tuimm_testing-nuxt-plugin",
+        "components": "tuimm-testing-nuxt-component",
+        "composables": "tuimm-testing-nuxt-composable",
+        "stores": "tuimm-testing-nuxt-store",
+        "utils": "tuimm-testing-nuxt-utility",
+        "middleware": "tuimm-testing-nuxt-middleware",
+        "services": "tuimm-testing-nuxt-api-layer",
+        "plugins": "tuimm-testing-nuxt-plugin",
     }
     for test_file in tests_dir.glob("*.md"):
         skill_name = skill_map.get(test_file.stem)

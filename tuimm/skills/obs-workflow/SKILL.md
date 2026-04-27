@@ -5,7 +5,7 @@ description: Observability workflow commands for production error scanning and i
 
 # Observability Workflow
 
-Commands for the tuimm_observability agent: error scanning and investigation.
+Commands for the tuimm-observability agent: error scanning and investigation.
 
 ## Available Commands
 

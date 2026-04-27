@@ -22,14 +22,14 @@ Reference for all agent artifacts. Update this file each time a new command, pro
 
 | Prefix | Owner | Loaded by |
 |--------|-------|-----------|
-| `dev_` | tuimm_dev | tuimm_dev only |
-| `mr_` | tuimm_mr | tuimm_mr only |
-| `obs_` | tuimm_observability | tuimm_observability only |
-| `qg_` | tuimm_quality_guardian | tuimm_quality_guardian only |
-| `devex_` | tuimm_devex | tuimm_devex only |
-| `ds_` | tuimm_design_system | tuimm_design_system only |
-| `kn_` | tuimm_knowledge | tuimm_knowledge only |
-| `planner_` | tuimm_planner | tuimm_planner only |
+| `dev_` | tuimm-dev | tuimm-dev only |
+| `mr_` | tuimm-mr | tuimm-mr only |
+| `obs_` | tuimm-observability | tuimm-observability only |
+| `qg_` | tuimm-quality_guardian | tuimm-quality_guardian only |
+| `devex_` | tuimm-devex | tuimm-devex only |
+| `ds_` | tuimm-design_system | tuimm-design_system only |
+| `kn_` | tuimm-knowledge | tuimm-knowledge only |
+| `planner_` | tuimm-planner | tuimm-planner only |
 | `weblate_` | shared | dev, mr, devex, design_system |
 | `jira_` | shared | dev, mr, obs, qg, devex, ds, knowledge, planner |
 

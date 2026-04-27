@@ -10,7 +10,7 @@ Rebase MR on target branch via GitLab API.
 ## Process
 
 1. Resolve MR project from context or ask user
-2. Rebase via tuimm_subagent_gitlab using GitLab API endpoint
+2. Rebase via tuimm-subagent_gitlab using GitLab API endpoint
 3. Present result using the mr-rebase template. Follow it EXACTLY — LAST STEP, nothing after this.
 
 ## Rules

@@ -133,7 +133,7 @@ The env vars must be exported in the shell BEFORE starting kiro-cli. Add them to
 ### Step 5 — Verify installation
 
 ```bash
-kiro-cli --agent tuimm_default
+kiro-cli --agent tuimm-default
 ```
 
 Once inside, type `$get-commands`. If it lists 37 commands across 9 agents, the installation is correct.
@@ -152,10 +152,10 @@ Agent JSON (tuimm-dev.json)
   ├── indexes ~/.kiro/tuimm/ as knowledgeBase (semantic search)
   │
   ├── spawns subagents via the subagent tool:
-  │     tuimm_subagent_jira → Atlassian MCP → Jira API
-  │     tuimm_subagent_gitlab → GitLab MCP → source.tui API
-  │     tuimm_subagent_sonar → SonarQube MCP → sonarqube.devops.tui
-  │     tuimm_subagent_code_reviewer → 5 MCPs (read-only)
+  │     tuimm-subagent_jira → Atlassian MCP → Jira API
+  │     tuimm-subagent_gitlab → GitLab MCP → source.tui API
+  │     tuimm-subagent_sonar → SonarQube MCP → sonarqube.devops.tui
+  │     tuimm-subagent_code_reviewer → 5 MCPs (read-only)
   │     ...
   │
   └── runs scripts bundled inside skills via shell:
@@ -164,7 +164,7 @@ Agent JSON (tuimm-dev.json)
 
 Commands reference templates: "present results using the mr-review-summary template."
 Commands reference skills: "consult the tuimm-jira-adf skill before writing descriptions."
-Commands reference subagents: "delegate to tuimm_subagent_gitlab."
+Commands reference subagents: "delegate to tuimm-subagent_gitlab."
 Steering references other steering: "read and follow GIT.md."
 
 ## Existing agents warning

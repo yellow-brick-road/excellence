@@ -15,7 +15,7 @@ Ask the user which project to audit. If not specified, ask before proceeding.
 
 ### 1. Extract Figma DS
 
-Delegate to tuimm_subagent_figma:
+Delegate to tuimm-subagent_figma:
 - List design system components (names, variants, props)
 - Extract design tokens (colors, spacing, typography, breakpoints)
 
@@ -41,7 +41,7 @@ Scan for components NOT in the design system:
 
 ### 5. Quality Check
 
-Delegate to tuimm_subagent_sonar:
+Delegate to tuimm-subagent_sonar:
 - Code quality of shared DS components
 - Coverage, complexity, maintainability
 

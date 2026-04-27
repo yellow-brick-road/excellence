@@ -30,7 +30,7 @@ Create a Jira ticket following the jira-ticket template and ADF format.
    - Acceptance Criteria section (if provided)
    - Definition of Done section (standard checklist)
 4. Convert all content to ADF format (consult jira-adf skill)
-5. Create the ticket via tuimm_subagent_jira
+5. Create the ticket via tuimm-subagent_jira
 6. Present result using the jira-ticket template for the created ticket. Follow it EXACTLY — LAST STEP, nothing after this.
 
 ## Rules

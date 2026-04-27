@@ -5,7 +5,7 @@ description: Merge request workflow commands for review, feedback, approval, reb
 
 # MR Workflow
 
-Commands for the tuimm_mr agent: MR review, comment handling, approval, rebase, and listing.
+Commands for the tuimm-mr agent: MR review, comment handling, approval, rebase, and listing.
 
 ## Available Commands
 

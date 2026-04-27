@@ -17,7 +17,7 @@ Add a comment to an existing Jira ticket.
 ## Process
 
 1. Convert comment content to ADF format (consult jira-adf skill)
-2. Post comment via tuimm_subagent_jira
+2. Post comment via tuimm-subagent_jira
 3. Present result using the jira-comment template. Follow it EXACTLY — LAST STEP, nothing after this.
 
 ## Rules

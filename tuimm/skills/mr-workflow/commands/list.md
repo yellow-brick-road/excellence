@@ -19,7 +19,7 @@ Extract username from email.
 
 ### 2. Query MRs
 
-Fetch open MRs across all repos via tuimm_subagent_gitlab. For each MR get: iid, title, author, project_path, draft status, pipeline status, approvals.
+Fetch open MRs across all repos via tuimm-subagent_gitlab. For each MR get: iid, title, author, project_path, draft status, pipeline status, approvals.
 
 ### 3. Classify
 

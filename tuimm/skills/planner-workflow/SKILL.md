@@ -5,7 +5,7 @@ description: Planning workflow commands for requirement analysis, technical desi
 
 # Planner Workflow
 
-Commands for the tuimm_planner agent: analysis, design, and decomposition.
+Commands for the tuimm-planner agent: analysis, design, and decomposition.
 
 ## Available Commands
 

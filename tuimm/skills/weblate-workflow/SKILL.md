@@ -1,6 +1,6 @@
 ---
 name: weblate-workflow
-description: Shared Weblate commands for translation key management, coverage analysis, and validation. Available from tuimm_dev, tuimm_mr, tuimm_devex, and tuimm_design_system.
+description: Shared Weblate commands for translation key management, coverage analysis, and validation. Available from tuimm-dev, tuimm-mr, tuimm-devex, and tuimm-design_system.
 ---
 
 # Weblate Workflow

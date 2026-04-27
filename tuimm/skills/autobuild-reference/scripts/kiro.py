@@ -6,7 +6,7 @@ session creation, prompting, and cleanup.
 Based on proven lib/acp.py from poc.newspaper and b2c-frontend migration.
 
 Usage:
-    agent = AcpAgent("tuimm_default", "claude-sonnet-4.6", cwd="/path")
+    agent = AcpAgent("tuimm-default", "claude-sonnet-4.6", cwd="/path")
     text = agent.prompt("Implement the feature...", timeout=300)
     agent.close()
 """

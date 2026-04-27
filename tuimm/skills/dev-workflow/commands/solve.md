@@ -11,7 +11,7 @@ Full task-to-MR: read requirements, analyze, plan, implement, test, commit, MR.
 
 ### 1. Read Requirements
 
-- If ticket ID provided: gather full ticket context via tuimm_subagent_jira following the jira-context-gathering skill — parent, links, comments, attachments. If the ticket has sub-tasks or linked issues, fetch their full details too (second subagent call). Present a summary of the parent AND all sub-tasks/links before proceeding
+- If ticket ID provided: gather full ticket context via tuimm-subagent_jira following the jira-context-gathering skill — parent, links, comments, attachments. If the ticket has sub-tasks or linked issues, fetch their full details too (second subagent call). Present a summary of the parent AND all sub-tasks/links before proceeding
 - If description/markdown/prompt: read and extract requirements
 - If ambiguous: ask for clarification
 
@@ -26,7 +26,7 @@ Full task-to-MR: read requirements, analyze, plan, implement, test, commit, MR.
   - In Review / Done / Closed → "Ticket is already '{status}'. Are you sure you want to work on it?"
 - **Sprint** — is it in the current sprint? If not, mention it: "This ticket is not in the current sprint (sprint: {sprint_name} / no sprint)."
 
-Apply any changes the user confirms via tuimm_subagent_jira, then proceed.
+Apply any changes the user confirms via tuimm-subagent_jira, then proceed.
 
 If the user says skip or doesn't care, proceed without changes.
 
@@ -72,20 +72,20 @@ Use hyphens, NEVER underscores in branch names.
 
 ### 8. Code Review
 
-- Delegate to tuimm_subagent_code_reviewer for pre-commit review
+- Delegate to tuimm-subagent_code_reviewer for pre-commit review
 - Address any findings
-- If tuimm_subagent_code_reviewer is not available, do a self-review: check for obvious issues, unused imports, type errors
+- If tuimm-subagent_code_reviewer is not available, do a self-review: check for obvious issues, unused imports, type errors
 
 ### 9. Commit
 
-- Via tuimm_subagent_gitlab following commit-conventions skill
+- Via tuimm-subagent_gitlab following commit-conventions skill
 - Show commit message to user, wait for confirmation
 
 ### 10. Push & Create MR
 
 - Remind user: "Push is yours — sync with master first"
 - Wait for user to confirm push is done
-- Create MR via tuimm_subagent_gitlab with auto-populated description
+- Create MR via tuimm-subagent_gitlab with auto-populated description
 - Link to Jira ticket if applicable
 
 ### 11. Post-MR

@@ -16,7 +16,7 @@ Production error scan. Deep analysis, not just counts.
 
 Ask the user these questions. Do NOT proceed until all are answered:
 
-1. **Service name** — exact Datadog service name (e.g. `b2c-tuimusement-frontend`). If unsure, search available services via tuimm_subagent_datadog first.
+1. **Service name** — exact Datadog service name (e.g. `b2c-tuimusement-frontend`). If unsure, search available services via tuimm-subagent_datadog first.
 2. **Repo** — GitLab repo path (e.g. `distribution/b2c-tuimusement-frontend`). Needed for code investigation later.
 3. **Deployed version** — current commit hash or tag in prod. Check Datadog logs `@version` tag if user doesn't know. Also ask about recent deploys in the scan window — useful to correlate regressions.
 
@@ -37,7 +37,7 @@ If the script fails (logd not installed, DB missing), skip silently and treat as
 
 ### 2. Aggregate Errors — Two Passes
 
-Run TWO aggregate queries via tuimm_subagent_datadog:
+Run TWO aggregate queries via tuimm-subagent_datadog:
 
 **Pass 1 — Real users:**
 ```

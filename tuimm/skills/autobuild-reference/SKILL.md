@@ -39,7 +39,7 @@ autobuild tasks/ --report              # JSON summary
 autobuild tasks/ --makefile            # generate Makefile
 
 # Overrides
-autobuild tasks/ --agent tuimm_dev
+autobuild tasks/ --agent tuimm-dev
 autobuild tasks/ --model claude-opus-4.6
 autobuild tasks/ --review none         # skip review phase
 autobuild tasks/ --workers 3           # parallel wave concurrency
@@ -64,7 +64,7 @@ Create a docker-compose.yml with MongoDB 7.0...
 verify: "docker compose ps --format json"
 gate: true
 creates: ["docker-compose.yml"]
-agent: tuimm_dev
+agent: tuimm-dev
 timeout: 300
 deps: ["00", "01"]
 type: test
@@ -93,14 +93,14 @@ Optional file in project root:
 
 ```json
 {
-  "agent": "tuimm_default",
+  "agent": "tuimm-default",
   "model": "claude-sonnet-4.6",
   "review": "final",
   "max_retries": 3,
   "timeout": 600,
   "parallel": { "max_workers": 3 },
   "agent_map": {
-    "default": "tuimm_default",
+    "default": "tuimm-default",
     "rules": [
       { "match": { "type": "test" }, "agent": "tui_test_writer" },
       { "match": { "folder": "tasks/infra/" }, "agent": "tui_infra" },
@@ -119,7 +119,7 @@ Optional file in project root:
 ### Agent priority
 
 ```
-CLI --agent > task frontmatter > agent_map rules > autobuild.json "agent" > tuimm_default
+CLI --agent > task frontmatter > agent_map rules > autobuild.json "agent" > tuimm-default
 ```
 
 ## Review Modes

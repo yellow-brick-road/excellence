@@ -63,7 +63,7 @@ Run via: `npx ts-node --transpile-only packages/xliff/commands/<command>.ts`
 - Commit: `feat({task}): {description}`
 - MR: always DRAFT, target `master`
 - Push from temp clone is safe (disposable)
-- Create MR via `tuimm_subagent_gitlab` (project: `dx/distribution/discovery/weblate-translations`)
+- Create MR via `tuimm-subagent_gitlab` (project: `dx/distribution/discovery/weblate-translations`)
 
 ## XLIFF Format
 

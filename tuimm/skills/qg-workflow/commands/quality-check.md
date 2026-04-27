@@ -15,26 +15,26 @@ Ask the user which projects to scan. If not specified, ask before proceeding.
 
 ### 1. Quality Gate Status
 
-Delegate to tuimm_subagent_sonar for each project:
+Delegate to tuimm-subagent_sonar for each project:
 - Quality gate status (PASSED/FAILED)
 - Conditions that failed (if any)
 
 ### 2. New Issues
 
-Delegate to tuimm_subagent_sonar for each project:
+Delegate to tuimm-subagent_sonar for each project:
 - New issues since last analysis, grouped by severity (blocker, critical, major, minor)
 - For blockers and criticals: file, line, rule, message
 
 ### 3. Coverage
 
-Delegate to tuimm_subagent_sonar for each project:
+Delegate to tuimm-subagent_sonar for each project:
 - Current coverage percentage
 - Coverage on new code
 - Trend vs previous analysis
 
 ### 4. Tech Debt Summary
 
-Delegate to tuimm_subagent_sonar for each project:
+Delegate to tuimm-subagent_sonar for each project:
 - Total debt (hours/days)
 - Reliability, security, maintainability ratings
 
@@ -46,13 +46,13 @@ Compare all scanned projects:
 
 ### 6. MR Impact
 
-Delegate to tuimm_subagent_gitlab:
+Delegate to tuimm-subagent_gitlab:
 - Check if any open MRs are blocked by failing quality gates
 
 ### 7. Production Correlation (optional)
 
 If user requests or if critical issues found:
-- Delegate to tuimm_subagent_datadog to check if quality issues correlate with production errors
+- Delegate to tuimm-subagent_datadog to check if quality issues correlate with production errors
 
 ### 8. Output
 

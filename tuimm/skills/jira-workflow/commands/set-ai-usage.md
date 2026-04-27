@@ -34,7 +34,7 @@ Ask the user (if not provided):
 
 ### 2. Set the field
 
-Delegate to `tuimm_subagent_jira`:
+Delegate to `tuimm-subagent_jira`:
 
 > Update issue {TICKET}, set field "AI usage during {Phase}" to "{Band}"
 

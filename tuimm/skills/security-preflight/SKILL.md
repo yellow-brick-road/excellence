@@ -17,7 +17,7 @@ How to extract and classify preflight-sast findings from an MR pipeline.
 
 ### 1. Find the job
 
-Via tuimm_subagent_gitlab:
+Via tuimm-subagent_gitlab:
 - Get the pipeline for the MR's head SHA
 - List jobs in that pipeline
 - Find the job named `preflight-sast` in stage `test`
@@ -27,7 +27,7 @@ If job failed or still running: report status and stop.
 
 ### 2. Extract findings
 
-Via tuimm_subagent_gitlab:
+Via tuimm-subagent_gitlab:
 - Download job artifacts for the `preflight-sast` job
 - Parse `preflight-junit-SAST.xml` — code-level findings
 - Parse `preflight-junit-SBOM.xml` — dependency findings
