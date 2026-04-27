@@ -31,35 +31,35 @@
         }
       ]
     },
-    "tuimm/tuimm/commands/planner_analyze.md": {
+    "tuimm/skills/tuimm-planner-workflow/commands/analyze.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/planner_analyze.md",
+      "file": "tuimm/skills/tuimm-planner-workflow/commands/analyze.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/planner_analyze.md"
+      "alias": "skills/tuimm-planner-workflow/commands/analyze.md"
     },
-    "tuimm/tuimm/commands/planner_design.md": {
+    "tuimm/skills/tuimm-planner-workflow/commands/design.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/planner_design.md",
+      "file": "tuimm/skills/tuimm-planner-workflow/commands/design.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/planner_design.md"
+      "alias": "skills/tuimm-planner-workflow/commands/design.md"
     },
-    "tuimm/tuimm/commands/planner_decompose.md": {
+    "tuimm/skills/tuimm-planner-workflow/commands/decompose.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/planner_decompose.md",
+      "file": "tuimm/skills/tuimm-planner-workflow/commands/decompose.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/planner_decompose.md"
+      "alias": "skills/tuimm-planner-workflow/commands/decompose.md"
     }
   }
 }

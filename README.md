@@ -120,21 +120,25 @@ Each one wraps a single API via MCP (Model Context Protocol). They execute — t
 
 ### 1. Copy the files
 
-```bash
-# Agent configs go to ~/.kiro/agents/
-cp agents/*.json ~/.kiro/agents/
+Run from the `tuimm/` directory:
 
-# Package contents go to ~/.kiro/tuimm/
-cp -r tuimm/* ~/.kiro/tuimm/
+```bash
+mkdir -p ~/.kiro/agents ~/.kiro/steering ~/.kiro/skills ~/.kiro/tuimm
+
+cp agents/*.json ~/.kiro/agents/
+cp steering/TUIMM_*.md ~/.kiro/steering/
+cp -r steering/scripts ~/.kiro/steering/
+cp -r skills/tuimm-* ~/.kiro/skills/
+cp tuimm/README.md ~/.kiro/tuimm/
 ```
 
-That's it for the files. The agents reference `~/.kiro/tuimm/` for everything — steering rules, commands, skills, templates, tools.
+The `TUIMM_` and `tuimm-` prefixes prevent collisions with personal or other package files in the shared `~/.kiro/` directories.
 
 ### 2. Set up your credentials
 
 Each developer uses their own API tokens. No shared accounts, no centralized server.
 
-Open **[SETUP.md](tuimm/tuimm/SETUP.md)** — it has the full list with URLs where to get each token. The short version:
+Open **[SETUP.md](tuimm/SETUP.md)** — it has the full list with URLs where to get each token. The short version:
 
 | Service | What you need |
 |---------|--------------|
@@ -193,22 +197,23 @@ You can also just talk naturally. "I need to review an MR" works as well as `$mr
 ```
 tuimm/
 ├── agents/          19 agent configs (→ ~/.kiro/agents/)
-└── tuimm/           package contents (→ ~/.kiro/tuimm/)
-    ├── SETUP.md     credentials guide — start here after copying files
-    ├── steering/    11 shared behavioral rules (loaded by all agents)
-    ├── commands/    36 executable workflows (loaded per agent)
-    ├── skills/      14 knowledge documents (consulted on demand)
-    ├── templates/   37 output format definitions
-    └── tools/       scripts and utilities (autobuild, guidelines-generator, etc.)
+├── steering/        11 TUIMM_*.md behavioral rules (→ ~/.kiro/steering/)
+│                     + scripts/ session utilities
+├── skills/          26 tuimm-* skill directories (→ ~/.kiro/skills/)
+│                     12 workflow skills (commands + templates inside)
+│                     14 knowledge skills (reference material, some with scripts/)
+├── tuimm/           knowledgeBase index (→ ~/.kiro/tuimm/)
+├── SETUP.md         credentials guide
+└── README.md        package overview
 ```
 
 **Steering** defines how agents behave: git conventions, communication style, error handling, coding standards. All agents share the same rules — consistency is built in.
 
 **Commands** are step-by-step workflows. When you type `$dev_solve`, the agent reads the command file, follows the steps, delegates to subagents, and formats the output using a template. 37 commands across 11 domains.
 
-**Skills** are reference knowledge. Commit conventions, code review checklists, Weblate workflows, Jira document format. Agents load them when they need specific expertise.
+**Skills** are reference knowledge. Commit conventions, code review checklists, Weblate workflows, Jira document format. Agents load them when they need specific expertise. Some skills also bundle scripts (autobuild, bg, logd, guidelines-generator) that agents run via shell.
 
-**Tools** are standalone scripts: a task engine (autobuild), a coding guidelines extractor (guidelines-generator), background execution support, structured logging, and GitLab utilities.
+**Scripts** live inside their respective skills under `scripts/` subdirectories, plus `steering/scripts/` for session utilities like workspace cleanup.
 
 ---
 
@@ -216,7 +221,7 @@ tuimm/
 
 - [Kiro CLI](https://kiro.dev) installed and working
 - Node.js 18+ with npx
-- Python 3.10+ (for tools)
+- Python 3.10+ (for scripts)
 - Git with SSH access to `ssh.source.tui`
 - VPN for SonarQube
 - Linux, WSL, or macOS
@@ -241,6 +246,8 @@ The more teams contribute, the smarter the agents get for everyone.
 
 ```bash
 rm ~/.kiro/agents/tuimm_*.json
+rm ~/.kiro/steering/TUIMM_*.md
+rm -rf ~/.kiro/skills/tuimm-*/
 rm -rf ~/.kiro/tuimm/
 ```
 
@@ -250,7 +257,7 @@ Env vars in your shell config are harmless to leave.
 
 ## More info
 
-- **[SETUP.md](tuimm/tuimm/SETUP.md)** — full credentials guide with URLs
+- **[SETUP.md](tuimm/SETUP.md)** — full credentials guide with URLs
 - **[AGENTS.md](AGENTS.md)** — technical reference for AI assistants installing the package
 - **[ideas/](ideas/)** — architecture proposals and engineering practice specs
 - **[docs/](docs/)** — reference documentation about Excellence

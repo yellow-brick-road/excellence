@@ -35,35 +35,35 @@
         }
       ]
     },
-    "tuimm/tuimm/commands/devex_flag-cleanup.md": {
+    "tuimm/skills/tuimm-devex-workflow/commands/flag-cleanup.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/devex_flag-cleanup.md",
+      "file": "tuimm/skills/tuimm-devex-workflow/commands/flag-cleanup.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/devex_flag-cleanup.md"
+      "alias": "skills/tuimm-devex-workflow/commands/flag-cleanup.md"
     },
-    "tuimm/tuimm/commands/devex_i18n-coverage.md": {
+    "tuimm/skills/tuimm-devex-workflow/commands/i18n-coverage.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/devex_i18n-coverage.md",
+      "file": "tuimm/skills/tuimm-devex-workflow/commands/i18n-coverage.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/devex_i18n-coverage.md"
+      "alias": "skills/tuimm-devex-workflow/commands/i18n-coverage.md"
     },
-    "tuimm/tuimm/commands/devex_content-audit.md": {
+    "tuimm/skills/tuimm-devex-workflow/commands/content-audit.md": {
       "repository": "javier.fernandez/tuimm-agents-poc",
-      "file": "tuimm/tuimm/commands/devex_content-audit.md",
+      "file": "tuimm/skills/tuimm-devex-workflow/commands/content-audit.md",
       "targets": [
         {
           "type": "resource"
         }
       ],
-      "alias": "commands/devex_content-audit.md"
+      "alias": "skills/tuimm-devex-workflow/commands/content-audit.md"
     }
   }
 }

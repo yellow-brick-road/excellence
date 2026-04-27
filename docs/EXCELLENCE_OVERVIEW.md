@@ -2,7 +2,7 @@
 
 > A practical framework for accelerating software delivery through AI agents, shared tooling, and automated workflows.
 
-> ⚠️ **Vision document.** Written for the Excellence demo (Apr 10, 2026). Describes the target state, not current implementation. Some features (TUI CLI, routines, MCP Gateway) are planned, not built. For current state, see ROADMAP.md and the actual `.kiro/` implementation.
+> ⚠️ **Vision document.** Written for the Excellence demo (Apr 10, 2026). Describes the target state, not current implementation. Some features (TUI CLI, routines, MCP Gateway) are planned, not built. For current state, see ROADMAP.md and the actual `tuimm/` implementation.
 
 ## The Problem
 
@@ -127,9 +127,9 @@ Two tiers. Tier 1 agents talk to developers. Tier 2 subagents talk to tools.
 ```
 Developer
     │
-    ├── kiro-cli --agent excellence_dev        (direct invocation)
-    ├── kiro-cli --agent excellence_mr         (direct invocation)
-    ├── /agent swap excellence_quality_guardian (switch within session)
+    ├── kiro-cli --agent tuimm_dev        (direct invocation)
+    ├── kiro-cli --agent tuimm_mr         (direct invocation)
+    ├── /agent swap tuimm_quality_guardian (switch within session)
     │
     ▼
 ┌─────────────────────────────────────────────────────┐
@@ -151,15 +151,15 @@ Developer
 Don't know which agent to use? Start with the Default:
 
 ```
-$ kiro-cli --agent excellence_default
+$ kiro-cli --agent tuimm_default
 
 You: "I need to check if our dependencies are up to date"
 
-Excellence Default:
+TUIMM Default:
   That's a job for the Quality Guardian. You want $qg_dependency-scan.
 
-  - Switch here: /agent swap excellence_quality_guardian
-  - Or open a new session: kiro-cli --agent excellence_quality_guardian
+  - Switch here: /agent swap tuimm_quality_guardian
+  - Or open a new session: kiro-cli --agent tuimm_quality_guardian
 
   Once there, just say: "$qg_dependency-scan"
 ```
@@ -167,28 +167,28 @@ Excellence Default:
 Here's what it looks like in practice:
 
 ```
-$ kiro-cli --agent excellence_dev
+$ kiro-cli --agent tuimm_dev
 
 You: "I need to work on DIS-1234"
 
-Excellence Dev:
+TUIMM Dev:
   Reading the ticket first.
 
-  Invoking subagent: excellence_subagent_jira
+  Invoking subagent: tuimm_subagent_jira
     with query: Get issue DIS-1234 with full description, acceptance criteria,
     and linked issues
-  ✓ excellence_subagent_jira (3 tool uses · 2.1s)
+  ✓ tuimm_subagent_jira (3 tool uses · 2.1s)
 
   Got it: "Add date picker to search filters. AC: supports range selection,
   validates min/max dates, syncs with URL params."
 
-  Invoking subagent: excellence_subagent_gitlab
+  Invoking subagent: tuimm_subagent_gitlab
     with query: Clone repository dx/b2c-tuimusement-frontend
-  ✓ excellence_subagent_gitlab (2 tool uses · 3.8s)
+  ✓ tuimm_subagent_gitlab (2 tool uses · 3.8s)
 
-  Invoking subagent: excellence_subagent_gitlab
+  Invoking subagent: tuimm_subagent_gitlab
     with query: Create and checkout branch feature/DIS-1234-date-picker-filters
-  ✓ excellence_subagent_gitlab (1 tool uses · 0.9s)
+  ✓ tuimm_subagent_gitlab (1 tool uses · 0.9s)
 
   Reading project files to understand the codebase...
   ✓ Read 12 files: SearchFilters.vue, useFilters.ts, BaseFilter.vue, ...
@@ -222,10 +222,10 @@ You: "y"
 
 You: "y"
 
-  Invoking subagent: excellence_subagent_gitlab
+  Invoking subagent: tuimm_subagent_gitlab
     with query: Stage and commit all changes with message
     "feat(DIS-1234): add date picker to search filters"
-  ✓ excellence_subagent_gitlab (2 tool uses · 1.1s)
+  ✓ tuimm_subagent_gitlab (2 tool uses · 1.1s)
 
   Committed. Push is on you:
   git push origin feature/DIS-1234-date-picker-filters
@@ -236,18 +236,18 @@ You: "done, pushed"
 
 You: "y"
 
-  Invoking subagent: excellence_subagent_gitlab
+  Invoking subagent: tuimm_subagent_gitlab
     with query: Read merge request template from repository
-  ✓ excellence_subagent_gitlab (1 tool uses · 0.8s)
+  ✓ tuimm_subagent_gitlab (1 tool uses · 0.8s)
 
-  Invoking subagent: excellence_subagent_gitlab
+  Invoking subagent: tuimm_subagent_gitlab
     with query: Create merge request for branch
     feature/DIS-1234-date-picker-filters using template, link DIS-1234
-  ✓ excellence_subagent_gitlab (3 tool uses · 2.4s)
+  ✓ tuimm_subagent_gitlab (3 tool uses · 2.4s)
 
-  Invoking subagent: excellence_subagent_jira
+  Invoking subagent: tuimm_subagent_jira
     with query: Transition DIS-1234 to "In Review" and add comment with MR link
-  ✓ excellence_subagent_jira (2 tool uses · 1.4s)
+  ✓ tuimm_subagent_jira (2 tool uses · 1.4s)
 
   Done. MR !847 created: https://source.tui/dx/.../merge_requests/847
   Jira ticket moved to In Review.
@@ -259,15 +259,15 @@ The developer talks to one agent. Behind the scenes, that agent orchestrates Jir
 
 | Agent | What It Does | Example |
 |-------|-------------|---------|
-| **Excellence Default** | Entry point and concierge. Knows what every agent can do, guides you to the right one. Handles shared commands (Jira, Weblate) directly | "I need to review an MR" → "That's `excellence_mr`. Switch: `/agent swap excellence_mr`" |
+| **TUIMM Default** | Entry point and concierge. Knows what every agent can do, guides you to the right one. Handles shared commands (Jira, Weblate) directly | "I need to review an MR" → "That's `tuimm_mr`. Switch: `/agent swap tuimm_mr`" |
 | **Quality Guardian** | Code quality, tech debt, dependencies, releases | "Check quality for this MR" → SonarQube analysis + coverage + new issues |
 | **Observability** | Production errors, monitoring, incident investigation | "Scan production errors" → Datadog log analysis + error patterns |
 | **DevEx** | Feature flags, translations, content models, sprint workflow | "Find stale feature flags" → ConfigCat audit + codebase cross-reference |
 | **Design System** | Figma-to-code alignment, component governance | "Audit design system adoption" → Figma tokens vs codebase scan |
 | **Knowledge** | Documentation health, runbooks, onboarding guides | "Check doc health" → Confluence inventory + stale/orphan detection |
-| **Excellence Dev** | Ticket-to-MR workflow. Reads ticket, plans, implements, creates MR | "Solve DIS-1234" → reads Jira → plans → codes → MR |
-| **Excellence MR** | MR review, feedback, approval | "Review MR 242" → structured review with severity levels |
-| **Excellence Planner** | Cross-domain analysis, technical design, task decomposition, Jira ticket creation from plans | "Design the new search architecture" → DESIGN.md + task breakdown + Jira tickets |
+| **TUIMM Dev** | Ticket-to-MR workflow. Reads ticket, plans, implements, creates MR | "Solve DIS-1234" → reads Jira → plans → codes → MR |
+| **TUIMM MR** | MR review, feedback, approval | "Review MR 242" → structured review with severity levels |
+| **TUIMM Planner** | Cross-domain analysis, technical design, task decomposition, Jira ticket creation from plans | "Design the new search architecture" → DESIGN.md + task breakdown + Jira tickets |
 
 ### Commands — Repeatable Workflows
 
@@ -308,7 +308,7 @@ steering/
 
 ### Skills — Reusable Knowledge
 
-Skills are knowledge documents that agents load when they need specific expertise. Commit conventions, code review checklists, Weblate translation workflows, file modification patterns, MCP tool references. Eight skills today, growing as we codify more practices.
+Skills are knowledge documents that agents load when they need specific expertise. Commit conventions, code review checklists, Weblate translation workflows, file modification patterns, MCP tool references. 25 skills today (11 workflow + 14 knowledge), growing as we codify more practices.
 
 ### Routines — Automated Workflows
 
@@ -323,7 +323,7 @@ Agents can run routines: multi-step workflows that combine several commands and 
 ```
 Developer: "solve DIS-1234"
 
-Excellence Dev agent:
+TUIMM Dev agent:
   1. Reads the Jira ticket (via Jira subagent)
   2. Analyzes the codebase to understand context
   3. Proposes a plan → developer approves
@@ -341,7 +341,7 @@ Developer reviews the MR, adjusts if needed, merges.
 ```
 Developer: "review MR 242"
 
-Excellence MR agent:
+TUIMM MR agent:
   1. Fetches MR details and diff (via GitLab subagent)
   2. Checks SonarQube for new issues (via SonarQube subagent)
   3. Reviews code changes against the checklist:
@@ -498,7 +498,7 @@ No tribal knowledge. No copy-pasting configs. No manual dashboard checking. The 
 | Layer | What | Status |
 |-------|------|--------|
 | **TUI CLI** | Distribution mechanism — install agents, configs, templates with one command | POC planned |
-| **Excellence Agents** | 9 specialist agents + 10 tool subagents + 37 commands + 14 skills | ✅ Built |
+| **Excellence Agents** | 9 specialist agents + 10 tool subagents + 37 commands + 25 skills | ✅ Built |
 | **Tools** | Autobuild, guidelines generator, background execution | ✅ Built |
 | **Bot Service** | Autonomous workflows, webhooks, scheduled tasks, notifications | Phase 3 design |
 
