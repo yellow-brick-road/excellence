@@ -136,7 +136,7 @@ The env vars must be exported in the shell BEFORE starting kiro-cli. Add them to
 kiro-cli --agent tuimm-default
 ```
 
-Once inside, type `$get-commands`. If it lists 40 commands across 9 agents, the installation is correct.
+Once inside, type `$get-commands`. If it lists 41 commands across 9 agents, the installation is correct.
 
 ## How the pieces relate
 

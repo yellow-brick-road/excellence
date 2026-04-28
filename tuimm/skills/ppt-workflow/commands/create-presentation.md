@@ -5,9 +5,15 @@ description: "Full presentation workflow. Use when: user says 'make a presentati
 
 # Command: $kn_create-presentation
 
-Create a TUI-branded PowerPoint from a topic description. Uses explicit shape builders — no template cloning.
+Create a TUI-branded PowerPoint from a topic description or a pre-built spec. Uses explicit shape builders — no template cloning.
 
 ## Process
+
+### 0. Check for Existing Spec
+
+If the user provides `--spec /path/to/spec.json` or a spec file exists at `/tmp/ppt-spec.json` (from `$kn_plan-presentation`), skip to step 3.
+
+If no spec exists, do steps 1-2 inline (or suggest `$kn_plan-presentation` first for complex decks).
 
 ### 1. Gather Requirements
 

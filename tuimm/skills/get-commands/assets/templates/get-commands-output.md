@@ -51,6 +51,7 @@ TUIMM Design System:
 - + shared (jira + weblate)
 
 TUIMM Knowledge:
+- $kn_plan-presentation: Plan presentation structure and content
 - $kn_doc-health: Confluence documentation health check
 - $kn_runbook: Generate or update a runbook
 - $kn_onboarding: Generate onboarding guide
@@ -66,7 +67,7 @@ TUIMM Planner:
 - + shared (jira)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-40 commands total (10 domain prefixes + 1 meta) across 9 agents
+41 commands total (10 domain prefixes + 1 meta) across 9 agents
 
 Adapt "(this agent)" to whichever agent runs the command. Show "Your commands" first when run from a non-default agent. "shared (jira)" = $jira_create-ticket + $jira_edit-ticket + $jira_comment-ticket + $jira_set-ai-usage. "shared (jira + weblate)" = jira shared + $weblate_add-key + $weblate_validate + $weblate_coverage + $weblate_translate-missing.
 

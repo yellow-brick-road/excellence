@@ -1,0 +1,536 @@
+# aitm — AI Tool Manager
+
+A CLI to manage AI tool configurations (rules, steering files, skills, agents) from GitLab repositories. It fetches files from remote repos and installs them into the correct directories for your AI assistants. Which assistants are active is controlled by a global configuration (`~/.aitm/config.json`), so the same manifest works across different developer setups.
+
+## Installation
+
+### 1. Configure the npm registry
+
+Add the following to your `~/.npmrc`:
+
+```
+@dx:registry=https://source.tui/api/v4/packages/npm/
+//source.tui/api/v4/packages/npm/:_authToken=<YOUR_GITLAB_TOKEN>
+```
+
+### 2. Install globally
+
+```bash
+npm install -g @dx/aitm
+```
+
+## Configuration
+
+Before using `aitm`, configure your GitLab access:
+
+```bash
+aitm config set-host https://source.tui
+aitm config set-token <your-token>
+aitm config set-assistants q kiro
+aitm config show
+```
+
+Configuration is stored in `~/.aitm/config.json`.
+
+---
+
+## Interactive Mode (TUI)
+
+When running in a terminal (TTY detected), aitm automatically enters interactive mode with arrow-key navigation, searchable lists, and guided prompts. This activates when required arguments are omitted:
+
+```bash
+aitm add              # Interactive: browse/search/manual file selection
+aitm add file         # Interactive: prompts for repo, file, targets
+aitm remove           # Interactive: select from manifest tools
+aitm search           # Interactive: prompts for query, then offers to add results
+aitm extend           # Interactive: browse/search/manual manifest selection
+aitm config setup     # Interactive: guided wizard with arrow-key selection
+aitm config set-env   # Interactive: prompts for key/value
+aitm list files       # Interactive: prompts for repo, browse with search
+```
+
+To disable interactive mode (e.g. in scripts or CI):
+
+```bash
+aitm --no-interactive add file   # Errors if required args missing
+```
+
+When all required arguments and flags are provided, commands run immediately without prompts, even in a TTY.
+
+---
+
+## Command Reference
+
+### `aitm init`
+
+Initialize a new `aitools.json` manifest in the current directory. If `aitools.json` already exists, the command exits with an error.
+
+```bash
+aitm init
+```
+
+---
+
+### `aitm list`
+
+List remote files from a GitLab repository. Requires a subcommand.
+
+#### `aitm list files <repo>`
+
+List available AI tool files (`.md` and `.json`) in a remote GitLab repository. Fetches the full repository tree and displays matching files.
+
+```bash
+aitm list files group/project
+aitm list files group/project --path rules/
+aitm list files group/project --limit 20
+```
+
+| Option | Description |
+|---|---|
+| `--path <subPath>` | Filter results to files under the given subdirectory path |
+| `--limit <n>` | Maximum number of file results to display (default: unlimited) |
+
+---
+
+### `aitm add`
+
+Add a tool to the `aitools.json` manifest. Requires a subcommand.
+
+#### `aitm add file <repo> <filePath>`
+
+Add a single file from a remote GitLab repository as a tool in the manifest. The file will be installed to the directories determined by the specified target(s).
+
+You can also use `@N` to reference a result from the last `aitm search`:
+
+```bash
+aitm add file group/project path/to/file.md --target steering
+aitm add file group/project path/to/file.md --target steering --target rule
+aitm add file group/project path/to/file.md --target skill --name my-skill --description "Helpful guidance"
+aitm add file group/project path/to/file.md --target rule --ref v1.0.0
+aitm add file group/project path/to/file.md --target skill --alias custom-name
+aitm add file @1 --target rule          # add search result #1
+aitm add file @3 --target skill         # add search result #3
+```
+
+| Option | Required | Description |
+|---|---|---|
+| `--target <target...>` | Yes | Target type(s). Valid values: `rule`, `skill`, `steering`, `agent`, `default-agent`, `resource`. May be specified multiple times. |
+| `--name <name>` | No | Skill name written as YAML frontmatter in the installed `SKILL.md`. Only applies to `skill` targets. |
+| `--description <desc>` | No | Skill description written as YAML frontmatter in the installed `SKILL.md`. Only applies to `skill` targets. |
+| `--resource-name <name>` | No | Resource name used as the install directory under `.kiro/`. Required for `resource` targets. Must be a valid folder name (alphanumeric, hyphens, underscores). |
+| `--alias <alias>` | No | Override the install path segment (file/folder name under the target directory). May contain `/` for nested paths. |
+| `--ref <ref>` | No | Pin to a specific Git ref (branch, tag, or commit SHA) instead of resolving HEAD at install time. |
+| `--required-env <name:desc...>` | No | Required environment variable(s) in `name:description` format. May be specified multiple times. During install, aitm verifies these are set in `config.environment`. |
+| `--manifest <name>` | No | Target a secondary manifest file (`<name>.aitools.json`) instead of `aitools.json`. Creates the file if it doesn't exist. |
+
+**Valid targets and install directories:**
+
+At install time, each target type is expanded into concrete assistant-specific installs based on the `assistants` configured in `~/.aitm/config.json`. The mapping is:
+
+| Type | Assistant | Installs to |
+|---|---|---|
+| `rule` | q | `.amazonq/rules/aitm/` |
+| `skill` | kiro | `.kiro/skills/aitm/` |
+| `steering` | kiro | `.kiro/steering/aitm/` |
+| `agent` | kiro | `.kiro/agents/aitm/` |
+| `default-agent` | kiro | `.kiro/agents/aitm/` (also sets `chat.defaultAgent` in `.kiro/settings/cli.json`) |
+| `resource` | kiro | `.kiro/<resource_name>/` |
+
+If an assistant is not in the global config, its targets are silently skipped. An empty `assistants` list means all assistants are active.
+
+**`default-agent` behavior:** Installs the agent file identically to `agent`, then reads the `name` property from the installed JSON file and writes it to `.kiro/settings/cli.json` as `chat.defaultAgent`. This makes the installed agent the default agent in Kiro. If the agent file is not valid JSON or lacks a `name` property, the settings update is skipped and the file installation still succeeds.
+
+**Skill install behavior:** Single-file `skill` dependencies are installed as skill folders containing a `SKILL.md` file. For example:
+
+```
+.kiro/skills/aitm/
+  custom-name/
+    SKILL.md
+```
+
+If `--name` or `--description` is provided, the installed `SKILL.md` starts with YAML frontmatter:
+
+```markdown
+---
+name: my-skill
+description: Helpful guidance
+---
+# Original file content...
+```
+
+Without `--alias`, the folder name is derived from the original filename (minus extension). Folder dependencies are installed as-is and are not affected by the skill folder transformation.
+
+**`resource` behavior:** Installs the file or folder into `.kiro/<resource_name>/`, where `<resource_name>` is specified via `--resource-name`. The resource name must be a valid folder name (alphanumeric characters, hyphens, and underscores only). Both single files and directories are supported. Example:
+
+```bash
+aitm add file group/project path/to/config.json --target resource --resource-name my-config
+```
+
+This installs the file to `.kiro/my-config/path/to/config.json`.
+
+---
+
+### `aitm install`
+
+Install all tools defined in the `aitools.json` manifest. Fetches files from remote GitLab repositories and places them in the correct assistant directories. If the manifest contains an `extends` array, remote manifests are resolved depth-first and their tools are merged before installation.
+
+```bash
+aitm install
+```
+
+For each tool, the installer resolves the Git ref (using the pinned `ref` if set, otherwise the default branch HEAD), fetches the file content, and writes it to the target directory.
+
+If a dependency fails (remote unreachable, file not found), the installer logs the error and continues with remaining entries. A summary of successes and failures is printed at the end.
+
+---
+
+### `aitm remove <toolId>`
+
+Remove a tool from the manifest, lock file, and delete its installed file(s) from disk. The `<toolId>` is the key used in the `tools` section of `aitools.json`.
+
+```bash
+aitm remove group/project/path/to/file.md
+```
+
+| Argument | Description |
+|---|---|
+| `<toolId>` | The tool identifier (key in the manifest `tools` object) |
+
+---
+
+### `aitm extend <repository>`
+
+Add an `extends` entry to the `aitools.json` manifest, referencing a base manifest from a remote repository. During `aitm install`, tools from extended manifests are merged depth-first, with local tools taking precedence over remote ones. Duplicate entries (same repository, ref, and file) are detected and skipped.
+
+```bash
+aitm extend group/shared-config
+aitm extend group/shared-config --ref v1.0.0
+aitm extend group/shared-config --file custom-manifest.json
+aitm extend group/shared-config --ref main --file config/aitools.json
+aitm extend group/shared-config --manifest team-rules
+```
+
+| Argument / Option | Required | Description |
+|---|---|---|
+| `<repository>` | Yes | GitLab project path of the remote repository containing the base manifest |
+| `--ref <ref>` | No | Pin to a specific Git ref (branch, tag, or commit SHA) instead of resolving HEAD at install time |
+| `--file <file>` | No | Path to the manifest file in the remote repository (default: `aitools.json`) |
+| `--manifest <name>` | No | Target a secondary manifest file (`<name>.aitools.json`) instead of `aitools.json`. Creates the file if it doesn't exist. |
+
+**How extends resolution works:**
+
+1. During `aitm install`, the resolver reads the local manifest's `extends` array
+2. For each entry, it fetches the remote manifest and recursively resolves its own `extends`
+3. Tools are merged depth-first: later entries override earlier ones, and local tools always win
+4. Circular references (A extends B, B extends A) are detected and skipped with a warning
+5. Fetch failures for individual entries are logged and remaining entries continue resolving
+
+**Example `aitools.json` with extends:**
+
+```json
+{
+  "extends": [
+    { "repository": "group/shared-config" },
+    { "repository": "group/team-standards", "ref": "v2.0.0" },
+    { "repository": "group/custom", "file": "config/aitools.json" }
+  ],
+  "tools": {
+    "my-repo/local-rule.md": {
+      "repository": "group/my-repo",
+      "file": "local-rule.md",
+      "targets": [{ "type": "rule" }]
+    }
+  }
+}
+```
+
+---
+
+### `aitm config`
+
+Manage aitm configuration (GitLab host, API token, environment variables). Configuration is stored in `~/.aitm/config.json`.
+
+#### `aitm config set-host <host>`
+
+Set the GitLab host URL. Defaults to `https://gitlab.com` if not set.
+
+```bash
+aitm config set-host https://source.tui
+```
+
+| Argument | Description |
+|---|---|
+| `<host>` | The GitLab instance URL (e.g. `https://gitlab.com`, `https://source.tui`) |
+
+#### `aitm config set-token <token>`
+
+Set the GitLab API token used to authenticate API requests. The token is stored in `~/.aitm/config.json`.
+
+```bash
+aitm config set-token glpat-xxxxxxxxxxxxxxxxxxxx
+```
+
+| Argument | Description |
+|---|---|
+| `<token>` | A GitLab personal access token with API read access |
+
+#### `aitm config set-assistants <assistants...>`
+
+Set the AI assistants to install for. Only tools matching the configured assistants will be installed. Omit or pass an empty list to install for all assistants.
+
+```bash
+aitm config set-assistants q kiro
+```
+
+| Argument | Description |
+|---|---|
+| `<assistants...>` | One or more assistant names (e.g. `q`, `kiro`). Valid assistants: `q`, `kiro`. |
+
+#### `aitm config set-env <key> <value>`
+
+Set an environment variable that can be used as a placeholder in manifest files. Placeholders use `${KEY}` syntax and are replaced during install.
+
+```bash
+aitm config set-env TEAM_NAME backend
+aitm config set-env API_TOKEN secret-value --secret
+```
+
+| Argument / Option | Required | Description |
+|---|---|---|
+| `<key>` | Yes | The environment variable name (used as `${KEY}` in manifests) |
+| `<value>` | Yes | The value to set |
+| `--secret` | No | Mark the value as secret so it is masked with asterisks in `aitm config show` output |
+
+#### `aitm config unset-env <key>`
+
+Remove a previously set environment variable from the configuration.
+
+```bash
+aitm config unset-env TEAM_NAME
+```
+
+| Argument | Description |
+|---|---|
+| `<key>` | The environment variable name to remove |
+
+#### Built-in Environment Variables
+
+The following variables are automatically available during `aitm install` without needing `aitm config set-env`:
+
+| Variable | Description |
+|---|---|
+| `/home/javierfernandez/excellence` | The directory where `aitm install` is run (no trailing slash). In the CLI this is `process.cwd()`; in the Electron app it is the selected project folder. |
+
+Built-in variables always override user-defined values with the same name.
+
+#### `aitm config show`
+
+Display the current aitm configuration including host, token (masked), and environment variables. Secret values are shown as asterisks.
+
+```bash
+aitm config show
+```
+
+#### `aitm config setup`
+
+Interactive wizard that guides you through initial aitm configuration in a single session. The wizard walks through four steps:
+
+1. **Host** — set the GitLab host URL (defaults to `https://source.tui`)
+2. **Token** — set a GitLab personal access token (requires `read_api` scope)
+3. **Assistants** — set which AI assistants to install for (e.g. `q kiro`)
+4. **Githooks** — optionally install global Git hooks to run `aitm install` after clone/pull
+
+```bash
+aitm config setup
+```
+
+If a configuration already exists, current values are shown as defaults.
+
+#### `aitm config source add <repo>`
+
+Add a source repository for search and discovery. Source repositories are searched when running `aitm search`. A set of built-in sources are always available.
+
+```bash
+aitm config source add group/my-tools
+aitm config source add group/my-tools --ref v1.0.0
+aitm config source add group/my-tools --path rules/
+```
+
+| Option | Description |
+|---|---|
+| `--ref <ref>` | Pin to a specific Git ref (branch, tag, or commit SHA) |
+| `--path <path>` | Scope search to a subdirectory within the repository |
+
+#### `aitm config source remove <repo>`
+
+Remove a user-added source repository. Built-in sources cannot be removed.
+
+```bash
+aitm config source remove group/my-tools
+```
+
+| Argument | Description |
+|---|---|
+| `<repo>` | The repository path to remove |
+
+#### `aitm config source list`
+
+List all configured source repositories. Built-in sources are marked with `[built-in]`.
+
+```bash
+aitm config source list
+```
+
+---
+
+### `aitm add-githook`
+
+Set up global Git hooks (`post-checkout` and `post-merge`) to automatically run `aitm install` after `git clone` and `git pull`. Hooks are installed in the global Git hooks directory.
+
+```bash
+aitm add-githook
+```
+
+---
+
+### `aitm clean`
+
+Remove all files installed by aitm from the target directories without modifying the manifest or lock file. Cleans the following directories:
+
+- `.amazonq/rules/aitm/`
+- `.kiro/skills/aitm-*/`
+- `.kiro/steering/aitm/`
+- `.kiro/agents/aitm-*` (covers both `agent` and `default-agent`)
+- `.kiro/<resource_name>/` (for each `resource` target in the manifest)
+
+```bash
+aitm clean
+```
+
+---
+
+### `aitm search <query>`
+
+Search for files across all configured source repositories by filename. Results are numbered and cached so they can be referenced with `@N` in `aitm add file` and `aitm show`.
+
+```bash
+aitm search kafka
+```
+
+Example output:
+
+```
+  [1] dx/ai-rules :: rules/kafka-best-practices.md
+  [2] dx/ai-rules :: rules/kafka-consumer-patterns.md
+  [3] dx/ai-skills :: skills/kafka-debugging.md
+```
+
+Search matches file paths case-insensitively. Results come from all sources (built-in and user-added via `aitm config source add`).
+
+Manifest files (`*.aitools.json`) are shown with an `[extend]` badge. In interactive mode, selecting a manifest file offers to extend from it instead of adding it as a tool.
+
+---
+
+### `aitm show <ref>`
+
+Display the content of a file from the last search results. Use `@N` to reference a search result by its number. Markdown files (`.md`) are rendered with formatting in the terminal; other files are displayed as raw text.
+
+```bash
+aitm show @1          # show search result #1 (rendered if .md)
+aitm show @3          # show search result #3
+```
+
+| Argument | Description |
+|---|---|
+| `<ref>` | A search result reference in `@N` format (e.g. `@1`, `@2`) |
+
+---
+
+### Discovery Workflow
+
+The source registry, search, show, and `@N` shortcuts work together to provide a streamlined discovery-to-add workflow:
+
+```bash
+# 1. Add a custom source repository (built-in sources are always available)
+aitm config source add group/my-team-tools
+
+# 2. Search for files across all sources
+aitm search kafka
+
+# 3. Preview a result
+aitm show @1
+
+# 4. Add it to your manifest
+aitm add file @1 --target rule
+```
+
+Manifest files (`*.aitools.json`) discovered via search or browse are automatically recognized. In interactive mode, selecting one offers to extend from it rather than add it as a tool.
+
+---
+
+## Manifest Schema
+
+### `aitools.json` structure
+
+```json
+{
+  "extends": [
+    { "repository": "group/base-config" },
+    { "repository": "group/team-config", "ref": "v1.0.0", "file": "custom.json" }
+  ],
+  "tools": {
+    "<toolId>": {
+      "repository": "group/project",
+      "file": "path/to/file.md",
+      "targets": [{ "type": "rule" }],
+      "ref": "v1.0.0",
+      "alias": "custom-name",
+      "name": "skill-name",
+      "description": "skill description",
+      "required_environment_variables": [
+        { "name": "MY_TOKEN", "description": "Token for API access" }
+      ]
+    }
+  }
+}
+```
+
+### `extends` array
+
+Each entry in the `extends` array references a remote manifest whose tools are merged into the local manifest during install.
+
+| Field | Required | Description |
+|---|---|---|
+| `repository` | Yes | GitLab project path of the remote repository |
+| `ref` | No | Git ref (branch, tag, or SHA) to pin to. Defaults to HEAD. |
+| `file` | No | Path to the manifest file in the remote repository. Defaults to `aitools.json`. |
+
+### `tools` object
+
+Each key is a tool identifier and each value describes where to fetch the file and where to install it.
+
+| Field | Required | Description |
+|---|---|---|
+| `repository` | Yes | GitLab project path |
+| `file` | Yes | File path in the repository |
+| `targets` | Yes | Array of `{ type }` objects |
+| `ref` | No | Pinned Git ref |
+| `alias` | No | Override install path segment |
+| `name` | No | Skill name (skill targets only) |
+| `description` | No | Skill description (skill targets only) |
+| `required_environment_variables` | No | Array of `{ name, description }` objects. During install, aitm verifies these are set in `config.environment` before downloading any tools. |
+
+### Validation rules
+
+- `extends` entries must have a `repository` field
+
+## How it works
+
+- `aitools.json` — the manifest listing your tools and extends references
+- `aitools-lock.json` — lock file pinning resolved SHAs for reproducible installs
+- Files are fetched from GitLab at the pinned ref (or default branch HEAD) and placed in the appropriate assistant directory
+- Extended manifests are resolved depth-first and merged, with local tools taking precedence
+
+## License
+
+MIT

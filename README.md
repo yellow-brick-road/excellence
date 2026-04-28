@@ -161,7 +161,7 @@ kiro-cli --agent tuimm_default --classic
 
 > **Note:** Use the `--classic` flag. Kiro CLI 2.0 asks for permission before each subagent call, which breaks the workflow — agents delegate to subagents constantly and it should be automatic. We're working on a proper fix. In the meantime, `--classic` skips the confirmation prompts.
 
-Type `$get-commands`. If you see 40 commands across 9 agents, you're good.
+Type `$get-commands`. If you see 41 commands across 9 agents, you're good.
 
 ---
 
@@ -209,7 +209,7 @@ tuimm/
 
 **Steering** defines how agents behave: git conventions, communication style, error handling, coding standards. All agents share the same rules — consistency is built in.
 
-**Commands** are step-by-step workflows. When you type `$dev_solve`, the agent reads the command file, follows the steps, delegates to subagents, and formats the output using a template. 40 commands across 11 domains.
+**Commands** are step-by-step workflows. When you type `$dev_solve`, the agent reads the command file, follows the steps, delegates to subagents, and formats the output using a template. 41 commands across 11 domains.
 
 **Skills** are reference knowledge. Commit conventions, code review checklists, Weblate workflows, Jira document format. Agents load them when they need specific expertise. Some skills also bundle scripts (autobuild, bg, logd, guidelines-generator) that agents run via shell.
 

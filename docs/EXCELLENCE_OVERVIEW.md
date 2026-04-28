@@ -271,7 +271,7 @@ The developer talks to one agent. Behind the scenes, that agent orchestrates Jir
 
 ### Commands — Repeatable Workflows
 
-Each agent has commands: structured, step-by-step workflows for specific tasks. 40 commands across 11 domains.
+Each agent has commands: structured, step-by-step workflows for specific tasks. 41 commands across 11 domains.
 
 A few examples:
 
@@ -498,7 +498,7 @@ No tribal knowledge. No copy-pasting configs. No manual dashboard checking. The 
 | Layer | What | Status |
 |-------|------|--------|
 | **TUI CLI** | Distribution mechanism — install agents, configs, templates with one command | POC planned |
-| **Excellence Agents** | 9 specialist agents + 10 tool subagents + 40 commands + 27 skills | ✅ Built |
+| **Excellence Agents** | 9 specialist agents + 10 tool subagents + 41 commands + 27 skills | ✅ Built |
 | **Tools** | Autobuild, guidelines generator, background execution | ✅ Built |
 | **Bot Service** | Autonomous workflows, webhooks, scheduled tasks, notifications | Phase 3 design |
 

@@ -114,14 +114,15 @@ Reports save to `outputs/YYYY-MM-DD_HHmm_NAME.md`
 | `$ds_design-audit` | "design audit", "DS compliance" | Design system compliance check |
 | `$ds_component-check` | "component check [name]" | Compare Figma spec vs code implementation |
 
-### TUIMM Knowledge (5)
+### TUIMM Knowledge (6)
 
 | Command | Trigger | Description |
 |---------|---------|-------------|
 | `$kn_doc-health` | "doc health", "docs audit" | Documentation health audit |
 | `$kn_runbook` | "runbook [topic]" | Generate runbook from existing knowledge |
 | `$kn_onboarding` | "onboarding [team]" | Personalized onboarding guide |
-| `$kn_create-presentation` | "make a presentation", "create a deck" | Create TUI-branded PowerPoint from topic description |
+| `$kn_plan-presentation` | "plan a presentation", "outline a deck" | Plan slide structure and content, output JSON spec |
+| `$kn_create-presentation` | "make a presentation", "create a deck" | Create TUI-branded PowerPoint from spec or from scratch |
 | `$kn_add-slides` | "add a slide", "append slides" | Add slides to an existing .pptx |
 
 ### TUIMM Planner (4)

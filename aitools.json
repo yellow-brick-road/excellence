@@ -1,4 +1,10 @@
 {
+  "extends": [
+    {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm.aitools.json"
+    }
+  ],
   "starter_packs": [
     {
       "name": "fe",

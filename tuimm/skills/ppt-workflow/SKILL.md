@@ -9,7 +9,8 @@ Create TUI-branded PowerPoint presentations programmatically. Uses explicit shap
 
 ## Available Commands
 
-- `$kn_create-presentation` — "make a presentation about X", "create a deck" — Full workflow: gather content → plan slides → generate .pptx → visual review loop. Read the command from [commands/create-presentation.md](commands/create-presentation.md)
+- `$kn_plan-presentation` — "plan a presentation", "outline a deck" — Gather requirements, choose slide types, write content, output a JSON spec for review. Read the command from [commands/plan-presentation.md](commands/plan-presentation.md)
+- `$kn_create-presentation` — "make a presentation", "create a deck" — Generate .pptx from spec or from scratch (gather + plan + generate + review loop). Read the command from [commands/create-presentation.md](commands/create-presentation.md)
 - `$kn_add-slides` — "add a slide about Y", "append slides" — Add slides to an existing .pptx with the same review loop. Read the command from [commands/add-slides.md](commands/add-slides.md)
 
 ## Templates
