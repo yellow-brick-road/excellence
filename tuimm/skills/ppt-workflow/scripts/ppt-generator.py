@@ -34,8 +34,11 @@ import zipfile
 from copy import deepcopy
 from pathlib import Path
 
-POTX_PATH = "/mnt/c/Users/javier.fernandez/OneDrive - TUI/Desktop/TUI PowerPoint Template_Oct2025 2.potx"
-PPTX_CACHE = "/tmp/tui-template.pptx"
+SCRIPT_DIR = Path(__file__).resolve().parent
+SKILL_DIR = SCRIPT_DIR.parent
+POTX_BUNDLED = SKILL_DIR / "assets" / "TUI-Template.potx"
+POTX_FALLBACK = Path("/mnt/c/Users/javier.fernandez/OneDrive - TUI/Desktop/TUI PowerPoint Template_Oct2025 2.potx")
+PPTX_CACHE = Path("/tmp/tui-template.pptx")
 
 
 def potx_to_pptx(potx_path, pptx_path):
@@ -67,13 +70,15 @@ def potx_to_pptx(potx_path, pptx_path):
 
 def ensure_template():
     """Ensure the .pptx template exists, converting from .potx if needed."""
-    if os.path.exists(PPTX_CACHE):
-        return PPTX_CACHE
-    if not os.path.exists(POTX_PATH):
-        print(f"ERROR: Template not found at {POTX_PATH}", file=sys.stderr)
+    if PPTX_CACHE.exists():
+        return str(PPTX_CACHE)
+    # Find the .potx source: bundled in skill first, then fallback
+    potx = POTX_BUNDLED if POTX_BUNDLED.exists() else POTX_FALLBACK
+    if not potx.exists():
+        print(f"ERROR: Template not found at {POTX_BUNDLED} or {POTX_FALLBACK}", file=sys.stderr)
         sys.exit(1)
-    potx_to_pptx(POTX_PATH, PPTX_CACHE)
-    return PPTX_CACHE
+    potx_to_pptx(str(potx), str(PPTX_CACHE))
+    return str(PPTX_CACHE)
 
 
 def clone_slide(target_prs, source_prs, slide_num):

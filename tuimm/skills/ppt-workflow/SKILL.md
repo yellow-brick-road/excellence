@@ -132,4 +132,4 @@ For detailed shape data per slide, see:
 ## Prerequisites
 
 - `python-pptx` installed: `pip install python-pptx`
-- TUI template at: `/mnt/c/Users/javier.fernandez/OneDrive - TUI/Desktop/TUI PowerPoint Template_Oct2025 2.potx`
+- TUI template is bundled at `assets/TUI-Template.potx` (no manual setup needed)
