@@ -27,7 +27,7 @@ skill-name/
     └── templates/        # Output format definitions
 ```
 
-26 skills total: 12 workflow skills (with commands and templates) + 14 knowledge skills (reference material only). Installed with `tuimm-` prefix to avoid collisions.
+27 skills total: 13 workflow skills (with commands and templates) + 14 knowledge skills (reference material only). Installed with `tuimm-` prefix to avoid collisions.
 
 Installed to: `~/.kiro/skills/tuimm-*/`
 

@@ -271,7 +271,7 @@ The developer talks to one agent. Behind the scenes, that agent orchestrates Jir
 
 ### Commands — Repeatable Workflows
 
-Each agent has commands: structured, step-by-step workflows for specific tasks. 37 commands across 11 domains.
+Each agent has commands: structured, step-by-step workflows for specific tasks. 40 commands across 11 domains.
 
 A few examples:
 
@@ -308,7 +308,7 @@ steering/
 
 ### Skills — Reusable Knowledge
 
-Skills are knowledge documents that agents load when they need specific expertise. Commit conventions, code review checklists, Weblate translation workflows, file modification patterns, MCP tool references. 25 skills today (11 workflow + 14 knowledge), growing as we codify more practices.
+Skills are knowledge documents that agents load when they need specific expertise. Commit conventions, code review checklists, Weblate translation workflows, file modification patterns, MCP tool references. 27 skills today (13 workflow + 14 knowledge), growing as we codify more practices.
 
 ### Routines — Automated Workflows
 
@@ -498,7 +498,7 @@ No tribal knowledge. No copy-pasting configs. No manual dashboard checking. The 
 | Layer | What | Status |
 |-------|------|--------|
 | **TUI CLI** | Distribution mechanism — install agents, configs, templates with one command | POC planned |
-| **Excellence Agents** | 9 specialist agents + 10 tool subagents + 37 commands + 25 skills | ✅ Built |
+| **Excellence Agents** | 9 specialist agents + 10 tool subagents + 40 commands + 27 skills | ✅ Built |
 | **Tools** | Autobuild, guidelines generator, background execution | ✅ Built |
 | **Bot Service** | Autonomous workflows, webhooks, scheduled tasks, notifications | Phase 3 design |
 

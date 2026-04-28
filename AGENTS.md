@@ -26,7 +26,7 @@ tuimm/                              ← inside the excellence repo
 │   │   └── workspace-cleanup-check.py
 │   └── ...
 │
-├── skills/                         ← 26 skill directories
+├── skills/                         ← 27 skill directories
 │   ├── dev-workflow/                ← workflow skill (commands + templates)
 │   │   ├── SKILL.md
 │   │   ├── commands/
@@ -69,7 +69,7 @@ cp tuimm/README.md ~/.kiro/tuimm/
 ```bash
 ls ~/.kiro/agents/tuimm-*.json | wc -l         # expect: 19
 ls ~/.kiro/steering/tuimm/*.md | wc -l         # expect: 11
-ls -d ~/.kiro/skills/tuimm-*/ | wc -l          # expect: 26
+ls -d ~/.kiro/skills/tuimm-*/ | wc -l          # expect: 27
 ```
 
 After copying, the structure must be:
@@ -90,7 +90,7 @@ After copying, the structure must be:
 │   ├── tuimm-dev-workflow/
 │   ├── tuimm-mr-workflow/
 │   ├── tuimm-commit-conventions/
-│   └── ... (26 total tuimm-* directories)
+│   └── ... (27 total tuimm-* directories)
 │
 └── tuimm/
     └── README.md    ← knowledgeBase index target
@@ -136,7 +136,7 @@ The env vars must be exported in the shell BEFORE starting kiro-cli. Add them to
 kiro-cli --agent tuimm-default
 ```
 
-Once inside, type `$get-commands`. If it lists 38 commands across 9 agents, the installation is correct.
+Once inside, type `$get-commands`. If it lists 40 commands across 9 agents, the installation is correct.
 
 ## How the pieces relate
 

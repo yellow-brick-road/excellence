@@ -114,13 +114,15 @@ Reports save to `outputs/YYYY-MM-DD_HHmm_NAME.md`
 | `$ds_design-audit` | "design audit", "DS compliance" | Design system compliance check |
 | `$ds_component-check` | "component check [name]" | Compare Figma spec vs code implementation |
 
-### TUIMM Knowledge (3)
+### TUIMM Knowledge (5)
 
 | Command | Trigger | Description |
 |---------|---------|-------------|
 | `$kn_doc-health` | "doc health", "docs audit" | Documentation health audit |
 | `$kn_runbook` | "runbook [topic]" | Generate runbook from existing knowledge |
 | `$kn_onboarding` | "onboarding [team]" | Personalized onboarding guide |
+| `$kn_create-presentation` | "make a presentation", "create a deck" | Create TUI-branded PowerPoint from topic description |
+| `$kn_add-slides` | "add a slide", "append slides" | Add slides to an existing .pptx |
 
 ### TUIMM Planner (4)
 
@@ -174,6 +176,8 @@ Reports save to `outputs/YYYY-MM-DD_HHmm_NAME.md`
 | `kn-doc-health.md` | `$kn_doc-health` | Documentation health report |
 | `kn-onboarding.md` | `$kn_onboarding` | Onboarding guide creation confirmation |
 | `kn-runbook.md` | `$kn_runbook` | Runbook creation confirmation |
+| `ppt-slide-plan.md` | `$kn_create-presentation`, `$kn_add-slides` | Slide plan for user approval before generation |
+| `ppt-result.md` | `$kn_create-presentation`, `$kn_add-slides` | Presentation generation result |
 | `planner-analyze.md` | `$planner_analyze` | Requirement analysis report |
 | `planner-decompose.md` | `$planner_decompose` | Task decomposition summary |
 | `planner-design.md` | `$planner_design` | Technical design document format |
@@ -187,9 +191,9 @@ Reports save to `outputs/YYYY-MM-DD_HHmm_NAME.md`
 
 ## Skills
 
-26 skills total: 12 workflow + 14 knowledge.
+27 skills total: 13 workflow + 14 knowledge.
 
-### Workflow Skills (12)
+### Workflow Skills (13)
 
 | Skill | Used by | Description |
 |-------|---------|-------------|
@@ -203,6 +207,7 @@ Reports save to `outputs/YYYY-MM-DD_HHmm_NAME.md`
 | `tuimm-mr-workflow` | MR | MR review, feedback, approval, rebasing |
 | `tuimm-obs-workflow` | Observability | Production error scanning and investigation |
 | `tuimm-planner-workflow` | Planner | Requirement analysis, technical design, task decomposition, autobuild execution |
+| `tuimm-ppt-workflow` | Knowledge | TUI-branded PowerPoint generation using corporate template |
 | `tuimm-qg-workflow` | Quality Guardian | Code quality, tech debt, dependencies, releases |
 | `tuimm-weblate-workflow` | Dev, MR, DevEx, Design System | Translation key management and validation |
 
@@ -230,3 +235,4 @@ Reports save to `outputs/YYYY-MM-DD_HHmm_NAME.md`
 | Script | Location | Used by | Description |
 |--------|----------|---------|-------------|
 | `workspace-cleanup-check.py` | `steering/scripts/` | Session start (bg) | Scans temp workspaces, checks GitLab for merged/closed MRs and branches |
+| `ppt-generator.py` | `skills/ppt-workflow/scripts/` | `$kn_create-presentation`, `$kn_add-slides` | TUI PowerPoint generator — clones template slides, fills content |

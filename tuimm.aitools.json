@@ -525,6 +525,15 @@
         }
       ]
     },
+    "tuimm/skills/ppt-workflow": {
+      "repository": "javier.fernandez/tuimm-agents-poc",
+      "file": "tuimm/skills/ppt-workflow",
+      "targets": [
+        {
+          "type": "skill"
+        }
+      ]
+    },
     "tuimm/skills/planner-workflow": {
       "repository": "javier.fernandez/tuimm-agents-poc",
       "file": "tuimm/skills/planner-workflow",
