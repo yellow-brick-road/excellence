@@ -16,6 +16,7 @@ Create a Jira ticket following the jira-ticket template and ADF format.
 - **summary**: Ticket title. Required.
 - **description**: What needs to happen and why.
 - **acceptance_criteria**: List of verifiable criteria (optional).
+- **related_to**: Reference ticket key to link (optional). Creates a "relates to" link.
 - **assignee**: Assignee email or display name (optional).
 - **labels**: Labels to apply (optional).
 - **sprint**: Sprint name or ID (optional).
@@ -31,10 +32,14 @@ Create a Jira ticket following the jira-ticket template and ADF format.
    - Definition of Done section (standard checklist)
 4. Convert all content to ADF format (consult jira-adf skill)
 5. Create the ticket via tuimm-subagent_jira
-6. Present result using the jira-ticket template for the created ticket. Follow it EXACTLY — LAST STEP, nothing after this.
+6. If `related_to` is set, add a "relates to" link between the new ticket and the reference ticket. Do NOT use parent/sub-task hierarchy — use issue links instead.
+7. If `description` field fails (not on screen), retry using `customfield_12281` (Additional Details) as fallback and inform the user.
+8. Present result using the jira-ticket template for the created ticket. Follow it EXACTLY — LAST STEP, nothing after this.
 
 ## Rules
 
 - All description and comment fields MUST use ADF — never plain text
 - Project key is always required — never assume
 - Standard issue types only: Story, Task, Bug, Debt, Risk
+- When linking to a reference ticket, ALWAYS use "relates to" link — never create sub-tasks unless the user explicitly asks for a sub-task
+- If `description` is not available on the project screen, use `customfield_12281` (Additional Details) as fallback and inform the user
