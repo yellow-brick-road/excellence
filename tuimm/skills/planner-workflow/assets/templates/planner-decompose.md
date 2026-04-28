@@ -16,6 +16,11 @@ Dependency graph:
 {ASCII graph showing task order}
 
 To execute:
-  autobuild .plan/{topic}/tasks/ --bg
+  /agent swap tuimm-dev
+  $planner_autobuild .plan/{topic}/tasks/
+
+Or in background:
+  /agent swap tuimm-dev
+  $planner_autobuild .plan/{topic}/tasks/ --bg
 
 RULES: This is the COMPLETE output. Do NOT add commentary or follow-up questions. Wait for user approval.
