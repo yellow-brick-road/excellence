@@ -10,13 +10,14 @@ description: "Slide plan before generation. Use when: presenting the deck plan f
    Language: {language}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-| # | Template | Layout | Content |
-|---|----------|--------|---------|
-| 1 | Slide 7 | Sky blue cover | Title: "..." / Subtitle: "..." |
-| 2 | Slide 37 | Section divider | "1. First Section" |
-| 3 | Slide 67 | 4-step process | Steps: ... |
-| ... | ... | ... | ... |
-| N | Slide 119 | Thank you | Name, dept, contact |
+| # | Type | Content summary |
+|---|------|-----------------|
+| 1 | cover | Title: "..." / Subtitle: "..." |
+| 2 | title | "Section intro" — 8 lines body |
+| 3 | terminal | CLI demo — 12 lines |
+| 4 | two_col | Problem vs Solution |
+| ... | ... | ... |
+| N | thank_you | Contact info |
 
 Approve this plan? I'll generate the .pptx once confirmed.
 

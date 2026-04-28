@@ -5,7 +5,7 @@ description: "Full presentation workflow. Use when: user says 'make a presentati
 
 # Command: $kn_create-presentation
 
-Create a TUI-branded PowerPoint from a topic description.
+Create a TUI-branded PowerPoint from a topic description. Uses explicit shape builders — no template cloning.
 
 ## Process
 
@@ -14,98 +14,92 @@ Create a TUI-branded PowerPoint from a topic description.
 Ask the user (if not already provided):
 - **Topic** — what is the presentation about?
 - **Audience** — who will see it? (executives, engineers, mixed)
-- **Key messages** — what are the 3-5 things the audience should remember?
-- **Sections** — rough structure (or let the agent propose one)
+- **Key messages** — 3-5 things the audience should remember
+- **Source material** — existing docs, notes, slide specs (folder path or inline)
 - **Language** — default English, can be es/it/de
 - **Length** — target number of slides (default: 10-15)
+
+If the user provides source material (a folder with docs), read and synthesize it.
+
+If the user doesn't have slide content ready, suggest using `$kn_add-slides` iteratively — build the deck slide by slide as content becomes available.
 
 ### 2. Plan the Deck
 
 For each slide, determine:
-- Which template slide to clone (use the Quick Slide Picker in SKILL.md)
-- What content goes in each shape
-- Speaker notes (optional)
+- **Type** — from the Slide Type Catalog in SKILL.md (terminal, two_col, chevron, etc.)
+- **Content** — text for each field, respecting the content limits per type
+- **Speaker notes** — what the presenter will SAY (not what's on screen)
 
-If the slide needs a layout not in the picker, consult the detailed catalogs in `references/`.
+**Content length rules (ENFORCE STRICTLY):**
+- `terminal`: max 18 lines, ~70 chars/line
+- `two_col`: body max 6-8 lines per column
+- `chevron`: card text max 4-5 lines
+- `three_cards`: body max 4-5 lines per card
+- `table`: max 8 rows, ~40 chars/cell for 3-col
+- `title`: body max 12-14 lines
+- `quote`: max 2 lines
+- `diagram`: box text max ~25 chars
+
+If content exceeds limits, split into multiple slides or reduce text. NEVER overflow.
 
 Present the plan using the `ppt-slide-plan` template. **Wait for user approval.**
 
-### 3. Prepare the Template
+### 3. Generate the Presentation
 
-```bash
-python3 -c "
-import os
-if not os.path.exists('/tmp/tui-template.pptx'):
-    print('Converting .potx to .pptx...')
-    exec(open('$(find ~/.kiro/skills/tuimm-ppt-workflow/scripts/ppt-generator.py -maxdepth 0 2>/dev/null || echo scripts/ppt-generator.py)').read())
-else:
-    print('Template ready at /tmp/tui-template.pptx')
-"
-```
-
-If the template doesn't exist at `/tmp/tui-template.pptx`, the generator script will convert it automatically from the .potx source.
-
-### 4. Generate the Presentation
-
-Write a JSON spec file at `/tmp/ppt-spec.json`:
-
-```json
-{
-  "template": "/tmp/tui-template.pptx",
-  "output": "/tmp/presentation-TOPIC.pptx",
-  "slides": [
-    {
-      "clone": 7,
-      "content": {
-        "Title 5": "Presentation Title",
-        "Subtitle 6": "Subtitle text"
-      },
-      "notes": "Optional speaker notes"
-    }
-  ]
-}
-```
+Write the JSON spec to `/tmp/ppt-spec.json` following the format in SKILL.md.
 
 Run the generator:
 ```bash
 python3 ~/.kiro/skills/tuimm-ppt-workflow/scripts/ppt-generator.py --spec /tmp/ppt-spec.json
 ```
 
-### 5. Visual Review
+### 4. Visual Review Loop
 
-Convert to images for review:
+**This is the critical step.** Render and review every slide.
+
 ```bash
 soffice --headless --convert-to pdf --outdir /tmp "/tmp/presentation-TOPIC.pptx"
-pdftoppm -jpeg -r 200 "/tmp/presentation-TOPIC.pdf" /tmp/review-slide
+pdftoppm -jpeg -r 100 "/tmp/presentation-TOPIC.pdf" /tmp/ppt-review
 ```
 
-Show the generated slide images to the user. Ask for feedback.
+**Use 100 DPI** (not 200) — keeps images small enough for review without timeouts. Delete the PDF immediately after conversion:
+```bash
+rm -f /tmp/presentation-TOPIC.pdf
+```
 
-### 6. Iterate
+For each slide image, verify:
+1. Is ALL expected text visible and complete (not cut off)?
+2. Are words correctly displayed (no incorrect hyphenation)?
+3. Does content stay inside its boxes/cards?
+4. Are table cells complete?
+5. Is it readable at projection size?
 
-If the user wants changes:
-- Modify the JSON spec
-- Re-run the generator
-- Show updated slides
+**Review max 3 slides per check** to avoid large image payloads.
 
-### 7. Deliver
+If issues found:
+- Adjust the JSON spec (reduce text, change type, adjust content)
+- Re-run generator
+- Re-render only affected slides
 
-Move the final .pptx to the user's preferred location. Default: the current working directory.
+Repeat until all slides pass.
+
+### 5. Cleanup & Deliver
+
+Delete all temporary files:
+```bash
+rm -f /tmp/ppt-review-*.jpg /tmp/ppt-spec.json /tmp/presentation-TOPIC.pdf
+```
+
+Move the final .pptx to the user's preferred location (default: current working directory).
 
 Present results using the `ppt-result` template.
-
-## Shape Name Reference
-
-To find shape names for a specific template slide:
-1. Check `references/template-shapes.json` — has all 119 slides with shape IDs and names
-2. Check the catalog files in `references/` — human-readable descriptions per slide
-3. Shapes with `ph_idx` are placeholders (use `fill_placeholder`)
-4. Shapes without `ph_idx` are free shapes (use `fill_text` by name)
 
 ## Rules
 
 - ALWAYS show the slide plan before generating — never generate without approval
-- Use the Quick Slide Picker first, detailed catalogs only when needed
-- Slide numbers in catalogs are 1-based; python-pptx uses 0-based (slide 7 = index 6)
-- Preserve TUI branding — never modify background shapes, logos, or decorative elements
-- If a slide type doesn't exist in the template, compose from the closest match
+- ENFORCE content length limits during planning — don't let text overflow
+- Use 100 DPI for review images — 200 DPI is too large for subagent review
+- Review max 3 slides per image check to avoid timeouts
+- Clean up ALL temp files (/tmp/ppt-review-*, /tmp/ppt-spec.json, PDFs) before delivering
+- If the user doesn't have content ready, suggest `$kn_add-slides` to build incrementally
+- Speaker notes drive content decisions — what's on screen supports what's said

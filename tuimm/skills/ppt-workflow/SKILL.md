@@ -5,131 +5,97 @@ description: TUI-branded PowerPoint generation using the official corporate temp
 
 # PPT Workflow
 
-Commands for creating TUI-branded PowerPoint presentations programmatically. Uses the official TUI PowerPoint Template (Oct 2025) with 119 pre-designed slides.
-
-## How It Works
-
-Instead of building slides from scratch, the agent **clones** template slides that match the need and **replaces** placeholder text/images. This guarantees perfect TUI branding every time.
+Create TUI-branded PowerPoint presentations programmatically. Uses explicit shape builders with TUI brand colors, fonts, and proportions — no manual template editing needed.
 
 ## Available Commands
 
-- `$kn_create-presentation` — "make a presentation about X", "create a deck" — Full workflow: describe → plan slides → generate .pptx → visual review. Read the command from [commands/create-presentation.md](commands/create-presentation.md)
-- `$kn_add-slides` — "add a slide about Y", "append slides" — Add slides to an existing .pptx. Read the command from [commands/add-slides.md](commands/add-slides.md)
+- `$kn_create-presentation` — "make a presentation about X", "create a deck" — Full workflow: gather content → plan slides → generate .pptx → visual review loop. Read the command from [commands/create-presentation.md](commands/create-presentation.md)
+- `$kn_add-slides` — "add a slide about Y", "append slides" — Add slides to an existing .pptx with the same review loop. Read the command from [commands/add-slides.md](commands/add-slides.md)
 
 ## Templates
 
 - [assets/templates/ppt-slide-plan.md](assets/templates/ppt-slide-plan.md) — Slide plan format (before generation)
 - [assets/templates/ppt-result.md](assets/templates/ppt-result.md) — Output format after generation
 
-## Quick Slide Picker
+## Slide Type Catalog
 
-Use this table to find the right template slide to clone.
+Pick the right type for each slide based on the content.
 
-### Covers
+| Type | Use for | Max content |
+|------|---------|-------------|
+| `cover` | Opening slide | Title (44pt) + subtitle block (20pt) |
+| `thank_you` | Closing slide | "Thank you." + contact info |
+| `title` | Text-heavy explanations, lists | Body max 12-14 lines at 19pt |
+| `quote` | Key statements, testimonials | Quote max 2 lines at 36pt |
+| `terminal` | CLI demos, code, file trees | Max 18 lines, ~70 chars/line at 12pt Consolas |
+| `two_col` | Comparisons, problem/solution | 6-8 lines per column at 20pt |
+| `chevron` | Process steps, phases | Card text max 4-5 lines at 18pt |
+| `three_cards` | 3 pillars, options, categories | Body max 4-5 lines at 20pt per card |
+| `table` | Structured data, feature lists | Max 8 rows, ~40 chars/cell at 15pt |
+| `diagram` | Architecture, flows, org charts | Max ~25 elements, box text ~25 chars |
+| `hybrid_tree` | Code structure + categorized items | Terminal 10 lines + category boxes |
 
-| Need | Clone slide | Notes |
-|------|-------------|-------|
-| Photo cover, title bottom | **3** | Full-bleed hero, TUI smile overlay |
-| Photo cover, title top | **4** | Hero image, title top-left |
-| Radiant smile cover | **5** | TUI logo top-right, arc overlay |
-| Custom photo + blue title | **6** | Picture placeholder |
-| Solid sky blue | **7** | Clean, no photo |
-| Solid white | **8** | Clean, no photo |
-| Custom photo + white title | **9** | Picture placeholder |
+### Selection Rules
 
-### Section Dividers
+- Code/CLI flows → `terminal`
+- Side-by-side comparison → `two_col`
+- 3-4 step process → `chevron`
+- 3 options/pillars → `three_cards`
+- Data with columns → `table`
+- Architecture/relationships → `diagram`
+- Code structure + inventory → `hybrid_tree`
+- Impactful quote → `quote`
+- Text explanation → `title`
+- Opening → `cover`
+- Closing → `thank_you`
 
-| Need | Clone slide |
-|------|-------------|
-| Title + subtitle | **37** |
-| Title only | **21** |
+## JSON Spec Format
 
-### Content Backgrounds
+Each slide is a typed object. The `type` field selects the builder.
 
-| Need | Clone slide | Notes |
-|------|-------------|-------|
-| White + gradient corner | **23** | Image left + title right |
-| White minimal | **36** | Cleanest — just TUI logo |
-| Sky blue full | **26** | Full background |
-| Dark navy full | **30** | Full background |
+```json
+{"type": "cover", "title": "...", "subtitle": "...", "notes": "..."}
+{"type": "terminal", "title": "...", "lines": [["$ cmd", "cyan"], ["output", "white"]], "notes": "..."}
+{"type": "two_col", "title": "...", "left": {"header": "...", "body": "..."}, "right": {"header": "...", "body": "..."}}
+{"type": "chevron", "title": "...", "steps": [{"header": "Step 1", "body": "..."}]}
+{"type": "three_cards", "title": "...", "cards": [{"header": "...", "body": "..."}]}
+{"type": "table", "title": "...", "headers": ["A", "B"], "rows": [["1", "2"]]}
+{"type": "diagram", "title": "...", "boxes": [{"x": 1, "y": 2, "w": 2, "h": 0.6, "text": "...", "color": "sky_blue"}], "arrows": [...], "labels": [...]}
+{"type": "quote", "quote": "...", "attribution": "..."}
+{"type": "title", "title": "...", "body": "line1\nline2"}
+{"type": "thank_you", "contact": "Name\nDept\nEmail"}
+```
 
-### Split Layouts
+### Terminal line colors
 
-| Need | Clone slide |
-|------|-------------|
-| Light blue / white (40/60) | **27** |
-| Light blue / white (50/50) | **28** |
-| Light blue / white (60/40) | **29** |
-| Dark navy / white (40/60) | **31** |
-| Dark navy / white (50/50) | **32** |
-| Dark navy / white (60/40) | **33** |
+`cyan` (prompts), `yellow` (user input), `green` (success), `red` (errors), `gray` (secondary), `white` (output)
 
-### Agendas & Overviews
+### Diagram colors
 
-| Need | Clone slide |
-|------|-------------|
-| 6-item agenda sidebar | **39** |
-| 12-item agenda 2-col | **40** |
-| Schedule table | **44** |
-| Decision template | **53** |
-| Target checklist | **48** |
+`deep_blue`, `sky_blue`, `energy_blue`, `red`, `sky_20`, `white`
 
-### Text Layouts
+## Brand Reference
 
-| Need | Clone slide |
-|------|-------------|
-| 2-column | **55** or **56** |
-| Advantages vs Disadvantages | **57** |
-| 3-column cards | **58** |
-| 3-column + conclusion | **59** |
-
-### Structure Charts
-
-| Need | Clone slide |
-|------|-------------|
-| 8-card grid (4×2) | **62** |
-| 6-card grid (3×2) | **63** |
-| 4-quadrant (2×2) | **64** |
-| 4 vertical cards | **65** |
-| 4-step process (chevrons) | **67** |
-| Hub-and-spoke | **83** |
-| Funnel | **86** |
-| Pyramid | **89** |
-| Org chart (large) | **91** |
-
-### Tables
-
-| Need | Clone slide |
-|------|-------------|
-| Basic data table | **94** |
-| Action tracker | **99** |
-| Financial KPI dashboard | **100** |
-
-### Timelines
-
-| Need | Clone slide |
-|------|-------------|
-| Monthly timeline | **112** |
-| Gantt chart | **114** |
-| Annual roadmap | **115** |
-
-### End Slide
-
-| Need | Clone slide |
-|------|-------------|
-| Thank you / closing | **119** |
-
-## References
-
-For detailed shape data per slide, see:
-- [references/catalog-covers-and-blanks.md](references/catalog-covers-and-blanks.md)
-- [references/catalog-agendas-and-content.md](references/catalog-agendas-and-content.md)
-- [references/catalog-structures.md](references/catalog-structures.md)
-- [references/catalog-tables-graphs-timelines.md](references/catalog-tables-graphs-timelines.md)
-- [references/technical-reference.md](references/technical-reference.md)
-- [references/template-shapes.json](references/template-shapes.json)
+| Element | Font | Size | Color |
+|---------|------|------|-------|
+| Cover title | Ambit | 44pt Bold | Deep Blue (27,17,92) |
+| Slide title | Ambit | 28-34pt Bold | Deep Blue |
+| Subtitle | Ambit | 18-20pt | Energy Blue (53,103,246) |
+| Body text | TUI Type Light | 18-20pt | Deep Blue |
+| Terminal | Consolas | 12pt | Various (see above) |
+| Table header | Ambit | 16pt Bold | White on Deep Blue |
+| Table data | TUI Type Light | 15pt | Deep Blue |
 
 ## Prerequisites
 
 - `python-pptx` installed: `pip install python-pptx`
 - TUI template is bundled at `assets/TUI-Template.potx` (no manual setup needed)
+
+## References
+
+For the original 119-slide template catalog (visual reference only — we don't clone from it):
+- [references/catalog-covers-and-blanks.md](references/catalog-covers-and-blanks.md)
+- [references/catalog-agendas-and-content.md](references/catalog-agendas-and-content.md)
+- [references/catalog-structures.md](references/catalog-structures.md)
+- [references/catalog-tables-graphs-timelines.md](references/catalog-tables-graphs-timelines.md)
+- [references/technical-reference.md](references/technical-reference.md)

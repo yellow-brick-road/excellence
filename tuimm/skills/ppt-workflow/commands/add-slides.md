@@ -5,7 +5,7 @@ description: "Add slides to an existing presentation. Use when: user says 'add a
 
 # Command: $kn_add-slides
 
-Add slides to an existing .pptx file.
+Add slides to an existing .pptx file. Same review loop as `$kn_create-presentation`.
 
 ## Process
 
@@ -14,36 +14,27 @@ Add slides to an existing .pptx file.
 Ask the user:
 - **Which .pptx** — path to the existing presentation
 - **What to add** — topic, content, or slide type
-- **Where** — append at end (default), or insert at position N
+- **Where** — append at end (default)
 
 ### 2. Plan New Slides
 
-Same as `$kn_create-presentation` step 2 — pick template slides, plan content.
+Pick slide types from the catalog in SKILL.md. Respect content length limits.
 
 Present the plan using the `ppt-slide-plan` template. **Wait for user approval.**
 
 ### 3. Generate
 
-Write a JSON spec with `"append_to"` instead of `"output"`:
+Write a JSON spec with `"append_to"`:
 
 ```json
 {
-  "template": "/tmp/tui-template.pptx",
   "append_to": "/path/to/existing.pptx",
-  "insert_at": -1,
+  "output": "/path/to/existing-updated.pptx",
   "slides": [
-    {
-      "clone": 37,
-      "content": {
-        "Title 1": "New Section",
-        "Subtitle 2": "Added content"
-      }
-    }
+    {"type": "title", "title": "New Section", "body": "Content here"}
   ]
 }
 ```
-
-`insert_at`: -1 = append at end, 0 = beginning, N = after slide N.
 
 Run:
 ```bash
@@ -52,10 +43,14 @@ python3 ~/.kiro/skills/tuimm-ppt-workflow/scripts/ppt-generator.py --spec /tmp/p
 
 ### 4. Visual Review & Deliver
 
-Same as `$kn_create-presentation` steps 5-7.
+Same review loop as `$kn_create-presentation` step 4:
+- Render at 100 DPI, review max 3 slides per check
+- Fix issues, re-render, repeat until perfect
+- Clean up temp files before delivering
 
 ## Rules
 
-- NEVER overwrite the original file — save to a new path first, let user confirm
+- NEVER overwrite the original file — always save to a new path first
 - Show the plan before generating
-- Preserve existing slides — only add, never modify what's already there
+- Clean up temp files after delivery
+- Enforce content length limits
